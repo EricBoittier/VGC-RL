@@ -1,0 +1,61 @@
+Weather stack (Champions) — first four rows mirror example_teams.json party order; fifth and sixth are register-only.
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Tera Type: Electric
+EVs: 124 Def / 247 SpA / 124 SpD / 15 Spe
+Bold Nature
+- Giga Drain
+- Tailwind
+- Sunny Day
+- Dazzling Gleam
+
+Dragonite
+Ability: Multiscale
+Tera Type: Normal
+EVs: 247 HP / 247 Atk / 8 Def / 8 SpD
+Mild Nature
+- Draco Meteor
+- Extreme Speed
+- Ice Beam
+- Protect
+
+Politoed @ Focus Sash
+Ability: Drizzle
+Tera Type: Fire
+EVs: 247 HP / 8 Def / 247 SpA / 8 SpD
+Modest Nature
+- Weather Ball
+- Protect
+- Encore
+- Icy Wind
+
+Archaludon @ Quick Claw
+Ability: Stalwart
+Tera Type: Electric
+EVs: 247 SpA / 15 SpD / 247 Spe
+Modest Nature
+- Electro Shot
+- Protect
+- Outrage
+- Thunder
+
+Typhlosion-Hisui @ Choice Scarf
+Ability: Blaze
+Tera Type: Fire
+EVs: 15 HP / 247 SpA / 247 Spe
+Modest Nature
+- Eruption
+- Shadow Ball
+- Overheat
+- Heat Wave
+
+Meganium
+Ability: Overgrow
+Tera Type: Water
+EVs: 8 Def / 247 SpA / 8 SpD / 247 Spe
+Rash Nature
+- Counter
+- Solar Beam
+- Petal Blizzard
+- Leaf Storm

@@ -1,0 +1,55 @@
+Mega pivot core (Champions) — first four rows mirror example_teams.json party order; fifth and sixth are register-only.
+
+Charizard @ Charizardite Y
+Ability: Solar Power
+EVs: 15 HP / 247 SpA / 247 Spe
+Modest Nature
+- Solar Beam
+- Heat Wave
+- Air Slash
+- Protect
+
+Gardevoir @ Gardevoirite
+Ability: Telepathy
+EVs: 247 Def / 247 SpA / 15 Spe
+Modest Nature
+- Protect
+- Draining Kiss
+- Psychic
+- Hyper Voice
+
+Rotom-Wash @ Sitrus Berry
+Ability: Levitate
+EVs: 247 Def / 247 SpA / 15 SpD
+Modest Nature
+- Electroweb
+- Hydro Pump
+- Volt Switch
+- Thunderbolt
+
+Talonflame @ Focus Sash
+Ability: Gale Wings
+EVs: 15 HP / 247 Atk / 247 Spe
+Jolly Nature
+- Brave Bird
+- Taunt
+- Upper Hand
+- Tailwind
+
+Sinistcha @ Quick Claw
+Ability: Hospitality
+EVs: 247 HP / 15 SpA / 247 SpD
+Modest Nature
+- Rage Powder
+- Trick Room
+- Shadow Ball
+- Matcha Gotcha
+
+Garchomp @ Bright Powder
+Ability: Rough Skin
+EVs: 15 HP / 247 Atk / 247 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Dragon Claw
+- Iron Head

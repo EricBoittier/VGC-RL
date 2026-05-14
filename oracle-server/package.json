@@ -1,0 +1,23 @@
+{
+  "name": "vgc-oracle-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/listen.ts --bundle --platform=node --format=esm --outfile=dist/listen.mjs --packages=external --alias:@lib=../src/lib --alias:@data=../src/data --alias:@app=../src/app --alias:@features=../src/app/features --alias:@pages=../src/app/pages --alias:@core=../src/app/core --alias:@basic=../src/app/basic",
+    "build:test": "esbuild src/run-batch.test.ts --bundle --platform=node --format=esm --outfile=dist/run-batch.test.mjs --packages=external --alias:@lib=../src/lib --alias:@data=../src/data --alias:@app=../src/app --alias:@features=../src/app/features --alias:@pages=../src/app/pages --alias:@core=../src/app/core --alias:@basic=../src/app/basic",
+    "start": "npm run build && node dist/listen.mjs",
+    "test": "npm run build:test && node --test dist/run-batch.test.mjs"
+  },
+  "dependencies": {
+    "@angular/core": "21.2.12",
+    "@robsonbittencourt/calc": "0.11.6",
+    "uuid": "14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.5",
+    "esbuild": "0.25.0",
+    "tsx": "4.19.4",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,42 +1,62 @@
 import { inject, Injectable } from "@angular/core"
+import { CalculatorStore } from "@data/store/calculator-store"
 import { CALC_ADJUSTERS } from "@lib/damage-calculator/calc-adjuster/calc-adjuster"
-import { SPECIFIC_DAMAGE_CALCULATORS } from "@lib/damage-calculator/specific-damage-calculator/specific-damage-calculator"
 import { DamageResult } from "@lib/damage-calculator/damage-result"
+import { SPECIFIC_DAMAGE_CALCULATORS } from "@lib/damage-calculator/specific-damage-calculator/specific-damage-calculator"
 import { FieldMapper } from "@lib/field-mapper"
 import { Field } from "@lib/model/field"
 import { Move } from "@lib/model/move"
 import { Pokemon } from "@lib/model/pokemon"
-import { fromExisting } from "@lib/smogon/smogon-pokemon-builder"
-import { SpeedCalculatorService } from "@lib/speed-calculator/speed-calculator-service"
-import { calculate, calculateMulti, Generations, Move as MoveSmogon, Result, MultiResult, Pokemon as PokemonSmogon, Field as FieldSmogon } from "@robsonbittencourt/calc"
-import { Generation } from "@robsonbittencourt/calc/dist/data/interface"
-import { CalculatorStore } from "@data/store/calculator-store"
-import { evToSp } from "@lib/utils/ev-sp-converter"
-import { RollLevelConfig } from "./roll-level-config"
+import {
+  calculateOracleDoubleAttack,
+  calculateOracleMultiResult,
+  calculateOracleResult,
+  oracleDamageDescription,
+  oracleKoChanceText,
+  oracleMaxPercentageDamage,
+  oracleMultiDamageDescription,
+  OracleCalculationDeps,
+  OracleContext
+} from "@lib/oracle/oracle-engine"
+import { MultiResult } from "@robsonbittencourt/calc"
 
 @Injectable({
   providedIn: "root"
 })
 export class DamageCalculatorService {
-  ZERO_RESULT_DAMAGE = Array(RollLevelConfig.ROLLS_NUMBER).fill(0)
-
   adjusters = inject(CALC_ADJUSTERS)
   specificDamageCalculators = inject(SPECIFIC_DAMAGE_CALCULATORS)
   fieldMapper = inject(FieldMapper)
-  speedCalculator = inject(SpeedCalculatorService)
   calculatorStore = inject(CalculatorStore)
 
+  private oracleCtx(): OracleContext {
+    return {
+      game: this.calculatorStore.isChampions() ? "champions" : "sv",
+      useSpsMode: this.calculatorStore.useSpsMode()
+    }
+  }
+
+  private oracleDeps(): OracleCalculationDeps {
+    return {
+      adjusters: this.adjusters,
+      specificDamageCalculators: this.specificDamageCalculators,
+      fieldMapper: this.fieldMapper
+    }
+  }
+
   calcDamage(attacker: Pokemon, target: Pokemon, field: Field, rightIsDefender = true): DamageResult {
-    const result = this.calculateResult(attacker, target, attacker.move, field, rightIsDefender)
+    const ctx = this.oracleCtx()
+    const deps = this.oracleDeps()
+    const result = calculateOracleResult(ctx, deps, attacker, target, attacker.move, field, rightIsDefender)
 
     return new DamageResult(
       attacker,
       target,
       attacker.move.name,
       result.moveDesc(),
-      this.koChance(result),
-      this.maxPercentageDamage(result),
-      this.damageDescription(result),
+      oracleKoChanceText(result),
+      oracleMaxPercentageDamage(result),
+      oracleDamageDescription(ctx, result),
       result.damage,
       undefined,
       undefined,
@@ -45,30 +65,35 @@ export class DamageCalculatorService {
   }
 
   calcDamageAllAttacks(attacker: Pokemon, target: Pokemon, field: Field, rightIsDefender: boolean): DamageResult[] {
-    return attacker.moveSet.moves.map(move => {
-      const result = this.calculateResult(attacker, target, move, field, rightIsDefender)
+    const ctx = this.oracleCtx()
+    const deps = this.oracleDeps()
 
-      return new DamageResult(attacker, target, move.name, result.moveDesc(), this.koChance(result), this.maxPercentageDamage(result), this.damageDescription(result), result.damage, undefined, undefined, result.afterTurn().residualHpInTurn(1) ?? 0)
+    return attacker.moveSet.moves.map(move => {
+      const result = calculateOracleResult(ctx, deps, attacker, target, move, field, rightIsDefender)
+
+      return new DamageResult(
+        attacker,
+        target,
+        move.name,
+        result.moveDesc(),
+        oracleKoChanceText(result),
+        oracleMaxPercentageDamage(result),
+        oracleDamageDescription(ctx, result),
+        result.damage,
+        undefined,
+        undefined,
+        result.afterTurn().residualHpInTurn(1) ?? 0
+      )
     })
   }
 
-  private get gen() {
-    return Generations.get(this.calculatorStore.isChampions() ? 0 : 9)
-  }
-
   calcDamageForTwoAttackers(attacker: Pokemon, secondAttacker: Pokemon, target: Pokemon, field: Field, rightIsDefender = true): DamageResult {
-    const [firstAttacker, secondAttackerOrdered] = this.speedCalculator.orderPairBySpeed(attacker, secondAttacker, field)
-
-    const prepOne = this.prepareCalculation(firstAttacker, target, firstAttacker.move, field, rightIsDefender, secondAttackerOrdered)
-    const prepTwo = this.prepareCalculation(secondAttackerOrdered, target, secondAttackerOrdered.move, field, rightIsDefender, firstAttacker)
-
-    const multiResult = calculateMulti(this.gen, [prepOne.smogonAttacker, prepTwo.smogonAttacker], prepOne.smogonTarget, [prepOne.moveSmogon, prepTwo.moveSmogon], prepOne.smogonField)
+    const ctx = this.oracleCtx()
+    const deps = this.oracleDeps()
+    const { multiResult, firstAttacker, secondAttacker: secondAttackerOrdered, prepOneMoveSmogon, prepTwoMoveSmogon } = calculateOracleDoubleAttack(ctx, deps, attacker, secondAttacker, target, field, rightIsDefender)
 
     const firstResult = multiResult.results[0]
     const secondResult = multiResult.results[1]
-
-    if (!firstResult.damage) firstResult.damage = this.ZERO_RESULT_DAMAGE
-    if (!secondResult.damage) secondResult.damage = this.ZERO_RESULT_DAMAGE
 
     return new DamageResult(
       firstAttacker,
@@ -77,7 +102,7 @@ export class DamageCalculatorService {
       multiResult.resultString(),
       multiResult.getHKO(),
       multiResult.rangePercentage().max,
-      this.injectAdjustedBp(this.injectAdjustedBp(this.formatDescription(multiResult.desc()), prepOne.moveSmogon), prepTwo.moveSmogon),
+      oracleMultiDamageDescription(ctx, multiResult, prepOneMoveSmogon, prepTwoMoveSmogon),
       firstResult.damage,
       secondAttackerOrdered,
       secondResult.damage,
@@ -85,27 +110,10 @@ export class DamageCalculatorService {
     )
   }
 
-  private prepareCalculation(attacker: Pokemon, target: Pokemon, move: Move, field: Field, rightIsDefender: boolean, secondAttacker?: Pokemon) {
-    const gen = this.gen
-    const smogonField = this.fieldMapper.toSmogon(field, rightIsDefender)
-
-    const moveSmogon = new MoveSmogon(gen, move.name)
-    moveSmogon.isCrit = rightIsDefender ? field.attackerSide.isCriticalHit : field.defenderSide.isCriticalHit
-    moveSmogon.isStellarFirstUse = true
-    moveSmogon.hits = +move.hits
-
-    const forceMaxIvs = this.calculatorStore.isChampions()
-    const smogonAttacker = fromExisting(attacker, forceMaxIvs)
-    const smogonTarget = fromExisting(target, forceMaxIvs)
-
-    this.adjusters.forEach(a => a.adjust(smogonAttacker, smogonTarget, move, moveSmogon, smogonField, secondAttacker, field))
-
-    return { gen, smogonAttacker, smogonTarget, moveSmogon, smogonField }
-  }
-
   koChanceForOneAttacker(attacker: Pokemon, target: Pokemon, field: Field, rightIsDefender = true): string {
-    const result = this.calculateResult(attacker, target, attacker.move, field, rightIsDefender)
-    return this.koChance(result)
+    const result = calculateOracleResult(this.oracleCtx(), this.oracleDeps(), attacker, target, attacker.move, field, rightIsDefender)
+
+    return oracleKoChanceText(result)
   }
 
   koChanceForTwoAttackers(attacker: Pokemon, secondAttacker: Pokemon, target: Pokemon, field: Field, rightIsDefender = true): string {
@@ -113,94 +121,10 @@ export class DamageCalculatorService {
   }
 
   calcDamageValueForTwoAttackers(attacker: Pokemon, secondAttacker: Pokemon, target: Pokemon, field: Field, rightIsDefender = true): MultiResult {
-    const [firstAttacker, secondAttackerOrdered] = this.speedCalculator.orderPairBySpeed(attacker, secondAttacker, field)
-
-    const prepOne = this.prepareCalculation(firstAttacker, target, firstAttacker.move, field, rightIsDefender, secondAttackerOrdered)
-    const prepTwo = this.prepareCalculation(secondAttackerOrdered, target, secondAttackerOrdered.move, field, rightIsDefender, firstAttacker)
-
-    const multiResult = calculateMulti(this.gen, [prepOne.smogonAttacker, prepTwo.smogonAttacker], prepOne.smogonTarget, [prepOne.moveSmogon, prepTwo.moveSmogon], prepOne.smogonField)
-
-    return multiResult
+    return calculateOracleMultiResult(this.oracleCtx(), this.oracleDeps(), attacker, secondAttacker, target, field, rightIsDefender)
   }
 
-  calculateResult(attacker: Pokemon, target: Pokemon, move: Move, field: Field, rightIsDefender: boolean, secondAttacker?: Pokemon): Result {
-    const gen = this.gen
-    const smogonField = this.fieldMapper.toSmogon(field, rightIsDefender)
-
-    const moveSmogon = new MoveSmogon(gen, move.name)
-    moveSmogon.isCrit = rightIsDefender ? field.attackerSide.isCriticalHit : field.defenderSide.isCriticalHit
-    moveSmogon.isStellarFirstUse = true
-    moveSmogon.hits = +move.hits
-
-    const forceMaxIvs = this.calculatorStore.isChampions()
-    const smogonAttacker = fromExisting(attacker, forceMaxIvs)
-    const smogonTarget = fromExisting(target, forceMaxIvs)
-
-    this.adjusters.forEach(a => a.adjust(smogonAttacker, smogonTarget, move, moveSmogon, smogonField, secondAttacker, field))
-
-    const result = this.calculateDamage(gen, smogonAttacker, smogonTarget, moveSmogon, smogonField, moveSmogon)
-
-    if (!result.damage) {
-      result.damage = this.ZERO_RESULT_DAMAGE
-    }
-
-    if (typeof result.damage === "number") {
-      result.damage = Array(RollLevelConfig.ROLLS_NUMBER).fill(result.damage)
-    }
-
-    return result
-  }
-
-  private calculateDamage(gen: Generation, attacker: PokemonSmogon, target: PokemonSmogon, move: MoveSmogon, field: FieldSmogon, moveModel: MoveSmogon): Result {
-    const applicableCalculator = this.specificDamageCalculators.find(calculator => calculator.isApplicable(moveModel))
-
-    if (applicableCalculator) {
-      const baseResult = calculate(gen, attacker, target, move, field)
-      return applicableCalculator.calculate(target, baseResult)
-    }
-
-    return calculate(gen, attacker, target, move, field)
-  }
-
-  private koChance(result: Result): string {
-    try {
-      return result.kochance().text
-    } catch (ex) {
-      return "Does not cause any damage"
-    }
-  }
-
-  private maxPercentageDamage(result: Result): number {
-    return +result.moveDesc().substring(result.moveDesc().indexOf("- ") + 1, result.moveDesc().indexOf("%"))
-  }
-
-  private damageDescription(result: Result): string {
-    try {
-      return this.injectAdjustedBp(this.formatDescription(result.desc()), result.move)
-    } catch (error) {
-      return this.formatDescription(`${result.attacker.name} ${result.move.name} vs. ${result.defender.name}: 0-0 (0 - 0%) -- possibly the worst move ever`)
-    }
-  }
-
-  private injectAdjustedBp(description: string, move: MoveSmogon): string {
-    const adjustedBp = move.overrides?.basePower
-
-    if (adjustedBp === undefined) return description
-
-    const replacement = `${move.name} (${adjustedBp} BP)`
-
-    if (description.includes(replacement)) return description
-
-    return description.replaceAll(move.name, replacement)
-  }
-
-  private formatDescription(description: string): string {
-    if (this.calculatorStore.isChampions() && this.calculatorStore.useSpsMode()) {
-      return description.replace(/\b(\d+)([+-]?)\s+(HP|Atk|Def|SpA|SpD|Spe)\b/g, (_match, ev, nature, stat) => {
-        return `${evToSp(+ev)}${nature} ${stat}`
-      })
-    }
-
-    return description
+  calculateResult(attacker: Pokemon, target: Pokemon, move: Move, field: Field, rightIsDefender: boolean, secondAttacker?: Pokemon) {
+    return calculateOracleResult(this.oracleCtx(), this.oracleDeps(), attacker, target, move, field, rightIsDefender, secondAttacker)
   }
 }

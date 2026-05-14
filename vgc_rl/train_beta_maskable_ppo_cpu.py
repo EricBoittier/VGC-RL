@@ -1,0 +1,174 @@
+from __future__ import annotations
+
+import argparse
+import os
+import sys
+from pathlib import Path
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Train MaskablePPO controlling Beta vs random legal Alpha (CPU). Default --save is derived from --team-alpha-key / --team-beta-key and game.",
+    )
+    parser.add_argument("--fake-oracle", action="store_true", help="Use deterministic FakeOracleClient (no oracle-server).")
+    parser.add_argument("--oracle-url", default=os.environ.get("ORACLE_URL"), help="Oracle base URL when not --fake-oracle")
+    parser.add_argument("--timesteps", type=int, default=4096)
+    parser.add_argument("--learning-rate", type=float, default=1e-3, help="PPO optimizer learning rate (default raised from SB3 3e-4)")
+    parser.add_argument(
+        "--save",
+        default=None,
+        metavar="PATH",
+        help="Policy zip path (default: beta_<beta_team>_vs_<alpha_team>_<game>[_bring6].zip from vgc_rl.rl_policy_paths)",
+    )
+    parser.add_argument("--fresh-start", action="store_true", help="Ignore existing --save zip and train a new model")
+    parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--sv", action="store_true", help="game=sv instead of champions")
+    parser.add_argument("--no-mega", action="store_true", help="Disable Mega Evolution training option (Champions).")
+    parser.add_argument("--no-tera", action="store_true", help="Disable Terastal training option (SV).")
+    parser.add_argument(
+        "--six-bring",
+        action="store_true",
+        help="Six-mon registered teams: first env step is a 90-way bring pick (policy-controlled Beta).",
+    )
+    parser.add_argument(
+        "--team-alpha-key",
+        default="team_alpha",
+        metavar="KEY",
+        help="example_teams.json roster key for the Alpha side (opponent); with --six-bring must be a 6-mon party (default team_alpha; use team_eileen etc. for six-bring)",
+    )
+    parser.add_argument(
+        "--team-beta-key",
+        default="team_beta",
+        metavar="KEY",
+        help="example_teams.json roster key for the Beta side (learned); with --six-bring must be 6-mon (default team_beta; use team_eric etc.)",
+    )
+    args = parser.parse_args()
+
+    try:
+        from sb3_contrib import MaskablePPO
+        from sb3_contrib.common.wrappers import ActionMasker
+    except ImportError:
+        print("Install sb3-contrib stable-baselines3 torch (CPU builds): pip install sb3-contrib", file=sys.stderr)
+
+        return 1
+
+    from vgc_rl.beta_oracle_env import BetaControlledOracleDoublesEnv
+    from vgc_rl.doubles_obs_identity import (
+        DOUBLES_OBS_BATTLE_DIM,
+        DOUBLES_OBS_BOOST_DIM,
+        DOUBLES_OBS_IDENTITY_DIM,
+        DOUBLES_OBS_TOTAL_DIM,
+        DOUBLES_OBS_WITH_SIX_BRING_DIM,
+    )
+    from vgc_rl.fake_oracle_client import FakeOracleClient
+    from vgc_rl.oracle_client import OracleClient
+    from vgc_rl.rl_policy_paths import beta_policy_zip_filename
+
+    game = "sv" if args.sv else "champions"
+
+    save_path = (
+        Path(args.save)
+        if args.save is not None
+        else Path(
+            beta_policy_zip_filename(
+                alpha_team_key=str(args.team_alpha_key),
+                beta_team_key=str(args.team_beta_key),
+                game=game,
+                six_bring=bool(args.six_bring),
+            )
+        )
+    )
+
+    print(
+        f"matchup · Alpha roster={args.team_alpha_key} · Beta roster={args.team_beta_key} · game={game} · six_bring={bool(args.six_bring)} · save={save_path}",
+        flush=True,
+    )
+
+    if args.fake_oracle:
+        client = FakeOracleClient()
+    else:
+        base = args.oracle_url or "http://127.0.0.1:8765"
+        client = OracleClient(base_url=base)
+
+        try:
+            client.health()
+        except Exception as exc:
+            print(f"Oracle health failed ({base}): {exc}", file=sys.stderr)
+
+            return 1
+
+    base_env = BetaControlledOracleDoublesEnv(
+        oracle=client,
+        game=game,
+        seed=args.seed,
+        allow_mega_evolution=not args.no_mega,
+        allow_terastal=not args.no_tera,
+        six_mon_bring=args.six_bring,
+        team_alpha_key=str(args.team_alpha_key),
+        team_beta_key=str(args.team_beta_key),
+    )
+    env = ActionMasker(base_env, action_mask_fn=lambda e: e.unwrapped.action_masks())
+
+    obs_dim = int(env.observation_space.shape[0])
+    expected_dim = DOUBLES_OBS_WITH_SIX_BRING_DIM if args.six_bring else DOUBLES_OBS_TOTAL_DIM
+
+    if obs_dim != expected_dim:
+        print(f"Unexpected observation_space.shape[0]={obs_dim}; expected {expected_dim}", file=sys.stderr)
+
+        return 2
+
+    print(
+        f"Beta env observation_dim={obs_dim} ({DOUBLES_OBS_BATTLE_DIM} battle + {DOUBLES_OBS_BOOST_DIM} boosts + {DOUBLES_OBS_IDENTITY_DIM} species/move identity"
+        f"{' + bring tail' if args.six_bring else ''})",
+        flush=True,
+    )
+
+    resume = save_path.is_file() and not args.fresh_start
+
+    if resume:
+        try:
+            model = MaskablePPO.load(str(save_path), env=env, device="cpu")
+        except Exception as exc:
+            print(f"Failed to load policy zip ({save_path}): {exc}", file=sys.stderr)
+            print(
+                "Older models used a smaller observation vector or joint-only actions (no mega/tera branch); "
+                "run with --fresh-start to train a new policy.",
+                file=sys.stderr,
+            )
+
+            return 1
+
+        model.learning_rate = args.learning_rate
+
+        print(f"Checkpoint restart: loaded {save_path.resolve()} · num_timesteps={model.num_timesteps}", flush=True)
+
+        reset_ts = False
+    else:
+        if args.fresh_start and save_path.is_file():
+            print(f"--fresh-start: ignoring existing {save_path.resolve()}", flush=True)
+
+        print(f"Training new MaskablePPO · save → {save_path.resolve()}", flush=True)
+
+        model = MaskablePPO(
+            "MlpPolicy",
+            env,
+            verbose=1,
+            device="cpu",
+            seed=args.seed,
+            learning_rate=args.learning_rate,
+            n_steps=128,
+            batch_size=64,
+        )
+
+        reset_ts = True
+
+    model.learn(total_timesteps=args.timesteps, reset_num_timesteps=reset_ts)
+    model.save(str(save_path))
+
+    print("saved:", save_path.resolve(), flush=True)
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

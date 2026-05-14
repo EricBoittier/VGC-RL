@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "game": "champions",
+    "note": "Registered squads may list six Pokémon (team preview bring-four); sim uses brought_* + leads for doubles. Legacy four-mon entries imply brought=(0,1,2,3)."
+  },
+  "team_alpha": {
+    "label": "Weather stack (Champions)",
+    "party": [
+      {
+        "name": "Whimsicott",
+        "nature": "Bold",
+        "item": "Focus Sash",
+        "ability": "Prankster",
+        "abilityOn": false,
+        "teraType": "Electric",
+        "teraTypeActive": false,
+        "evs": { "hp": 0, "atk": 0, "def": 124, "spa": 247, "spd": 124, "spe": 15 },
+        "moves": [{ "name": "Giga Drain" }, { "name": "Tailwind" }, { "name": "Sunny Day" }, { "name": "Dazzling Gleam" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Dragonite",
+        "nature": "Mild",
+        "ability": "Multiscale",
+        "abilityOn": false,
+        "teraType": "Normal",
+        "teraTypeActive": false,
+        "evs": { "hp": 247, "atk": 247, "def": 8, "spa": 0, "spd": 8, "spe": 0 },
+        "moves": [{ "name": "Draco Meteor" }, { "name": "Extreme Speed" }, { "name": "Ice Beam" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Politoed",
+        "nature": "Modest",
+        "item": "Focus Sash",
+        "ability": "Drizzle",
+        "abilityOn": false,
+        "teraType": "Fire",
+        "teraTypeActive": false,
+        "evs": { "hp": 247, "atk": 0, "def": 8, "spa": 247, "spd": 8, "spe": 0 },
+        "moves": [{ "name": "Weather Ball" }, { "name": "Protect" }, { "name": "Encore" }, { "name": "Icy Wind" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Archaludon",
+        "nature": "Modest",
+        "item": "Quick Claw",
+        "ability": "Stalwart",
+        "abilityOn": false,
+        "teraType": "Electric",
+        "teraTypeActive": false,
+        "evs": { "hp": 0, "atk": 0, "def": 0, "spa": 247, "spd": 15, "spe": 247 },
+        "moves": [{ "name": "Electro Shot" }, { "name": "Protect" }, { "name": "Outrage" }, { "name": "Thunder" }],
+        "activeMovePosition": 1
+      }
+    ]
+  },
+  "team_beta": {
+    "label": "Mega pivot core (Champions)",
+    "party": [
+      {
+        "name": "Charizard",
+        "nature": "Modest",
+        "item": "Charizardite Y",
+        "ability": "Solar Power",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 15, "atk": 0, "def": 0, "spa": 247, "spd": 0, "spe": 247 },
+        "moves": [{ "name": "Solar Beam" }, { "name": "Heat Wave" }, { "name": "Air Slash" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Gardevoir",
+        "nature": "Modest",
+        "item": "Gardevoirite",
+        "ability": "Telepathy",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 0, "atk": 0, "def": 247, "spa": 247, "spd": 0, "spe": 15 },
+        "moves": [{ "name": "Protect" }, { "name": "Draining Kiss" }, { "name": "Psychic" }, { "name": "Hyper Voice" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Rotom-Wash",
+        "nature": "Modest",
+        "item": "Sitrus Berry",
+        "ability": "Levitate",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 0, "atk": 0, "def": 247, "spa": 247, "spd": 15, "spe": 0 },
+        "moves": [{ "name": "Electroweb" }, { "name": "Hydro Pump" }, { "name": "Volt Switch" }, { "name": "Thunderbolt" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Talonflame",
+        "nature": "Jolly",
+        "item": "Focus Sash",
+        "ability": "Gale Wings",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 15, "atk": 247, "def": 0, "spa": 0, "spd": 0, "spe": 247 },
+        "moves": [{ "name": "Brave Bird" }, { "name": "Taunt" }, { "name": "Upper Hand" }, { "name": "Tailwind" }],
+        "activeMovePosition": 1
+      }
+    ]
+  },
+  "team_eric": {
+    "label": "Eric",
+    "party": [
+      {
+        "name": "Archaludon",
+        "nature": "Bold",
+        "item": "Leftovers",
+        "ability": "Stamina",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 32, "atk": 0, "def": 1, "spa": 0, "spd": 30, "spe": 3 },
+        "moves": [{ "name": "Electro Shot" }, { "name": "Dragon Pulse" }, { "name": "Flash Cannon" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Kingambit",
+        "nature": "Adamant",
+        "item": "Focus Sash",
+        "ability": "Defiant",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 1, "atk": 32, "def": 0, "spa": 0, "spd": 1, "spe": 32 },
+        "moves": [{ "name": "Sucker Punch" }, { "name": "Protect" }, { "name": "Low Kick" }, { "name": "Iron Head" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Basculegion",
+        "nature": "Jolly",
+        "item": "Choice Scarf",
+        "ability": "Adaptability",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 0, "atk": 29, "def": 3, "spa": 0, "spd": 2, "spe": 32 },
+        "moves": [{ "name": "Wave Crash" }, { "name": "Aqua Jet" }, { "name": "Flip Turn" }, { "name": "Last Respects" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Pelipper",
+        "nature": "Bold",
+        "item": "Sitrus Berry",
+        "ability": "Drizzle",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 31, "atk": 0, "def": 2, "spa": 0, "spd": 32, "spe": 1 },
+        "moves": [{ "name": "Tailwind" }, { "name": "Weather Ball" }, { "name": "Hurricane" }, { "name": "Wide Guard" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Sableye",
+        "nature": "Sassy",
+        "item": "Roseli Berry",
+        "ability": "Prankster",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 32, "atk": 0, "def": 9, "spa": 0, "spd": 25, "spe": 0 },
+        "moves": [{ "name": "Will-O-Wisp" }, { "name": "Rain Dance" }, { "name": "Encore" }, { "name": "Disable" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Venusaur",
+        "nature": "Modest",
+        "item": "Venusaurite",
+        "ability": "Chlorophyll",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 32, "atk": 0, "def": 1, "spa": 28, "spd": 1, "spe": 4 },
+        "moves": [{ "name": "Sludge Bomb" }, { "name": "Earth Power" }, { "name": "Giga Drain" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      }
+    ]
+  },
+  "team_eileen": {
+    "label": "Eileen",
+    "party": [
+      {
+        "name": "Charizard",
+        "nature": "Modest",
+        "item": "Charizardite Y",
+        "ability": "Blaze",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 32, "atk": 0, "def": 5, "spa": 11, "spd": 0, "spe": 18 },
+        "moves": [{ "name": "Heat Wave" }, { "name": "Air Slash" }, { "name": "Weather Ball" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Venusaur",
+        "nature": "Modest",
+        "item": "Focus Sash",
+        "ability": "Chlorophyll",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 1, "atk": 0, "def": 1, "spa": 32, "spd": 0, "spe": 32 },
+        "moves": [{ "name": "Sludge Bomb" }, { "name": "Sleep Powder" }, { "name": "Energy Ball" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Basculegion",
+        "nature": "Jolly",
+        "item": "Choice Scarf",
+        "ability": "Adaptability",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 0, "atk": 32, "def": 2, "spa": 0, "spd": 0, "spe": 32 },
+        "moves": [{ "name": "Wave Crash" }, { "name": "Last Respects" }, { "name": "Flip Turn" }, { "name": "Aqua Jet" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Incineroar",
+        "nature": "Adamant",
+        "item": "Sitrus Berry",
+        "ability": "Intimidate",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 32, "atk": 5, "def": 7, "spa": 0, "spd": 16, "spe": 6 },
+        "moves": [{ "name": "Flare Blitz" }, { "name": "Throat Chop" }, { "name": "Parting Shot" }, { "name": "Fake Out" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Garchomp",
+        "nature": "Adamant",
+        "item": "Roseli Berry",
+        "ability": "Rough Skin",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 14, "atk": 20, "def": 1, "spa": 0, "spd": 1, "spe": 30 },
+        "moves": [{ "name": "Earthquake" }, { "name": "Rock Slide" }, { "name": "Dragon Claw" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      },
+      {
+        "name": "Sneasler",
+        "nature": "Jolly",
+        "item": "White Herb",
+        "ability": "Unburden",
+        "abilityOn": false,
+        "teraType": "",
+        "teraTypeActive": false,
+        "evs": { "hp": 1, "atk": 32, "def": 1, "spa": 0, "spd": 0, "spe": 32 },
+        "moves": [{ "name": "Close Combat" }, { "name": "Dire Claw" }, { "name": "Fake Out" }, { "name": "Protect" }],
+        "activeMovePosition": 1
+      }
+    ]
+  }
+}

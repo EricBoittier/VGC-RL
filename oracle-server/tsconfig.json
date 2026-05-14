@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lib/*": ["../src/lib/*"],
+      "@data/*": ["../src/data/*"],
+      "@app/*": ["../src/app/*"],
+      "@features/*": ["../src/app/features/*"],
+      "@pages/*": ["../src/app/pages/*"],
+      "@core/*": ["../src/app/core/*"],
+      "@basic/*": ["../src/app/basic/*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

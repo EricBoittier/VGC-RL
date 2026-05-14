@@ -290,6 +290,42 @@ describe("SpeedCalculatorService", () => {
       expect(slower.id).toBe(pokemonTwo.id)
     })
 
+    it("should grant Prankster +1 priority to Status moves", () => {
+      const pokemonOne = new Pokemon("Whimsicott", {
+        ability: new Ability("Prankster"),
+        moveSet: new MoveSet(new Move("Moonblast"), new Move("Tailwind"), new Move("Encore"), new Move("Protect"), 2),
+        evs: { spe: 0 }
+      })
+      const pokemonTwo = new Pokemon("Dragapult", {
+        moveSet: new MoveSet(new Move("Dragon Darts"), new Move("Phantom Force"), new Move("U-turn"), new Move("Protect"), 1),
+        evs: { spe: 252 }
+      })
+      const field = new Field()
+
+      const [faster, slower] = service.orderPairBySpeed(pokemonOne, pokemonTwo, field)
+
+      expect(faster.id).toBe(pokemonOne.id)
+      expect(slower.id).toBe(pokemonTwo.id)
+    })
+
+    it("should not grant Prankster priority to damaging moves", () => {
+      const pokemonOne = new Pokemon("Whimsicott", {
+        ability: new Ability("Prankster"),
+        moveSet: new MoveSet(new Move("Giga Drain"), new Move("Tailwind"), new Move("Encore"), new Move("Protect"), 1),
+        evs: { spe: 0 }
+      })
+      const pokemonTwo = new Pokemon("Dragapult", {
+        moveSet: new MoveSet(new Move("Dragon Darts"), new Move("Phantom Force"), new Move("U-turn"), new Move("Protect"), 1),
+        evs: { spe: 252 }
+      })
+      const field = new Field()
+
+      const [faster, slower] = service.orderPairBySpeed(pokemonOne, pokemonTwo, field)
+
+      expect(faster.id).toBe(pokemonTwo.id)
+      expect(slower.id).toBe(pokemonOne.id)
+    })
+
     it("should consider Protect priority", () => {
       const pokemonOne = new Pokemon("Torkoal", { moveSet: new MoveSet(new Move("Protect"), new Move("Weather Ball"), new Move("Eruption"), new Move("Heat Wave"), 1) })
       const pokemonTwo = new Pokemon("Flutter Mane")

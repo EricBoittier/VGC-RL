@@ -4,16 +4,8 @@ import { provideAnimations } from "@angular/platform-browser/animations"
 import { AppRoutingModule } from "@app/app-routing.module"
 import { AppComponent } from "@app/app.component"
 import { CALC_ADJUSTERS } from "@lib/damage-calculator/calc-adjuster/calc-adjuster"
-import { FairyAuraAdjuster } from "@lib/damage-calculator/calc-adjuster/fairy-aura-adjuster"
-import { LastRespectsAdjuster } from "@lib/damage-calculator/calc-adjuster/last-respects-adjuster"
-import { NeutralizingGasAdjuster } from "@lib/damage-calculator/calc-adjuster/neutralizing-gas-adjuster"
-import { OgerponAdjuster } from "@lib/damage-calculator/calc-adjuster/ogerpon-adjuster"
-import { RageFistAdjuster } from "@lib/damage-calculator/calc-adjuster/rage-fist-adjuster"
-import { StompingTantrumAdjuster } from "@lib/damage-calculator/calc-adjuster/stomping-tantrum-adjuster"
-import { RuinsAbilityAdjuster } from "@lib/damage-calculator/calc-adjuster/ruins-ability-adjuster"
-import { ZacianZamazentaAdjuster } from "@lib/damage-calculator/calc-adjuster/zacian-zamazenta-adjuster"
 import { SPECIFIC_DAMAGE_CALCULATORS } from "@lib/damage-calculator/specific-damage-calculator/specific-damage-calculator"
-import { RuinationCalculator } from "@lib/damage-calculator/specific-damage-calculator/ruination-calculator"
+import { CALC_ADJUSTER_CLASSES_IN_ORDER, SPECIFIC_DAMAGE_CALCULATOR_CLASSES } from "@lib/oracle/calc-adjuster-chain"
 import { migrateUserData } from "@data/store/utils/migrate-user-data"
 
 migrateUserData()
@@ -23,14 +15,7 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(AppRoutingModule),
     provideAnimations(),
     provideZonelessChangeDetection(),
-    { provide: CALC_ADJUSTERS, useClass: RuinsAbilityAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: FairyAuraAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: LastRespectsAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: RageFistAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: StompingTantrumAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: ZacianZamazentaAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: NeutralizingGasAdjuster, multi: true },
-    { provide: CALC_ADJUSTERS, useClass: OgerponAdjuster, multi: true },
-    { provide: SPECIFIC_DAMAGE_CALCULATORS, useClass: RuinationCalculator, multi: true }
+    ...CALC_ADJUSTER_CLASSES_IN_ORDER.map(useClass => ({ provide: CALC_ADJUSTERS, useClass, multi: true as const })),
+    ...SPECIFIC_DAMAGE_CALCULATOR_CLASSES.map(useClass => ({ provide: SPECIFIC_DAMAGE_CALCULATORS, useClass, multi: true as const }))
   ]
 }).catch(err => console.error(err))
