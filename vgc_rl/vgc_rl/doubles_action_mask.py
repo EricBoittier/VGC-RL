@@ -79,7 +79,10 @@ def _move_target_legal_for_side(
     return True
 
 
-def _single_target_damage_requires_foe_slot(move_name: str) -> bool:
+def _single_target_offensive_self_blocked(move_name: str, target: DoublesTarget) -> bool:
+    if target != DoublesTarget.SELF:
+        return False
+
     cat = move_category_champions(move_name)
 
     if cat not in ("Physical", "Special"):
@@ -161,9 +164,11 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
             if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
                 return False
 
-            if _single_target_damage_requires_foe_slot(mv_name):
-                if slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
-                    return False
+            if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
+                return False
+
+            if _single_target_offensive_self_blocked(mv_name, slot_action.target):
+                return False
 
             if slot_action.target == DoublesTarget.SELF:
                 if float(incoming.get("hpPercentage") or 0) <= 0:
@@ -198,9 +203,11 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
         if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
             return False
 
-        if _single_target_damage_requires_foe_slot(mv_name):
-            if slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
-                return False
+        if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
+            return False
+
+        if _single_target_offensive_self_blocked(mv_name, slot_action.target):
+            return False
 
         if not _move_target_legal_for_side(
             slot_action.target,

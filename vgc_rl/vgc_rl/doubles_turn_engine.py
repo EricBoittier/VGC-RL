@@ -981,10 +981,16 @@ def resolve_turn_flat(
 
         cat_slot = move_category_champions(slot_mv)
 
-        if slot_mv not in _SPREAD_BOTH_OPPONENTS_MOVES and cat_slot in ("Physical", "Special"):
-            if any(dsh == atk_side for dsh, _fi, _dm in hit_sequence):
+        if (
+            slot_mv not in _SPREAD_BOTH_OPPONENTS_MOVES
+            and cat_slot in ("Physical", "Special")
+            and len(hit_sequence) == 1
+        ):
+            dsh, dfi, _dm = hit_sequence[0]
+
+            if dsh == atk_side and dfi == field_idx:
                 events.append(("move", f"{atk_addr} used {slot_mv}!"))
-                events.append(("-hint", "Invalid target — this damaging move must hit an opposing Pokémon here."))
+                events.append(("-hint", "Invalid target — this damaging move cannot target the user here."))
                 set_choice_lock(atk_mon, move_slot)
 
                 continue
