@@ -140,6 +140,9 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
             if not _move_slots_item_legal(incoming, slot_action.move_slot, game):
                 return False
 
+            if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
+                return False
+
             ck = ("a" if atk_side == "alpha" else "b", to_pi)
 
             if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
@@ -171,6 +174,9 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
         mv_name = str(party[pi_cur]["moves"][slot_action.move_slot]["name"]).strip()
 
         if not _move_slots_item_legal(party[pi_cur], slot_action.move_slot, game):
+            return False
+
+        if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
             return False
 
         ck = ("a" if atk_side == "alpha" else "b", pi_cur)

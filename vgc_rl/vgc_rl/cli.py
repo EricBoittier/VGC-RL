@@ -617,6 +617,11 @@ def cmd_play_doubles(args: argparse.Namespace) -> int:
                     legal_b = np.flatnonzero(mfb).tolist()
 
                 if not np.any(ma):
+                    print_showdown_line(
+                        console,
+                        "-hint",
+                        "Turn not simulated — every Alpha joint is masked illegal (choice lock, Assault Vest status, or similar).",
+                    )
                     console.print("[bold]Alpha has no legal joint actions[/bold] — Beta wins.")
 
                     return 0
@@ -627,6 +632,11 @@ def cmd_play_doubles(args: argparse.Namespace) -> int:
                     beta_has_legal = np.any(mfb)
 
                 if not beta_has_legal:
+                    print_showdown_line(
+                        console,
+                        "-hint",
+                        "Turn not simulated — every Beta joint is masked illegal (choice lock, Assault Vest status, or similar).",
+                    )
                     console.print("[bold]Beta has no legal joint actions[/bold] — Alpha wins.")
 
                     return 0
@@ -1115,11 +1125,21 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
         mfb = legal_flat_mask_beta(battle, joints, game=game)
 
         if not np.any(mfa):
+            print_showdown_line(
+                console,
+                "-hint",
+                "Turn not simulated — every Alpha joint is masked illegal (choice lock, Assault Vest status, or similar).",
+            )
             console.print("[bold]Alpha has no legal joint actions[/bold] — Beta wins.")
 
             return 0
 
         if not np.any(mfb):
+            print_showdown_line(
+                console,
+                "-hint",
+                "Turn not simulated — every Beta joint is masked illegal (choice lock, Assault Vest status, or similar).",
+            )
             console.print("[bold]Beta has no legal joint actions[/bold] — Alpha wins.")
 
             return 0
