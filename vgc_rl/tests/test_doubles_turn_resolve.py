@@ -362,7 +362,19 @@ def test_single_target_damage_skipped_when_encoded_target_is_self() -> None:
     for m in party_a + party_b:
         m["hpPercentage"] = 100.0
 
+    for m in party_a:
+        m["moves"] = [{"name": "Rain Dance"}, {"name": "Rain Dance"}, {"name": "Rain Dance"}, {"name": "Rain Dance"}]
+
+    party_b[0]["moves"] = [{"name": "Rain Dance"}, {"name": "Rain Dance"}, {"name": "Rain Dance"}, {"name": "Rain Dance"}]
+
     king_pi = party_b[1]
+    king_pi["moves"] = [
+        {"name": "Rain Dance"},
+        {"name": "Rain Dance"},
+        {"name": "Rain Dance"},
+        {"name": "Low Kick"},
+    ]
+
     hp_k_before = float(king_pi["hpPercentage"])
 
     state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[1, 0])
@@ -371,9 +383,9 @@ def test_single_target_damage_skipped_when_encoded_target_is_self() -> None:
 
     planned = [
         _mv("alpha", 0, 1, 0),
-        _mv("alpha", 1, 2, 1),
-        _mv("beta", 0, 3, 2, doubles_target=int(DoublesTarget.SELF)),
-        _mv("beta", 1, 2, 3),
+        _mv("alpha", 1, 1, 1),
+        _mv("beta", 0, 4, 2, doubles_target=int(DoublesTarget.SELF)),
+        _mv("beta", 1, 1, 3),
     ]
 
     _r, _t, events, _d = resolve_turn_flat(state, rng, client, "champions", planned)
