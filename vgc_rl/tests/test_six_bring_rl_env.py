@@ -62,3 +62,22 @@ def test_beta_control_six_bring_first_step_is_beta_bring() -> None:
     assert info2["beta_bring_action"] == 42
     assert r == 0.0
     assert not term
+
+
+def test_oracle_random_pair_bring_on_reset_skips_bring_phase() -> None:
+    joints = enumerate_joint_actions_structural()
+    n_b = len(joints) * FORM_ACTION_BRANCHES
+
+    env = OracleDoublesRlEnv(FakeOracleClient(), seed=99, six_mon_bring=True, random_pair_bring_on_reset=True)
+
+    obs, info = env.reset(seed=99)
+
+    assert obs.shape == (DOUBLES_OBS_WITH_SIX_BRING_DIM,)
+    assert info["awaiting_bring"] is False
+    assert "alpha_bring_action" in info and "beta_bring_action" in info
+
+    m = np.asarray(info["legal_actions_mask"], dtype=bool)
+
+    assert m.shape == (BRING_ACTION_SPACE_SIZE + n_b,)
+    assert not bool(m[:BRING_ACTION_SPACE_SIZE].any())
+    assert bool(m[BRING_ACTION_SPACE_SIZE:].any())

@@ -43,6 +43,14 @@ def main() -> int:
     )
     parser.add_argument("--team-alpha-key", default="team_alpha", metavar="KEY", help="Alpha roster key in example_teams.json (must be 6-mon when --six-bring)")
     parser.add_argument("--team-beta-key", default="team_beta", metavar="KEY", help="Beta roster key (must be 6-mon when --six-bring)")
+    parser.add_argument(
+        "--random-pair-bring-on-reset",
+        action="store_true",
+        help="With --six-bring: sample both brings on reset (skip bring step) in both envs.",
+    )
+    parser.add_argument("--debug-print-bring", action="store_true", help="With --six-bring: print lead prefs after each bring resolution.")
+    parser.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha-side bring uniform RNG where that env controls Alpha on bring step.")
+    parser.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta-side bring uniform RNG where that env controls Beta on bring step.")
     args = parser.parse_args()
 
     try:
@@ -134,6 +142,10 @@ def main() -> int:
             six_mon_bring=args.six_bring,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
+            random_bring_alpha=bool(args.random_bring_alpha),
+            random_bring_beta=bool(args.random_bring_beta),
+            random_pair_bring_on_reset=bool(args.random_pair_bring_on_reset),
+            debug_print_bring=bool(args.debug_print_bring),
         )
 
         beta_wrapped = ActionMasker(beta_inner, action_mask_fn=lambda e: e.unwrapped.action_masks())
@@ -206,6 +218,10 @@ def main() -> int:
             six_mon_bring=args.six_bring,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
+            random_bring_alpha=bool(args.random_bring_alpha),
+            random_bring_beta=bool(args.random_bring_beta),
+            random_pair_bring_on_reset=bool(args.random_pair_bring_on_reset),
+            debug_print_bring=bool(args.debug_print_bring),
         )
 
         alpha_wrapped = ActionMasker(alpha_inner, action_mask_fn=lambda e: e.unwrapped.action_masks())

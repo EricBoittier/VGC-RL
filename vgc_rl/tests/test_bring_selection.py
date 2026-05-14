@@ -60,3 +60,17 @@ def test_simulate_alpha_payoff_once_runs_with_fake_oracle() -> None:
     r = simulate_alpha_payoff_once(pa, pb, 0, 1, rng, client, "champions", max_turns=48)
 
     assert r in (-1.0, 0.0, 1.0)
+
+
+def test_format_six_bring_lead_prefs_line_includes_ids() -> None:
+    from vgc_rl.bring_selection import battle_state_from_bring_actions, format_six_bring_lead_prefs_line
+
+    data = load_example_teams()
+    pa = deepcopy(data["team_eileen"]["party"])
+    pb = deepcopy(data["team_eric"]["party"])
+    st = battle_state_from_bring_actions(pa, pb, 0, 1)
+    line = format_six_bring_lead_prefs_line(st, alpha_bring_id=0, beta_bring_id=1)
+
+    assert line.startswith("[bring-debug]")
+    assert "bring_id=0" in line
+    assert "bring_id=1" in line

@@ -96,6 +96,26 @@ def battle_state_from_bring_actions(
     )
 
 
+def format_six_bring_lead_prefs_line(
+    state: DoublesBattleState,
+    *,
+    alpha_bring_id: int | None = None,
+    beta_bring_id: int | None = None,
+) -> str:
+    def chunk(side: str, party: list[dict[str, Any]], brought: tuple[int, int, int, int], leads: list[int], bid: int | None) -> str:
+        ba = tuple(sorted(brought))
+        n0 = str(party[leads[0]].get("name", "?"))
+        n1 = str(party[leads[1]].get("name", "?"))
+        suf = f" bring_id={bid}" if bid is not None else ""
+
+        return f"{side}{suf} brought={ba} leads_idx={tuple(leads)} leads=({n0} | {n1})"
+
+    a = chunk("Alpha", state.party_a, state.brought_alpha_sorted(), state.leads_a, alpha_bring_id)
+    b = chunk("Beta", state.party_b, state.brought_beta_sorted(), state.leads_b, beta_bring_id)
+
+    return "[bring-debug] " + a + " || " + b
+
+
 def simulate_alpha_payoff_once(
     party_a: list[dict[str, Any]],
     party_b: list[dict[str, Any]],

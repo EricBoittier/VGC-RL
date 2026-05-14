@@ -325,6 +325,10 @@ def cmd_rl_env_smoke(args: argparse.Namespace) -> int:
             six_mon_bring=True,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
+            random_pair_bring_on_reset=bool(getattr(args, "random_pair_bring_on_reset", False)),
+            debug_print_bring=bool(getattr(args, "debug_print_bring", False)),
+            random_bring_alpha=bool(getattr(args, "random_bring_alpha", False)),
+            random_bring_beta=bool(getattr(args, "random_bring_beta", False)),
         )
     else:
         env = gym.make(
@@ -1613,6 +1617,14 @@ def main(argv: list[str] | None = None) -> None:
     )
     p_rl_smoke.add_argument("--team-alpha-key", default="team_eileen", metavar="KEY")
     p_rl_smoke.add_argument("--team-beta-key", default="team_eric", metavar="KEY")
+    p_rl_smoke.add_argument(
+        "--random-pair-bring-on-reset",
+        action="store_true",
+        help="With --six-bring: sample both brings on reset (first step is battle).",
+    )
+    p_rl_smoke.add_argument("--debug-print-bring", action="store_true", help="With --six-bring: print lead prefs after bring resolution.")
+    p_rl_smoke.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha bring RNG on bring step (OracleDoublesRlEnv).")
+    p_rl_smoke.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta bring RNG on bring step (BetaControlledOracleDoublesEnv).")
     p_rl_smoke.set_defaults(func=cmd_rl_env_smoke)
 
     p_play = sub.add_parser(

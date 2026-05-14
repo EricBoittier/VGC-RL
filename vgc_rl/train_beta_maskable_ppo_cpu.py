@@ -42,6 +42,14 @@ def main() -> int:
         metavar="KEY",
         help="example_teams.json roster key for the Beta side (learned); with --six-bring must be 6-mon (default team_beta; use team_eric etc.)",
     )
+    parser.add_argument(
+        "--random-pair-bring-on-reset",
+        action="store_true",
+        help="With --six-bring: sample both brings on reset (skip bring step); first env.step is battle.",
+    )
+    parser.add_argument("--debug-print-bring", action="store_true", help="With --six-bring: print lead prefs after each bring resolution.")
+    parser.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha bring is uniform RNG (ignore policy on bring step).")
+    parser.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta bring is uniform RNG (ignore policy / frozen zip on bring step).")
     args = parser.parse_args()
 
     try:
@@ -106,6 +114,10 @@ def main() -> int:
         six_mon_bring=args.six_bring,
         team_alpha_key=str(args.team_alpha_key),
         team_beta_key=str(args.team_beta_key),
+        random_bring_alpha=bool(args.random_bring_alpha),
+        random_bring_beta=bool(args.random_bring_beta),
+        random_pair_bring_on_reset=bool(args.random_pair_bring_on_reset),
+        debug_print_bring=bool(args.debug_print_bring),
     )
     env = ActionMasker(base_env, action_mask_fn=lambda e: e.unwrapped.action_masks())
 

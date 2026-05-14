@@ -8,7 +8,7 @@ import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
 
-from vgc_rl.bring_selection import BRING_ACTION_SPACE_SIZE, battle_state_from_bring_actions
+from vgc_rl.bring_selection import BRING_ACTION_SPACE_SIZE, battle_state_from_bring_actions, format_six_bring_lead_prefs_line
 from vgc_rl.doubles_action_mask import (
     FORM_ACTION_BRANCHES,
     decode_flat_form_action,
@@ -45,11 +45,18 @@ class OracleDoublesRlEnv(gym.Env):
         six_mon_bring: bool = False,
         team_alpha_key: str | None = None,
         team_beta_key: str | None = None,
+        random_bring_alpha: bool = False,
+        random_bring_beta: bool = False,
+        random_pair_bring_on_reset: bool = False,
+        debug_print_bring: bool = False,
     ) -> None:
         super().__init__()
 
         if alpha_field[0] == alpha_field[1] or beta_field[0] == beta_field[1]:
             raise ValueError("alpha_field and beta_field must be two distinct party indices")
+
+        if random_pair_bring_on_reset and not six_mon_bring:
+            raise ValueError("random_pair_bring_on_reset requires six_mon_bring")
 
         self._oracle = oracle
         self._game = game if game in ("sv", "champions") else "champions"
@@ -64,6 +71,10 @@ class OracleDoublesRlEnv(gym.Env):
         self._six_mon_bring = six_mon_bring
         self._team_alpha_key = team_alpha_key or ("team_eileen" if six_mon_bring else "team_alpha")
         self._team_beta_key = team_beta_key or ("team_eric" if six_mon_bring else "team_beta")
+        self._random_bring_alpha = random_bring_alpha
+        self._random_bring_beta = random_bring_beta
+        self._random_pair_bring_on_reset = random_pair_bring_on_reset
+        self._debug_print_bring = debug_print_bring
 
         self._joints = enumerate_joint_actions_structural()
         self._n_battle_flat = len(self._joints) * FORM_ACTION_BRANCHES
@@ -84,6 +95,12 @@ class OracleDoublesRlEnv(gym.Env):
         self._reg_party_a: list[dict[str, Any]] | None = None
         self._reg_party_b: list[dict[str, Any]] | None = None
         self._step_count = 0
+
+    def _emit_bring_debug(self, alpha_bring_id: int, beta_bring_id: int) -> None:
+        if not self._debug_print_bring or self._state is None:
+            return
+
+        print(format_six_bring_lead_prefs_line(self._state, alpha_bring_id=alpha_bring_id, beta_bring_id=beta_bring_id), flush=True)
 
     def _obs_vec(self) -> np.ndarray:
         if self._six_mon_bring and self._awaiting_bring and self._reg_party_a is not None and self._reg_party_b is not None:
@@ -168,6 +185,25 @@ class OracleDoublesRlEnv(gym.Env):
             for m in self._reg_party_a + self._reg_party_b:
                 m["hpPercentage"] = 100
 
+            if self._random_pair_bring_on_reset:
+                ab = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
+                bb = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
+
+                self._state = battle_state_from_bring_actions(self._reg_party_a, self._reg_party_b, ab, bb)
+                apply_initial_field_weather(self._state)
+                self._awaiting_bring = False
+                self._step_count = 0
+                self._emit_bring_debug(ab, bb)
+
+                mask_a = self.action_masks()
+
+                return self._obs_vec(), {
+                    "legal_actions_mask": mask_a,
+                    "awaiting_bring": False,
+                    "alpha_bring_action": ab,
+                    "beta_bring_action": bb,
+                }
+
             self._state = None
             self._awaiting_bring = True
             self._step_count = 0
@@ -232,14 +268,40 @@ class OracleDoublesRlEnv(gym.Env):
 
                 raw = int(self._rng.choice(legal_fix))
 
-            alpha_bring = raw
-            beta_bring = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
+            alpha_bring = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE)) if self._random_bring_alpha else raw
+
+            if self._random_bring_beta:
+                beta_bring = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
+            elif self._beta_policy_model is not None:
+                obs_b = doubles_rl_six_bring_observation(
+                    None,
+                    party_a_full=self._reg_party_a,
+                    party_b_full=self._reg_party_b,
+                    game=self._game,
+                    bring_phase=True,
+                    allow_mega_evolution=self._allow_mega_evolution,
+                    allow_terastal=self._allow_terastal,
+                )
+                mask_pb = np.zeros(self._n_action, dtype=np.bool_)
+                mask_pb[:BRING_ACTION_SPACE_SIZE] = True
+                bf = int(
+                    predict_masked_joint_index(
+                        self._beta_policy_model,
+                        obs_b,
+                        mask_pb,
+                        deterministic=self._beta_policy_deterministic,
+                    )
+                )
+                beta_bring = bf if 0 <= bf < BRING_ACTION_SPACE_SIZE else int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
+            else:
+                beta_bring = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
 
             assert self._reg_party_a is not None and self._reg_party_b is not None
 
             self._state = battle_state_from_bring_actions(self._reg_party_a, self._reg_party_b, alpha_bring, beta_bring)
             apply_initial_field_weather(self._state)
             self._awaiting_bring = False
+            self._emit_bring_debug(alpha_bring, beta_bring)
 
             mask_next = self.action_masks()
 
