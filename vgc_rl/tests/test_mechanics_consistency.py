@@ -1,6 +1,13 @@
+import json
+
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.doubles_turn_engine import _PROTECT_STALL_MOVES, _SPREAD_BOTH_OPPONENTS_MOVES, _SPREAD_FOE_STAT_DROPS
+from vgc_rl.mechanics_inventory import full_mechanics_inventory
 from vgc_rl.turn_sim import PROTECT_FAMILY
+
+
+def test_mechanics_inventory_json_roundtrip() -> None:
+    json.dumps(full_mechanics_inventory())
 
 
 def test_protect_family_single_source_matches_engine_alias() -> None:

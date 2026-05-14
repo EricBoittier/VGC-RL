@@ -7,7 +7,6 @@ from typing import Any
 import pytest
 
 from vgc_rl.example_teams import load_example_teams, party_member, with_active_move
-from vgc_rl.mechanics_inventory import full_mechanics_inventory
 from vgc_rl.oracle_client import OracleClient
 from vgc_rl.turn_sim import STATUS_NO_CALC
 
@@ -97,10 +96,6 @@ def _dedupe_party_templates(data: dict[str, Any]) -> list[tuple[str, int]]:
 
 def _chunked(items: list[dict[str, Any]], size: int) -> list[list[dict[str, Any]]]:
     return [items[i : i + size] for i in range(0, len(items), size)]
-
-
-def test_mechanics_inventory_json_roundtrip() -> None:
-    json.dumps(full_mechanics_inventory())
 
 
 @pytest.mark.oracle
