@@ -75,7 +75,7 @@ def test_fainted_slot_allows_sendout_move_not_plain_switch() -> None:
             assert not mask[ji]
 
         if isinstance(j.active_0, SendOutMoveSlotAction) and isinstance(j.active_1, MoveSlotAction):
-            if j.active_0.bench_index == 0 and j.active_0.move_slot == 0 and j.active_0.target == DoublesTarget.FOE_SLOT_0 and j.active_1.move_slot == 0 and j.active_1.target == DoublesTarget.ALLY_ACTIVE:
+            if j.active_0.bench_index == 0 and j.active_0.move_slot == 0 and j.active_0.target == DoublesTarget.FOE_SLOT_0 and j.active_1.move_slot == 0 and j.active_1.target == DoublesTarget.FOE_SLOT_1:
                 assert mask[ji]
 
                 return

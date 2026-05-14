@@ -391,7 +391,7 @@ def test_single_target_damage_skipped_when_encoded_target_is_self() -> None:
     _r, _t, events, _d = resolve_turn_flat(state, rng, client, "champions", planned)
 
     assert float(king_pi["hpPercentage"]) == hp_k_before
-    assert any("Invalid target" in b for t, b in events if t == "-hint")
+    assert any("cannot target the user" in b for t, b in events if t == "-hint")
 
 
 def test_mega_venusaurite_yields_thick_fat() -> None:
