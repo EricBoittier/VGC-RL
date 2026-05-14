@@ -64,7 +64,7 @@ pip install sb3-contrib stable-baselines3 torch
 python train_beta_maskable_ppo_cpu.py --fake-oracle --timesteps 4096 --save beta_policy.zip
 ```
 
-Re-running with the same **`--save`** path loads that zip and continues (**`learn(..., reset_num_timesteps=False)`**); SB3’s rollout table then shows cumulative timesteps. Use **`--fresh-start`** to ignore an existing zip and train from scratch (required if the zip was trained on the old **14-D** observation — SB3 will reject mismatched net inputs otherwise). **`--learning-rate`** defaults to **`1e-3`** in this script (SB3’s usual default is **`3e-4`**); lower it if updates become unstable (KL spikes, reward collapses). The env exposes **`BetaControlledOracleDoublesEnv.observation_space` shape **`(54,)`**: **14** battle floats plus **40** slot identity floats (species + four moves per party slot), same layout as **`play-doubles`** / trajectory **`obs_before`**.
+Re-running with the same **`--save`** path loads that zip and continues (**`learn(..., reset_num_timesteps=False)`**); SB3’s rollout table then shows cumulative timesteps. Use **`--fresh-start`** to ignore an existing zip and train from scratch (required if the zip was trained on the old **14-D** observation — SB3 will reject mismatched net inputs otherwise). **`--learning-rate`** defaults to **`1e-3`** in this script (SB3’s usual default is **`3e-4`**); lower it if updates become unstable (KL spikes, reward collapses). The env exposes **`BetaControlledOracleDoublesEnv.observation_space` shape **`(54,)`**: **14** battle floats plus **40** slot identity floats (species + four moves per party slot), same layout as **`play-doubles`** / trajectory **`obs_before`\*\*.
 
 (`BetaControlledOracleDoublesEnv` exposes **`action_masks()`** for **MaskablePPO**; sparse reward is **Beta-centric** via sign flip vs Alpha env.)
 
@@ -79,6 +79,7 @@ Re-running with the same **`--save`** path loads that zip and continues (**`lear
 Trajectory rows are plain JSON objects per turn (`step_index`, `obs_before`, legal joint index lists, `joint_idx_*`, `reward`, `terminated`, …), aligned with the shared observation layout (**14** battle scalars plus **40** slot identity floats: species + four move names per party slot, normalized from `example_teams` vocab with deterministic hash fallback for unknown strings — **54** floats total).
 
 The **`OracleDoubles-v0`** section below shows minimal **`gym.make`** usage when the **Alpha** side is the RL agent; **`BetaOracleDoubles-v0`** mirrors it for **Beta** training.
+
 ## Example teams (Pokémon Champions)
 
 Bundled squads use species present in **SETDEX_CHAMPIONS** (`game: champions`). Showdown text lists six Pokémon per side; `example_teams.json` carries the **first four** of each list for the oracle fixture (indices `0–3`).

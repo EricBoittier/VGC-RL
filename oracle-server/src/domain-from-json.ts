@@ -89,7 +89,7 @@ export function fieldFromJson(raw: FieldJson): Field {
     isNeutralizingGas: raw.isNeutralizingGas,
     isFairyAura: raw.isFairyAura,
     attackerSide: attackerSideSource ? new FieldSide(attackerSideSource) : undefined,
-    defenderSide: defenderSideSource ? new FieldSide(defenderSideSource) : undefined,
+    defenderSide: defenderSideSource ? new FieldSide(defenderSideSource) : undefined
   })
 }
 

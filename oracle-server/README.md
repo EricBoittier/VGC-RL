@@ -18,10 +18,10 @@ npm start
 
 ## HTTP
 
-| Method | Path | Body | Response |
-|--------|------|------|----------|
-| GET | `/health` | — | `{"ok":true}` |
-| POST | `/batch` | JSON (below) | Batch response (below) |
+| Method | Path      | Body         | Response               |
+| ------ | --------- | ------------ | ---------------------- |
+| GET    | `/health` | —            | `{"ok":true}`          |
+| POST   | `/batch`  | JSON (below) | Batch response (below) |
 
 ## Batch request JSON
 
@@ -58,7 +58,7 @@ Each **Pokémon payload**:
 ```json
 {
   "results": [
-    { "ok": true, "index": 0, "result": { } },
+    { "ok": true, "index": 0, "result": {} },
     { "ok": false, "index": 1, "error": "message" }
   ]
 }

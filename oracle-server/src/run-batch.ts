@@ -9,23 +9,13 @@ import {
   OracleContext,
   parseDamagePercentRange
 } from "@lib/oracle/oracle-engine"
-import type {
-  BatchErr,
-  BatchOk,
-  BatchRequestBody,
-  BatchRequestItem,
-  BatchResponseBody,
-  BatchSpeedCompareRequest,
-  DamageOutcomeJson,
-  DoubleOutcomeJson
-} from "./batch-types.js"
+import type { BatchErr, BatchOk, BatchRequestBody, BatchRequestItem, BatchResponseBody, BatchSpeedCompareRequest, DamageOutcomeJson, DoubleOutcomeJson } from "./batch-types.js"
 import { fieldFromJson, pokemonFromJson } from "./domain-from-json.js"
 import { buildSpeedCompareOutcome, buildSpeedContextDouble, buildSpeedContextSingle } from "./speed-context.js"
 
 const defaultDeps: OracleCalculationDeps = createDefaultOracleCalculationDeps()
 
-const DAMAGE_ROLL_NOTE =
-  "Damage percents are min–max versus max HP across the calculator roll sample for this interaction. KO strings summarize cumulative KO odds from those rolls (not extra hypothetical ranges)."
+const DAMAGE_ROLL_NOTE = "Damage percents are min–max versus max HP across the calculator roll sample for this interaction. KO strings summarize cumulative KO odds from those rolls (not extra hypothetical ranges)."
 
 export function rollsTo2d(damage: unknown): number[][] {
   if (damage == null) return []
