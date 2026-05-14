@@ -832,6 +832,19 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
 
         beta_model = load_maskable_ppo(str(pth), device="cpu")
 
+    if args.seed is not None:
+        s = int(args.seed)
+        np.random.seed(s)
+        try:
+            import torch
+
+            torch.manual_seed(s)
+        except ImportError:
+            pass
+        for _m in (alpha_model, beta_model):
+            if _m is not None and hasattr(_m, "set_random_seed"):
+                _m.set_random_seed(s)
+
     greedy_side = getattr(args, "vs_greedy", None)
 
     if greedy_side:
