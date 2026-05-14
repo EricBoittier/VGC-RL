@@ -862,7 +862,7 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
     game = "sv" if args.sv else "champions"
     six_bring = bool(getattr(args, "six_bring", False))
 
-    rng = random.Random(args.seed)
+    rng = random.Random(0 if args.seed is None else int(args.seed))
     joints = enumerate_joint_actions_structural()
     n_battle_flat = len(joints) * FORM_ACTION_BRANCHES
 
@@ -1274,7 +1274,7 @@ def cmd_bring_eval(args: argparse.Namespace) -> int:
 
             return 1
 
-    rng = random.Random(args.seed)
+    rng = random.Random(0 if args.seed is None else int(args.seed))
     scores = score_alpha_brings_vs_random_opponent(
         party_a,
         party_b,
