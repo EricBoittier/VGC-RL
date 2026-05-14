@@ -3,6 +3,7 @@ from __future__ import annotations
 import numpy as np
 from typing import Any
 
+from vgc_rl.champions_metadata import move_category_champions
 from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction
 from vgc_rl.doubles_mega_tera import can_mega_evolve_species, can_terastal
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _ELECTRO_SHOT, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index
@@ -78,6 +79,18 @@ def _move_target_legal_for_side(
     return True
 
 
+def _single_target_damage_requires_foe_slot(move_name: str) -> bool:
+    cat = move_category_champions(move_name)
+
+    if cat not in ("Physical", "Special"):
+        return False
+
+    if move_name in _SPREAD_BOTH_OPPONENTS_MOVES:
+        return False
+
+    return True
+
+
 def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, atk_side: str, game: str) -> bool:
     party = state.party_a if atk_side == "alpha" else state.party_b
     leads = state.leads_a if atk_side == "alpha" else state.leads_b
@@ -140,9 +153,6 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
             if not _move_slots_item_legal(incoming, slot_action.move_slot, game):
                 return False
 
-            if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
-                return False
-
             ck = ("a" if atk_side == "alpha" else "b", to_pi)
 
             if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
@@ -150,6 +160,10 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
 
             if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
                 return False
+
+            if _single_target_damage_requires_foe_slot(mv_name):
+                if slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
+                    return False
 
             if slot_action.target == DoublesTarget.SELF:
                 if float(incoming.get("hpPercentage") or 0) <= 0:
@@ -176,9 +190,6 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
         if not _move_slots_item_legal(party[pi_cur], slot_action.move_slot, game):
             return False
 
-        if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
-            return False
-
         ck = ("a" if atk_side == "alpha" else "b", pi_cur)
 
         if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
@@ -186,6 +197,10 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
 
         if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
             return False
+
+        if _single_target_damage_requires_foe_slot(mv_name):
+            if slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
+                return False
 
         if not _move_target_legal_for_side(
             slot_action.target,

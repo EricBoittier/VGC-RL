@@ -355,6 +355,33 @@ def test_sucker_punch_deals_damage_when_foe_declared_physical_move() -> None:
     assert float(party_a[0]["hpPercentage"]) < hp_a0_before
 
 
+def test_single_target_damage_skipped_when_encoded_target_is_self() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_eric", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    king_pi = party_b[1]
+    hp_k_before = float(king_pi["hpPercentage"])
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[1, 0])
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 1, 0),
+        _mv("alpha", 1, 2, 1),
+        _mv("beta", 0, 3, 2, doubles_target=int(DoublesTarget.SELF)),
+        _mv("beta", 1, 2, 3),
+    ]
+
+    _r, _t, events, _d = resolve_turn_flat(state, rng, client, "champions", planned)
+
+    assert float(king_pi["hpPercentage"]) == hp_k_before
+    assert any("Invalid target" in b for t, b in events if t == "-hint")
+
+
 def test_mega_venusaurite_yields_thick_fat() -> None:
     from vgc_rl.doubles_mega_tera import apply_mega_evolution
 

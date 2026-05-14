@@ -10,7 +10,7 @@ from vgc_rl.doubles_turn_engine import DoublesBattleState
 def _mon(*, name: str = "M", hp: float = 100.0) -> dict:
     return {
         "name": name,
-        "moves": [{"name": "Tackle"}, {"name": "Tackle"}, {"name": "Tackle"}, {"name": "Tackle"}],
+        "moves": [{"name": "Tackle"}, {"name": "Protect"}, {"name": "Tackle"}, {"name": "Tackle"}],
         "hpPercentage": hp,
         "activeMovePosition": 1,
     }
@@ -37,6 +37,7 @@ def test_single_living_foe_masks_dead_foe_slot_for_alpha() -> None:
             isinstance(j.active_0, MoveSlotAction)
             and j.active_0.target == DoublesTarget.FOE_SLOT_0
             and isinstance(j.active_1, MoveSlotAction)
+            and j.active_1.move_slot == 1
             and j.active_1.target == DoublesTarget.SELF
             and mask[ji]
         ):
@@ -53,6 +54,7 @@ def test_single_living_foe_masks_dead_foe_slot_for_alpha() -> None:
             isinstance(j.active_0, MoveSlotAction)
             and j.active_0.target == DoublesTarget.BOTH_FOES
             and isinstance(j.active_1, MoveSlotAction)
+            and j.active_1.move_slot == 1
             and j.active_1.target == DoublesTarget.SELF
             and mask[ji]
         ):
@@ -75,7 +77,7 @@ def test_fainted_slot_allows_sendout_move_not_plain_switch() -> None:
             assert not mask[ji]
 
         if isinstance(j.active_0, SendOutMoveSlotAction) and isinstance(j.active_1, MoveSlotAction):
-            if j.active_0.bench_index == 0 and j.active_0.move_slot == 0 and j.active_0.target == DoublesTarget.FOE_SLOT_0 and j.active_1.move_slot == 0 and j.active_1.target == DoublesTarget.SELF:
+            if j.active_0.bench_index == 0 and j.active_0.move_slot == 0 and j.active_0.target == DoublesTarget.FOE_SLOT_0 and j.active_1.move_slot == 1 and j.active_1.target == DoublesTarget.SELF:
                 assert mask[ji]
 
                 return
@@ -141,6 +143,7 @@ def test_spread_opposing_move_only_allows_both_foes_target() -> None:
             and j.active_0.move_slot == 0
             and j.active_0.target == DoublesTarget.BOTH_FOES
             and isinstance(j.active_1, MoveSlotAction)
+            and j.active_1.move_slot == 1
             and j.active_1.target == DoublesTarget.SELF
             and mask[ji]
         ):

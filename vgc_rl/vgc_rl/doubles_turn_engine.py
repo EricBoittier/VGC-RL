@@ -979,6 +979,16 @@ def resolve_turn_flat(
 
             continue
 
+        cat_slot = move_category_champions(slot_mv)
+
+        if slot_mv not in _SPREAD_BOTH_OPPONENTS_MOVES and cat_slot in ("Physical", "Special"):
+            if any(dsh == atk_side for dsh, _fi, _dm in hit_sequence):
+                events.append(("move", f"{atk_addr} used {slot_mv}!"))
+                events.append(("-hint", "Invalid target — this damaging move must hit an opposing Pokémon here."))
+                set_choice_lock(atk_mon, move_slot)
+
+                continue
+
         if slot_mv == _SUCKER_PUNCH:
 
             def _sucker_fail(msg: str) -> None:
@@ -992,11 +1002,6 @@ def resolve_turn_flat(
                 continue
 
             d_side, d_fi, _d_mon = hit_sequence[0]
-
-            if d_side == atk_side:
-                _sucker_fail("Sucker Punch does not hit allies or self.")
-
-                continue
 
             dkey = (d_side, d_fi)
             decl = declared_move_by_active.get(dkey)
