@@ -782,6 +782,7 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
 
     from rich.console import Console
 
+    from vgc_rl.bring_selection import BRING_ACTION_SPACE_SIZE
     from vgc_rl.doubles_action_mask import (
         FORM_ACTION_BRANCHES,
         decode_flat_form_action,
@@ -857,7 +858,7 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
     if six_bring:
         from copy import deepcopy
 
-        from vgc_rl.bring_selection import BRING_ACTION_SPACE_SIZE, battle_state_from_bring_actions
+        from vgc_rl.bring_selection import battle_state_from_bring_actions
         from vgc_rl.example_teams import load_example_teams, party_member
 
         tap = getattr(args, "team_alpha", None)
@@ -903,7 +904,7 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
         mask_bring = np.zeros(BRING_ACTION_SPACE_SIZE + n_battle_flat, dtype=np.bool_)
         mask_bring[:BRING_ACTION_SPACE_SIZE] = True
 
-        def pick_bring_action(model: Any | None, *, det: bool) -> int:
+        def pick_bring_action(model, *, det: bool) -> int:
             if model is None:
                 return int(rng.randrange(BRING_ACTION_SPACE_SIZE))
 
@@ -1024,8 +1025,10 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
         apply_initial_field_weather(battle)
 
     console = Console()
-
     mode_bits = []
+
+    if six_bring:
+        mode_bits.append("six-bring")
 
     if greedy_side:
         if greedy_side == "beta":
@@ -1049,6 +1052,9 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
             mode_bits.append("Beta MaskablePPO")
 
     console.print(f"[bold]Showcase doubles[/bold] — {' · '.join(mode_bits)} · game={game}")
+
+    if six_bring:
+        console.print(f"[dim]Bring phase · alpha_bring_action={alpha_bring} · beta_bring_action={beta_bring}[/dim]")
 
     if greedy_side and (args.alpha_stochastic or args.beta_stochastic):
         console.print("[dim]Note: --vs-greedy overrides --alpha-stochastic / --beta-stochastic[/dim]")
@@ -1101,23 +1107,56 @@ def cmd_showcase_doubles(args: argparse.Namespace) -> int:
 
             return 0
 
-        obs_before = doubles_obs_vector(battle, game=game)
+        if six_bring:
+            obs_before = doubles_rl_six_bring_observation(
+                battle,
+                party_a_full=battle.party_a,
+                party_b_full=battle.party_b,
+                game=game,
+                bring_phase=False,
+                allow_mega_evolution=True,
+                allow_terastal=True,
+            )
+            mfa_ext = np.concatenate([np.zeros(BRING_ACTION_SPACE_SIZE, dtype=np.bool_), np.asarray(mfa, dtype=np.bool_)])
+            mfb_ext = np.concatenate([np.zeros(BRING_ACTION_SPACE_SIZE, dtype=np.bool_), np.asarray(mfb, dtype=np.bool_)])
+        else:
+            obs_before = doubles_obs_vector(battle, game=game)
+            mfa_ext = np.asarray(mfa, dtype=np.bool_)
+            mfb_ext = np.asarray(mfb, dtype=np.bool_)
+
+        def _normalize_battle_flat(raw: int, legal_battle: np.ndarray) -> int:
+            if not six_bring:
+                return raw
+
+            if raw >= BRING_ACTION_SPACE_SIZE:
+                bf = raw - BRING_ACTION_SPACE_SIZE
+
+                if bf < len(legal_battle) and bool(legal_battle[bf]):
+                    return bf
+
+            legal_only = np.flatnonzero(np.asarray(legal_battle, dtype=bool))
+
+            return int(rng.choice(legal_only))
 
         if greedy_side:
             alpha_deterministic = greedy_side == "alpha"
             beta_deterministic = greedy_side == "beta"
-            flat_a = int(predict_masked_joint_index(alpha_model, obs_before, mfa, deterministic=alpha_deterministic))
-            flat_b = int(predict_masked_joint_index(beta_model, obs_before, mfb, deterministic=beta_deterministic))
+            raw_a = int(predict_masked_joint_index(alpha_model, obs_before, mfa_ext, deterministic=alpha_deterministic))
+            raw_b = int(predict_masked_joint_index(beta_model, obs_before, mfb_ext, deterministic=beta_deterministic))
+            flat_a = _normalize_battle_flat(raw_a, mfa)
+            flat_b = _normalize_battle_flat(raw_b, mfb)
         elif alpha_model is None:
             flat_a = sample_random_legal_flat_index(rng, mfa)
         else:
-            flat_a = int(predict_masked_joint_index(alpha_model, obs_before, mfa, deterministic=not args.alpha_stochastic))
+            raw_a = int(predict_masked_joint_index(alpha_model, obs_before, mfa_ext, deterministic=not args.alpha_stochastic))
+            flat_a = _normalize_battle_flat(raw_a, mfa)
 
         if not greedy_side:
             if beta_model is None:
                 flat_b = sample_random_legal_flat_index(rng, mfb)
             else:
-                flat_b = int(predict_masked_joint_index(beta_model, obs_before, mfb, deterministic=not args.beta_stochastic))
+                raw_b = int(predict_masked_joint_index(beta_model, obs_before, mfb_ext, deterministic=not args.beta_stochastic))
+                flat_b = _normalize_battle_flat(raw_b, mfb)
 
         branch_a, idx_a = decode_flat_form_action(flat_a, len(joints))
         branch_b, idx_b = decode_flat_form_action(flat_b, len(joints))
@@ -1638,6 +1677,23 @@ def main(argv: list[str] | None = None) -> None:
     )
     p_showcase.add_argument("--team-alpha", metavar="PATH", default=None, help='Alpha party JSON {"party":[4 or 6 Pokémon]} (requires --team-beta)')
     p_showcase.add_argument("--team-beta", metavar="PATH", default=None, help='Beta party JSON {"party":[4 or 6 Pokémon]} (requires --team-alpha)')
+    p_showcase.add_argument(
+        "--six-bring",
+        action="store_true",
+        help="Six-mon example teams + policy bring phase, then battle (matches *_bring6.zip training; use with --alpha-policy / --beta-policy)",
+    )
+    p_showcase.add_argument(
+        "--team-alpha-key",
+        default="team_eileen",
+        metavar="KEY",
+        help="When --six-bring without --team-alpha/--team-beta JSON: example_teams roster key for Alpha (six Pokémon)",
+    )
+    p_showcase.add_argument(
+        "--team-beta-key",
+        default="team_eric",
+        metavar="KEY",
+        help="When --six-bring without JSON paths: example_teams roster key for Beta (six Pokémon)",
+    )
     p_showcase.add_argument("--seed", type=int, default=None)
     p_showcase.add_argument("--turns", type=int, default=512, help="Maximum turns to simulate")
     p_showcase.add_argument("--delay", type=float, default=0.75, help="Seconds between turns (0 for fastest)")
