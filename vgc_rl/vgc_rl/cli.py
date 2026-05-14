@@ -605,8 +605,8 @@ def cmd_play_doubles(args: argparse.Namespace) -> int:
                     f"τ_rem α={battle.alpha_tailwind_turns_left} β={battle.beta_tailwind_turns_left}",
                 )
 
-                ma = legal_joint_mask_alpha(battle, joints)
-                mb = legal_joint_mask_beta(battle, joints)
+                ma = legal_joint_mask_alpha(battle, joints, game=game)
+                mb = legal_joint_mask_beta(battle, joints, game=game)
                 mfb = legal_flat_mask_beta(battle, joints, game=game)
 
                 obs_before = doubles_obs_vector(battle, game=game)

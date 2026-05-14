@@ -15,6 +15,7 @@ from vgc_rl.doubles_turn_engine import (
     _WEATHER_SETTING_MOVES,
 )
 from vgc_rl.example_teams import load_example_teams
+from vgc_rl.held_item_rules import ITEM_DEFERRALS
 from vgc_rl.turn_sim import STATUS_NO_CALC
 
 
@@ -30,6 +31,7 @@ def python_mechanics_string_inventory() -> dict[str, Any]:
         "tailwind_duration_turns": TAILWIND_DURATION_TURNS,
         "status_no_calc_moves": sorted(STATUS_NO_CALC),
         "mega_item_to_form_keys": sorted(_MEGA_ITEM_TO_FORM.keys()),
+        "item_deferrals": [{"name": r["name"], "disposition": r["disposition"]} for r in ITEM_DEFERRALS],
         "hardcoded_engine_strings": sorted(
             {
                 "Electro Shot",

@@ -8,7 +8,9 @@
     "build:test": "esbuild src/run-batch.test.ts --bundle --platform=node --format=esm --outfile=dist/run-batch.test.mjs --packages=external --alias:@lib=../src/lib --alias:@data=../src/data --alias:@app=../src/app --alias:@features=../src/app/features --alias:@pages=../src/app/pages --alias:@core=../src/app/core --alias:@basic=../src/app/basic",
     "start": "npm run build && node dist/listen.mjs",
     "test": "npm run build:test && node --test dist/run-batch.test.mjs",
-    "export:adjacent-foes-champions": "tsx export-adjacent-foes-champions.ts"
+    "export:adjacent-foes-champions": "tsx export-adjacent-foes-champions.ts",
+    "export:move-meta-champions": "tsx export-move-meta-champions.ts",
+    "export:species-types-example-teams": "tsx export-species-types-from-example-teams.ts"
   },
   "dependencies": {
     "@angular/core": "21.2.12",

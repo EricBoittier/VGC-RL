@@ -141,8 +141,8 @@ def simulate_alpha_payoff_once(
         if side_party_wiped_brought(state, alpha=False):
             return 1.0
 
-        ma = legal_joint_mask_alpha(state, joints)
-        mb = legal_joint_mask_beta(state, joints)
+        ma = legal_joint_mask_alpha(state, joints, game=game)
+        mb = legal_joint_mask_beta(state, joints, game=game)
         legal_a = np.flatnonzero(ma)
         legal_b = np.flatnonzero(mb)
 

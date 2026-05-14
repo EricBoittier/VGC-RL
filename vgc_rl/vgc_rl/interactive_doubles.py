@@ -571,8 +571,8 @@ def step_turn(
     if not (0 <= joint_idx_beta < len(joints)):
         raise ValueError(f"joint_idx_beta {joint_idx_beta} out of range")
 
-    ma = legal_joint_mask_alpha(state, joints)
-    mb = legal_joint_mask_beta(state, joints)
+    ma = legal_joint_mask_alpha(state, joints, game=game)
+    mb = legal_joint_mask_beta(state, joints, game=game)
 
     if not bool(ma[joint_idx_alpha]):
         raise ValueError(f"illegal Alpha joint index {joint_idx_alpha}")

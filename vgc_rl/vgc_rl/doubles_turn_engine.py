@@ -961,7 +961,6 @@ def resolve_turn_flat(
             continue
 
         move_connected = False
-        attempted_damage_sequence = True
         any_damage_numbers = False
 
         for def_side_hit, def_fi, def_mon in hit_sequence:
@@ -1095,6 +1094,19 @@ def resolve_turn_flat(
             state.weather = None
 
             events.append(("-weather", "weather ended"))
+
+    for side, party, leads in (("alpha", state.party_a, state.leads_a), ("beta", state.party_b, state.leads_b)):
+        for fi in range(2):
+            pi = leads[fi]
+            mon = party[pi]
+
+            if float(mon.get("hpPercentage") or 0) <= 0:
+                continue
+
+            addr = active_address(side, fi, mon)
+            leftovers_heal(mon, events, addr)
+            black_sludge_tick(mon, events, addr)
+            maybe_lum_berry(mon, events, addr)
 
     reward = 0.0
     terminated = False
