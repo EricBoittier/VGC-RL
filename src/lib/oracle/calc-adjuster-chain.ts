@@ -10,6 +10,6 @@ import { ZacianZamazentaAdjuster } from "@lib/damage-calculator/calc-adjuster/za
 import { SpecificDamageCalculator } from "@lib/damage-calculator/specific-damage-calculator/specific-damage-calculator"
 import { RuinationCalculator } from "@lib/damage-calculator/specific-damage-calculator/ruination-calculator"
 
-export const CALC_ADJUSTER_CLASSES_IN_ORDER: Array<new () => CalcAdjuster> = [RuinsAbilityAdjuster, FairyAuraAdjuster, LastRespectsAdjuster, RageFistAdjuster, StompingTantrumAdjuster, ZacianZamazentaAdjuster, NeutralizingGasAdjuster, OgerponAdjuster]
+export const CALC_ADJUSTER_CLASSES_IN_ORDER: (new () => CalcAdjuster)[] = [RuinsAbilityAdjuster, FairyAuraAdjuster, LastRespectsAdjuster, RageFistAdjuster, StompingTantrumAdjuster, ZacianZamazentaAdjuster, NeutralizingGasAdjuster, OgerponAdjuster]
 
-export const SPECIFIC_DAMAGE_CALCULATOR_CLASSES: Array<new () => SpecificDamageCalculator> = [RuinationCalculator]
+export const SPECIFIC_DAMAGE_CALCULATOR_CLASSES: (new () => SpecificDamageCalculator)[] = [RuinationCalculator]
