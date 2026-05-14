@@ -7,6 +7,17 @@ from typing import Any
 from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.example_teams import with_active_move
+from vgc_rl.held_item_effects import (
+    black_sludge_tick,
+    leftovers_heal,
+    life_orb_recoil_if,
+    maybe_lum_berry,
+    maybe_trigger_heal_berries,
+    maybe_weakness_policy,
+    rocky_helmet_if,
+    try_white_herb_clear,
+)
+from vgc_rl.held_item_rules import clear_choice_lock, set_choice_lock
 from vgc_rl.oracle_client import OracleClient
 from vgc_rl.turn_sim import STATUS_NO_CALC, _initiative_first, _sort_by_initiative
 
@@ -81,6 +92,8 @@ def _apply_intimidate(state: DoublesBattleState, events: list[tuple[str, str]], 
             addr = active_address(foe_side, fi, mon)
 
             events.append(("-unboost", f"{addr} atk {chg:+d} (Intimidate)"))
+
+        try_white_herb_clear(mon, events, active_address(foe_side, fi, mon))
 
 _ELECTRO_SHOT = "Electro Shot"
 
@@ -666,6 +679,8 @@ def resolve_turn_flat(
 
             out_m = pty[old_pi]
             in_m = pty[to_pi]
+            clear_choice_lock(out_m)
+            clear_choice_lock(in_m)
             old_addr = active_address(side, fi, out_m)
             was_faint = float(out_m.get("hpPercentage") or 0) <= 0
             tok = "a" if side == "alpha" else "b"
@@ -831,6 +846,8 @@ def resolve_turn_flat(
 
                 events.append(("-hint", f"Protect failed (~{100 * (1 - p_succ):.4g}% fail · streak was {streak})."))
 
+            set_choice_lock(atk_mon, move_slot)
+
             continue
 
         state.protect_prior_successes[prot_k] = 0
@@ -847,6 +864,8 @@ def resolve_turn_flat(
 
                 events.append(("move", f"{atk_addr} used {_ELECTRO_SHOT} (charging)!"))
                 events.append(("-prepare", f"{atk_addr} harnessed electricity (fires next turn unless Rain)."))
+
+                set_choice_lock(atk_mon, move_slot)
 
                 continue
 
@@ -871,6 +890,8 @@ def resolve_turn_flat(
                 events.append(("-weather", f"{wpair[0]} · {wpair[1]} turns"))
 
             events.append(("-hint", f"Field/status move — damage oracle skipped ({slot_mv})."))
+
+            set_choice_lock(atk_mon, move_slot)
 
             continue
 
@@ -940,6 +961,8 @@ def resolve_turn_flat(
             continue
 
         move_connected = False
+        attempted_damage_sequence = True
+        any_damage_numbers = False
 
         for def_side_hit, def_fi, def_mon in hit_sequence:
             if (def_side_hit, def_fi) in protected:
@@ -1007,6 +1030,13 @@ def resolve_turn_flat(
             if hint_rest:
                 events.append(("-hint", hint_rest))
 
+            if lo > 0 or hi > 0:
+                any_damage_numbers = True
+
+            maybe_weakness_policy(def_mon, slot_mv, events, def_addr)
+            maybe_trigger_heal_berries(def_mon, prev_hp, float(def_mon.get("hpPercentage") or new_hp), events, def_addr)
+            rocky_helmet_if(def_mon, atk_mon, slot_mv, events, def_addr=def_addr, atk_addr=atk_addr)
+
             if reward_shaping:
                 dealt = max(0.0, prev_hp - new_hp)
 
@@ -1035,6 +1065,8 @@ def resolve_turn_flat(
                         if chg != 0:
                             events.append(("-unboost", f"{def_addr} {stat_name} {chg:+d}"))
 
+                    try_white_herb_clear(def_mon, events, def_addr)
+
         drop_self = _SELF_STAT_DROP_AFTER_HIT.get(slot_mv)
 
         if drop_self and move_connected:
@@ -1043,6 +1075,12 @@ def resolve_turn_flat(
 
                 if chg != 0:
                     events.append(("-unboost", f"{atk_addr} {stat_name} {chg:+d}"))
+
+            try_white_herb_clear(atk_mon, events, atk_addr)
+
+        life_orb_recoil_if(atk_mon, dealt_damage=any_damage_numbers, events=events, atk_addr=atk_addr)
+
+        set_choice_lock(atk_mon, move_slot)
 
     if state.alpha_tailwind_turns_left > 0:
         state.alpha_tailwind_turns_left -= 1
