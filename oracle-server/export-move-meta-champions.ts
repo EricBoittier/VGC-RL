@@ -33,7 +33,7 @@ for (const key of Object.keys(MOVE_DETAILS)) {
   out[name] = {
     category: merged.category,
     type: merged.type,
-    contact,
+    contact
   }
 }
 

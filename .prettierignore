@@ -1,2 +1,10 @@
 src/assets/*
 cypress/fixtures/*
+
+**/.venv
+**/.pytest_cache
+**/.angular/cache
+**/coverage
+**/node_modules
+**/dist
+oracle-server/dist

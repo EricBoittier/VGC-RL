@@ -1,65 +1,18 @@
 {
-  "Archaludon": [
-    "Steel",
-    "Dragon"
-  ],
-  "Basculegion": [
-    "Water",
-    "Ghost"
-  ],
-  "Charizard": [
-    "Fire",
-    "Flying"
-  ],
-  "Dragonite": [
-    "Dragon",
-    "Flying"
-  ],
-  "Garchomp": [
-    "Dragon",
-    "Ground"
-  ],
-  "Gardevoir": [
-    "Psychic",
-    "Fairy"
-  ],
-  "Incineroar": [
-    "Fire",
-    "Dark"
-  ],
-  "Kingambit": [
-    "Dark",
-    "Steel"
-  ],
-  "Pelipper": [
-    "Water",
-    "Flying"
-  ],
-  "Politoed": [
-    "Water"
-  ],
-  "Rotom-Wash": [
-    "Electric",
-    "Water"
-  ],
-  "Sableye": [
-    "Dark",
-    "Ghost"
-  ],
-  "Sneasler": [
-    "Fighting",
-    "Poison"
-  ],
-  "Talonflame": [
-    "Fire",
-    "Flying"
-  ],
-  "Venusaur": [
-    "Grass",
-    "Poison"
-  ],
-  "Whimsicott": [
-    "Grass",
-    "Fairy"
-  ]
+  "Archaludon": ["Steel", "Dragon"],
+  "Basculegion": ["Water", "Ghost"],
+  "Charizard": ["Fire", "Flying"],
+  "Dragonite": ["Dragon", "Flying"],
+  "Garchomp": ["Dragon", "Ground"],
+  "Gardevoir": ["Psychic", "Fairy"],
+  "Incineroar": ["Fire", "Dark"],
+  "Kingambit": ["Dark", "Steel"],
+  "Pelipper": ["Water", "Flying"],
+  "Politoed": ["Water"],
+  "Rotom-Wash": ["Electric", "Water"],
+  "Sableye": ["Dark", "Ghost"],
+  "Sneasler": ["Fighting", "Poison"],
+  "Talonflame": ["Fire", "Flying"],
+  "Venusaur": ["Grass", "Poison"],
+  "Whimsicott": ["Grass", "Fairy"]
 }
