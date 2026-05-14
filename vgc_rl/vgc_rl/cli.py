@@ -1622,7 +1622,13 @@ def main(argv: list[str] | None = None) -> None:
         action="store_true",
         help="With --six-bring: sample both brings on reset (first step is battle).",
     )
-    p_rl_smoke.add_argument("--debug-print-bring", action="store_true", help="With --six-bring: print lead prefs after bring resolution.")
+    p_rl_smoke.add_argument(
+        "--debug-print-bring",
+        "--bring-debug",
+        action="store_true",
+        dest="debug_print_bring",
+        help="With --six-bring: print [bring-debug] lead prefs after bring resolution.",
+    )
     p_rl_smoke.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha bring RNG on bring step (OracleDoublesRlEnv).")
     p_rl_smoke.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta bring RNG on bring step (BetaControlledOracleDoublesEnv).")
     p_rl_smoke.set_defaults(func=cmd_rl_env_smoke)

@@ -47,7 +47,13 @@ def main() -> int:
         action="store_true",
         help="With --six-bring: sample both brings on reset (skip bring step); first env.step is battle.",
     )
-    parser.add_argument("--debug-print-bring", action="store_true", help="With --six-bring: print lead prefs after each bring resolution.")
+    parser.add_argument(
+        "--debug-print-bring",
+        "--bring-debug",
+        action="store_true",
+        dest="debug_print_bring",
+        help="With --six-bring: print [bring-debug] lead prefs after each bring resolution.",
+    )
     parser.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha bring is uniform RNG (ignore policy on bring step).")
     parser.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta bring is uniform RNG (ignore policy / frozen zip on bring step).")
     args = parser.parse_args()

@@ -39,7 +39,7 @@ def main() -> int:
     parser.add_argument(
         "--six-bring",
         action="store_true",
-        help="Six-mon teams: first env step each episode is a 90-way bring pick for the learning side; pass --team-alpha-key / --team-beta-key with 6-mon example_teams keys (e.g. team_eileen, team_eric). Optional: --diverse-opens or --random-pair-bring-on-reset / --debug-print-bring / --random-bring-alpha / --random-bring-beta.",
+        help="Six-mon teams: first env step each episode is a 90-way bring pick for the learning side; pass --team-alpha-key / --team-beta-key with 6-mon example_teams keys (e.g. team_eileen, team_eric). Optional: --diverse-opens or --random-pair-bring-on-reset / --bring-debug (--debug-print-bring) / --random-bring-alpha / --random-bring-beta.",
     )
     parser.add_argument("--team-alpha-key", default="team_alpha", metavar="KEY", help="Alpha roster key in example_teams.json (must be 6-mon when --six-bring)")
     parser.add_argument("--team-beta-key", default="team_beta", metavar="KEY", help="Beta roster key (must be 6-mon when --six-bring)")
@@ -54,7 +54,13 @@ def main() -> int:
         action="store_true",
         help="Sample both brings on reset (skip bring step) in both envs.",
     )
-    br.add_argument("--debug-print-bring", action="store_true", help="Print lead prefs after each bring resolution.")
+    br.add_argument(
+        "--debug-print-bring",
+        "--bring-debug",
+        action="store_true",
+        dest="debug_print_bring",
+        help="Print bring lead prefs ([bring-debug] lines) and six-bring env flags at startup (alternating script).",
+    )
     br.add_argument("--random-bring-alpha", action="store_true", help="Alpha bring uniform RNG on the bring step where that env controls Alpha.")
     br.add_argument("--random-bring-beta", action="store_true", help="Beta bring uniform RNG on the bring step where that env controls Beta.")
     args = parser.parse_args()
@@ -149,7 +155,8 @@ def main() -> int:
             "debug_print_bring": bool(args.debug_print_bring),
         }
 
-        print("six-bring env: " + " ".join(f"{k}={v}" for k, v in six_bring_extras.items()), flush=True)
+        if args.debug_print_bring:
+            print("six-bring env: " + " ".join(f"{k}={v}" for k, v in six_bring_extras.items()), flush=True)
 
     for rnd in range(args.alternating_rounds):
         beta_inner = BetaControlledOracleDoublesEnv(
