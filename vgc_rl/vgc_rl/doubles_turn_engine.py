@@ -4,6 +4,7 @@ import random
 from dataclasses import dataclass, field
 from typing import Any
 
+from vgc_rl.doubles_ability_hooks import defiant_boost_after_opponent_unboost, rough_skin_if, stamina_if_damaging_hit
 from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.example_teams import with_active_move
@@ -87,13 +88,13 @@ def _apply_intimidate(state: DoublesBattleState, events: list[tuple[str, str]], 
             continue
 
         chg = apply_boost_delta(mon, "atk", -1)
+        addr = active_address(foe_side, fi, mon)
 
         if chg != 0:
-            addr = active_address(foe_side, fi, mon)
-
             events.append(("-unboost", f"{addr} atk {chg:+d} (Intimidate)"))
 
-        try_white_herb_clear(mon, events, active_address(foe_side, fi, mon))
+        defiant_boost_after_opponent_unboost(mon, events, addr, had_negative_stage_change=chg < 0)
+        try_white_herb_clear(mon, events, addr)
 
 _ELECTRO_SHOT = "Electro Shot"
 
@@ -1035,6 +1036,8 @@ def resolve_turn_flat(
             maybe_weakness_policy(def_mon, slot_mv, events, def_addr)
             maybe_trigger_heal_berries(def_mon, prev_hp, float(def_mon.get("hpPercentage") or new_hp), events, def_addr)
             rocky_helmet_if(def_mon, atk_mon, slot_mv, events, def_addr=def_addr, atk_addr=atk_addr)
+            stamina_if_damaging_hit(def_mon, events, def_addr, dealt_damage_numbers=lo > 0 or hi > 0)
+            rough_skin_if(def_mon, atk_mon, slot_mv, events, def_addr=def_addr, atk_addr=atk_addr)
 
             if reward_shaping:
                 dealt = max(0.0, prev_hp - new_hp)
@@ -1063,6 +1066,8 @@ def resolve_turn_flat(
 
                         if chg != 0:
                             events.append(("-unboost", f"{def_addr} {stat_name} {chg:+d}"))
+
+                        defiant_boost_after_opponent_unboost(def_mon, events, def_addr, had_negative_stage_change=chg < 0)
 
                     try_white_herb_clear(def_mon, events, def_addr)
 

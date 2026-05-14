@@ -8,6 +8,7 @@ _MEGA_ITEM_TO_FORM: dict[str, tuple[str, str]] = {
     "charizardite y": ("Charizard-Mega-Y", "Drought"),
     "charizardite x": ("Charizard-Mega-X", "Tough Claws"),
     "gardevoirite": ("Gardevoir-Mega", "Pixilate"),
+    "venusaurite": ("Venusaur-Mega", "Thick Fat"),
 }
 
 
