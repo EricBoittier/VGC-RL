@@ -212,8 +212,8 @@ def test_defiant_triggers_on_intimidate_net_plus_one_atk() -> None:
         party_b=party_b,
         leads_a=[0, 1],
         leads_b=[1, 2],
-        brought_a=tuple(range(6)),
-        brought_b=tuple(range(6)),
+        brought_a=(0, 1, 2, 3),
+        brought_b=(0, 1, 2, 3),
     )
     rng = random.Random(0)
     client = FakeOracleClient()
@@ -247,8 +247,8 @@ def test_stamina_raises_def_when_damaged() -> None:
         party_b=party_b,
         leads_a=[0, 1],
         leads_b=[0, 1],
-        brought_a=tuple(range(6)),
-        brought_b=tuple(range(6)),
+        brought_a=(0, 1, 2, 3),
+        brought_b=(0, 1, 2, 3),
     )
     rng = random.Random(0)
     client = FakeOracleClient()
@@ -268,39 +268,36 @@ def test_stamina_raises_def_when_damaged() -> None:
     assert int(arch.get("boosts", {}).get("def", 0)) == 1
 
 
-def test_rough_skin_chips_contact_attacker() -> None:
-    party_a = [party_member("team_eileen", i) for i in range(6)]
-    party_b = [party_member("team_beta", i) for i in range(4)]
+def test_rough_skin_if_chips_contact_attacker() -> None:
+    from vgc_rl.doubles_ability_hooks import rough_skin_if
 
-    for m in party_a + party_b:
-        m["hpPercentage"] = 100.0
+    garch: dict = {
+        "name": "Garchomp",
+        "ability": "Rough Skin",
+        "hpPercentage": 88.0,
+        "boosts": {"atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0},
+    }
+    atk_mon: dict = {
+        "name": "Attacker",
+        "hpPercentage": 100.0,
+        "boosts": {"atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0},
+    }
+    events: list[tuple[str, str]] = []
 
-    atk = party_b[0]
-    atk["moves"] = [{"name": "Dragon Claw"}, {"name": "Protect"}, {"name": "Leer"}, {"name": "Growl"}]
+    rough_skin_if(garch, atk_mon, "Dragon Claw", events, def_addr="Def", atk_addr="Atk")
 
-    state = DoublesBattleState(
-        party_a=party_a,
-        party_b=party_b,
-        leads_a=[4, 0],
-        leads_b=[0, 1],
-        brought_a=tuple(range(6)),
-    )
-    rng = random.Random(0)
-    client = FakeOracleClient()
+    assert float(atk_mon["hpPercentage"]) == 100.0 - 100.0 / 8.0
+    assert any(t[0] == "-damage" and "Rough Skin" in t[1] for t in events)
 
-    hp_atk_before = float(atk["hpPercentage"])
 
-    planned = [
-        _mv("beta", 0, 1, 2, doubles_target=int(DoublesTarget.FOE_SLOT_0)),
-        _mv("beta", 1, 1, 3),
-        _mv("alpha", 0, 4, 0),
-        _mv("alpha", 1, 1, 1),
-    ]
+def test_mega_venusaurite_yields_thick_fat() -> None:
+    from vgc_rl.doubles_mega_tera import apply_mega_evolution
 
-    resolve_turn_flat(state, rng, client, "champions", planned)
+    mon = party_member("team_eric", 5)
 
-    assert str(party_a[4].get("ability")) == "Rough Skin"
-    assert float(atk["hpPercentage"]) < hp_atk_before
+    assert apply_mega_evolution(mon) is True
+    assert str(mon.get("name")) == "Venusaur-Mega"
+    assert str(mon.get("ability")) == "Thick Fat"
 
 
 class _OhkoFakeOracle(FakeOracleClient):
