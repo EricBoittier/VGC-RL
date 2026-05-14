@@ -4,6 +4,7 @@ import random
 from dataclasses import dataclass, field
 from typing import Any
 
+from vgc_rl.champions_metadata import move_category_champions
 from vgc_rl.doubles_ability_hooks import defiant_boost_after_opponent_unboost, rough_skin_if, stamina_if_damaging_hit
 from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
@@ -97,6 +98,8 @@ def _apply_intimidate(state: DoublesBattleState, events: list[tuple[str, str]], 
         try_white_herb_clear(mon, events, addr)
 
 _ELECTRO_SHOT = "Electro Shot"
+
+_SUCKER_PUNCH = "Sucker Punch"
 
 _WEATHER_SETTING_MOVES: dict[str, tuple[str, int]] = {
     "Rain Dance": ("Rain", 5),
@@ -785,6 +788,21 @@ def resolve_turn_flat(
             }
         )
 
+    declared_move_by_active: dict[tuple[str, int], str] = {}
+
+    for it in prepared:
+        pty = party_a if it["atk_side"] == "alpha" else party_b
+        ld = leads_a if it["atk_side"] == "alpha" else leads_b
+        fi = int(it["field_idx"])
+        pi = ld[fi]
+
+        if float(pty[pi].get("hpPercentage") or 0) <= 0:
+            continue
+
+        ms = int(it["move_slot"])
+        nm = str(pty[pi]["moves"][ms - 1]["name"])
+        declared_move_by_active[(str(it["atk_side"]), fi)] = nm
+
     ordered_moves: list[dict[str, Any]] = []
 
     if prepared:
@@ -960,6 +978,37 @@ def resolve_turn_flat(
             events.append(("-hint", f"{atk_addr} — no valid damage target; skipped."))
 
             continue
+
+        if slot_mv == _SUCKER_PUNCH:
+
+            def _sucker_fail(msg: str) -> None:
+                events.append(("move", f"{atk_addr} used {_SUCKER_PUNCH}!"))
+                events.append(("-hint", msg))
+                set_choice_lock(atk_mon, move_slot)
+
+            if len(hit_sequence) != 1:
+                _sucker_fail("Sucker Punch needs exactly one foe target.")
+
+                continue
+
+            d_side, d_fi, _d_mon = hit_sequence[0]
+
+            if d_side == atk_side:
+                _sucker_fail("Sucker Punch does not hit allies or self.")
+
+                continue
+
+            dkey = (d_side, d_fi)
+            decl = declared_move_by_active.get(dkey)
+            cat = move_category_champions(decl) if decl else None
+
+            if cat not in ("Physical", "Special"):
+                if decl is None:
+                    _sucker_fail("It failed — the target is not using a damage move.")
+                else:
+                    _sucker_fail(f"It failed — the target picked {decl} (not a damage move).")
+
+                continue
 
         move_connected = False
         any_damage_numbers = False

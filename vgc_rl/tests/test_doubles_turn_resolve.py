@@ -290,6 +290,71 @@ def test_rough_skin_if_chips_contact_attacker() -> None:
     assert any(t[0] == "-damage" and "Rough Skin" in t[1] for t in events)
 
 
+def test_sucker_punch_fails_when_foe_declared_status_move() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_eric", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    party_a[0]["moves"] = [
+        {"name": "Tailwind"},
+        {"name": "Moonblast"},
+        {"name": "Psychic"},
+        {"name": "Protect"},
+    ]
+
+    hp_a0_before = float(party_a[0]["hpPercentage"])
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[1, 0])
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 1, 0),
+        _mv("alpha", 1, 2, 1),
+        _mv("beta", 0, 1, 2, doubles_target=int(DoublesTarget.FOE_SLOT_0)),
+        _mv("beta", 1, 1, 3),
+    ]
+
+    _r, _t, events, _d = resolve_turn_flat(state, rng, client, "champions", planned)
+
+    assert float(party_a[0]["hpPercentage"]) == hp_a0_before
+    assert any("It failed" in b for t, b in events if t == "-hint")
+
+
+def test_sucker_punch_deals_damage_when_foe_declared_physical_move() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_eric", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    party_a[0]["moves"] = [
+        {"name": "Iron Head"},
+        {"name": "Moonblast"},
+        {"name": "Psychic"},
+        {"name": "Protect"},
+    ]
+
+    hp_a0_before = float(party_a[0]["hpPercentage"])
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[1, 0])
+    rng = random.Random(2)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 1, 0),
+        _mv("alpha", 1, 2, 1),
+        _mv("beta", 0, 1, 2, doubles_target=int(DoublesTarget.FOE_SLOT_0)),
+        _mv("beta", 1, 1, 3),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", planned)
+
+    assert float(party_a[0]["hpPercentage"]) < hp_a0_before
+
+
 def test_mega_venusaurite_yields_thick_fat() -> None:
     from vgc_rl.doubles_mega_tera import apply_mega_evolution
 
