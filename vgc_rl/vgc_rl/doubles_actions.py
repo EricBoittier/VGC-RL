@@ -30,7 +30,14 @@ class SwitchSlotAction:
     bench_index: int
 
 
-SlotAction = MoveSlotAction | SwitchSlotAction
+@dataclass(frozen=True, slots=True)
+class SendOutMoveSlotAction:
+    bench_index: int
+    move_slot: int
+    target: DoublesTarget
+
+
+SlotAction = MoveSlotAction | SwitchSlotAction | SendOutMoveSlotAction
 
 
 @dataclass(frozen=True, slots=True)
@@ -53,6 +60,11 @@ def enumerate_slot_actions_structural(*, move_slots: int = DEFAULT_MOVE_SLOTS, b
     for b in range(bench_slots):
         out.append(SwitchSlotAction(bench_index=b))
 
+    for b in range(bench_slots):
+        for m in range(move_slots):
+            for t in structural_move_targets():
+                out.append(SendOutMoveSlotAction(bench_index=b, move_slot=m, target=t))
+
     return tuple(out)
 
 
@@ -68,6 +80,10 @@ def enumerate_joint_actions_structural(
     for a, b in product(slots, repeat=2):
         if filter_duplicate_switch_to_same_bench:
             if isinstance(a, SwitchSlotAction) and isinstance(b, SwitchSlotAction):
+                if a.bench_index == b.bench_index:
+                    continue
+
+            if isinstance(a, SendOutMoveSlotAction) and isinstance(b, SendOutMoveSlotAction):
                 if a.bench_index == b.bench_index:
                     continue
 

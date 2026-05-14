@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 
 from vgc_rl.doubles_action_mask import legal_joint_mask_alpha, legal_joint_mask_beta
-from vgc_rl.doubles_actions import DoublesTarget, MoveSlotAction, enumerate_joint_actions_structural
+from vgc_rl.doubles_actions import DoublesTarget, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, enumerate_joint_actions_structural
 from vgc_rl.doubles_turn_engine import DoublesBattleState
 
 
@@ -61,6 +61,26 @@ def test_single_living_foe_masks_dead_foe_slot_for_alpha() -> None:
             break
 
     assert any_both_foes
+
+
+def test_fainted_slot_allows_sendout_move_not_plain_switch() -> None:
+    party_a = [_mon(name="Dead", hp=0), _mon(name="Alive"), _mon(name="Bench0"), _mon(name="Bench1")]
+    party_b = [_mon(name="B0"), _mon(name="B1"), _mon(name="B2"), _mon(name="B3")]
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[0, 1])
+    joints = enumerate_joint_actions_structural()
+    mask = legal_joint_mask_alpha(state, joints)
+
+    for ji, j in enumerate(joints):
+        if isinstance(j.active_0, SwitchSlotAction):
+            assert not mask[ji]
+
+        if isinstance(j.active_0, SendOutMoveSlotAction) and isinstance(j.active_1, MoveSlotAction):
+            if j.active_0.bench_index == 0 and j.active_0.move_slot == 0 and j.active_0.target == DoublesTarget.FOE_SLOT_0 and j.active_1.move_slot == 0 and j.active_1.target == DoublesTarget.SELF:
+                assert mask[ji]
+
+                return
+
+    raise AssertionError("expected a legal SendOutMove + partner move joint")
 
 
 def test_single_living_foe_masks_dead_foe_slot_for_beta() -> None:

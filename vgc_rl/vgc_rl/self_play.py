@@ -65,7 +65,16 @@ def _plan_doubles_turn_actions(
                     j = rng.choice(bench)
                     chosen.add(j)
 
-                    planned.append({"kind": "switch", "atk_side": atk_side, "field_idx": fi, "to_party": j, "orig_index": serial})
+                    planned.append(
+                        {
+                            "kind": "switch",
+                            "atk_side": atk_side,
+                            "field_idx": fi,
+                            "to_party": j,
+                            "orig_index": serial,
+                            "forced_replace_move_slot": rng.randint(1, 4),
+                        }
+                    )
                 else:
                     planned.append({"kind": "skip", "atk_side": atk_side, "field_idx": fi, "orig_index": serial})
 
@@ -333,7 +342,7 @@ def run_self_play_doubles(
             "Each trainer keeps **[0–3] party HP**; **Slot A/B** shows who is fielded (starting leads from **--alpha-field** / **--beta-field**).\n"
             "**Bench** lines list Pokémon not currently active. Each turn uses **switch phase** (oracle speed order among switches) "
             "then **move phase** (existing insertion-sort speedCompare among attacks).\n"
-            "[italic]switch[/italic] lines log party-index swaps; forced switches occur when a slot is **KO’d** and the bench has living Pokémon.\n"
+            "[italic]switch[/italic] lines log party-index swaps; **faint** replacements use send-out + same-turn move (logged as “fainted · go!”); voluntary switches still log “withdrew” and the incoming Pokémon does not act that turn.\n"
             "Still a smoke harness (no pivot/U-turn semantics, no Pursuit, duplicate-target Protect unchanged).",
             title="vgc-rl self-play",
         )

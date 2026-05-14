@@ -6,7 +6,7 @@ from typing import Any, Callable, Literal, Sequence
 import numpy as np
 
 from vgc_rl.doubles_action_mask import legal_joint_mask_alpha, legal_joint_mask_beta
-from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SwitchSlotAction, decode_joint_index
+from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, decode_joint_index
 from vgc_rl.doubles_obs_identity import DOUBLES_OBS_TOTAL_DIM, DOUBLES_RL_BRING_TAIL_DIM, doubles_obs_boost_features, doubles_obs_identity_features
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _PROTECT_STALL_MOVES, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index, joint_to_planned_side, resolve_turn
 from vgc_rl.oracle_client import OracleClient
@@ -154,9 +154,12 @@ def doubles_rl_six_bring_observation(
     return np.concatenate([base, tail], dtype=np.float32)
 
 
-def format_slot_action(slot: MoveSlotAction | SwitchSlotAction) -> str:
+def format_slot_action(slot: MoveSlotAction | SwitchSlotAction | SendOutMoveSlotAction) -> str:
     if isinstance(slot, SwitchSlotAction):
         return f"sw{slot.bench_index}"
+
+    if isinstance(slot, SendOutMoveSlotAction):
+        return f"so{slot.bench_index}m{slot.move_slot + 1}{slot.target.name}"
 
     return f"m{slot.move_slot + 1}{slot.target.name}"
 
@@ -184,7 +187,7 @@ def format_slot_action_human(
     party: list[dict[str, Any]],
     leads: list[int],
     field_idx: int,
-    slot: MoveSlotAction | SwitchSlotAction,
+    slot: MoveSlotAction | SwitchSlotAction | SendOutMoveSlotAction,
     *,
     foe_party: list[dict[str, Any]] | None = None,
     foe_leads: list[int] | None = None,
@@ -199,6 +202,18 @@ def format_slot_action_human(
         name = party[pi].get("name", "?")
 
         return f"Switch → {name}"
+
+    if isinstance(slot, SendOutMoveSlotAction):
+        pi = bench_slot_to_party_index(leads, slot.bench_index, brought=brought)
+
+        if pi is None:
+            return f"Send-out bench {slot.bench_index} + move"
+
+        mv = party[pi]["moves"][slot.move_slot]["name"]
+        name = party[pi].get("name", "?")
+        tg = _target_choice_label(slot.target, party=party, leads=leads, field_idx=field_idx, foe_party=foe_party, foe_leads=foe_leads)
+
+        return f"Send {name}: {mv} ({tg})"
 
     pi = leads[field_idx]
     mv = party[pi]["moves"][slot.move_slot]["name"]
@@ -224,7 +239,7 @@ def format_joint_human_summary(
     return f"{a} · {b}"
 
 
-def _slot_part(joints: tuple[JointDoublesAction, ...], ji: int, leg: Literal["active_0", "active_1"]) -> MoveSlotAction | SwitchSlotAction:
+def _slot_part(joints: tuple[JointDoublesAction, ...], ji: int, leg: Literal["active_0", "active_1"]) -> MoveSlotAction | SwitchSlotAction | SendOutMoveSlotAction:
     j = joints[ji]
 
     return j.active_0 if leg == "active_0" else j.active_1
@@ -276,7 +291,108 @@ def _prompt_one_slot_menu(
     foe_party: list[dict[str, Any]] | None,
     foe_leads: list[int] | None,
     brought: tuple[int, int, int, int],
-) -> MoveSlotAction | SwitchSlotAction:
+) -> MoveSlotAction | SwitchSlotAction | SendOutMoveSlotAction:
+    pi_act = leads[field_idx]
+    hp_act = float(party[pi_act].get("hpPercentage") or 0)
+
+    if hp_act <= 0:
+        send_outs: dict[tuple[int, int], set[DoublesTarget]] = {}
+
+        for ji in legal_joint_indices:
+            sa = _slot_part(joints, ji, leg)
+
+            if isinstance(sa, SendOutMoveSlotAction):
+                send_outs.setdefault((sa.bench_index, sa.move_slot), set()).add(sa.target)
+
+        rows: list[dict[str, Any]] = []
+
+        for (b, m) in sorted(send_outs.keys()):
+            pi = bench_slot_to_party_index(leads, b, brought=brought)
+
+            if pi is None:
+                continue
+
+            mon_name = party[pi].get("name", "?")
+            mvname = str(party[pi]["moves"][m]["name"])
+            tgts_set = send_outs[(b, m)]
+
+            if mvname in _PROTECT_STALL_MOVES and DoublesTarget.SELF in tgts_set:
+                tgts_set = {DoublesTarget.SELF}
+
+            if mvname in _SPREAD_BOTH_OPPONENTS_MOVES and DoublesTarget.BOTH_FOES in tgts_set:
+                tgts_set = {DoublesTarget.BOTH_FOES}
+
+            tgts = sorted(tgts_set, key=lambda t: t.value)
+            label = f"Send {mon_name}: {mvname}"
+
+            if len(tgts) == 1:
+                rows.append({"kind": "sendout_fixed", "bench": b, "move_slot": m, "target": tgts[0], "label": label})
+            else:
+                rows.append({"kind": "sendout_pick", "bench": b, "move_slot": m, "targets": tgts, "label": label})
+
+        if not rows:
+            raise RuntimeError("no legal send-out moves for this slot")
+
+        if len(rows) == 1:
+            row = rows[0]
+
+            if row["kind"] == "sendout_fixed":
+                return SendOutMoveSlotAction(bench_index=int(row["bench"]), move_slot=int(row["move_slot"]), target=row["target"])
+
+            tgt = _prompt_move_target(
+                str(row["label"]),
+                list(row["targets"]),
+                input_fn,
+                party=party,
+                leads=leads,
+                field_idx=field_idx,
+                foe_party=foe_party,
+                foe_leads=foe_leads,
+            )
+
+            return SendOutMoveSlotAction(bench_index=int(row["bench"]), move_slot=int(row["move_slot"]), target=tgt)
+
+        while True:
+            for i, r in enumerate(rows):
+                suf = ""
+
+                if r["kind"] == "sendout_pick":
+                    suf = " → pick target"
+
+                print(f"  [{i}] {r['label']}{suf}")
+
+            raw = input_fn(f"Choice [0-{len(rows) - 1}]: ").strip()
+
+            try:
+                pick = int(raw)
+            except ValueError:
+                print("Enter an integer.")
+
+                continue
+
+            if not (0 <= pick < len(rows)):
+                print("Out of range.")
+
+                continue
+
+            row = rows[pick]
+
+            if row["kind"] == "sendout_fixed":
+                return SendOutMoveSlotAction(bench_index=int(row["bench"]), move_slot=int(row["move_slot"]), target=row["target"])
+
+            tgt = _prompt_move_target(
+                str(row["label"]),
+                list(row["targets"]),
+                input_fn,
+                party=party,
+                leads=leads,
+                field_idx=field_idx,
+                foe_party=foe_party,
+                foe_leads=foe_leads,
+            )
+
+            return SendOutMoveSlotAction(bench_index=int(row["bench"]), move_slot=int(row["move_slot"]), target=tgt)
+
     switches: dict[int, list[int]] = {}
     move_targets: dict[int, set[DoublesTarget]] = {}
 
@@ -285,7 +401,7 @@ def _prompt_one_slot_menu(
 
         if isinstance(sa, SwitchSlotAction):
             switches.setdefault(sa.bench_index, []).append(ji)
-        else:
+        elif isinstance(sa, MoveSlotAction):
             move_targets.setdefault(sa.move_slot, set()).add(sa.target)
 
     rows: list[dict[str, Any]] = []
@@ -299,8 +415,6 @@ def _prompt_one_slot_menu(
         name = party[pi].get("name", "?")
 
         rows.append({"kind": "switch", "bench": b, "label": f"Switch → {name}"})
-
-    pi_act = leads[field_idx]
 
     for m in sorted(move_targets.keys()):
         tgts_set = set(move_targets[m])

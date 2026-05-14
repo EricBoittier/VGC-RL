@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SwitchSlotAction
+from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction
 from vgc_rl.doubles_mega_tera import can_mega_evolve_species, can_terastal
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _ELECTRO_SHOT, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index
 
@@ -79,6 +79,9 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
         hp_slot = float(party[pi_cur].get("hpPercentage") or 0)
 
         if isinstance(slot_action, SwitchSlotAction):
+            if hp_slot <= 0:
+                return False
+
             ba = state.brought_alpha_sorted() if atk_side == "alpha" else state.brought_beta_sorted()
 
             to_pi = bench_slot_to_party_index(leads, slot_action.bench_index, brought=ba)
@@ -93,6 +96,54 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
                 return False
 
             if float(party[to_pi].get("hpPercentage") or 0) <= 0:
+                return False
+
+            chosen_switch_targets.add(to_pi)
+
+            continue
+
+        if isinstance(slot_action, SendOutMoveSlotAction):
+            if hp_slot > 0:
+                return False
+
+            ba = state.brought_alpha_sorted() if atk_side == "alpha" else state.brought_beta_sorted()
+
+            to_pi = bench_slot_to_party_index(leads, slot_action.bench_index, brought=ba)
+
+            if to_pi is None:
+                return False
+
+            if to_pi == leads[1 - fi]:
+                return False
+
+            if to_pi in chosen_switch_targets:
+                return False
+
+            if float(party[to_pi].get("hpPercentage") or 0) <= 0:
+                return False
+
+            incoming = party[to_pi]
+            mv_name = str(incoming["moves"][slot_action.move_slot]["name"]).strip()
+
+            ck = ("a" if atk_side == "alpha" else "b", to_pi)
+
+            if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
+                return False
+
+            if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
+                return False
+
+            if slot_action.target == DoublesTarget.SELF:
+                if float(incoming.get("hpPercentage") or 0) <= 0:
+                    return False
+            elif not _move_target_legal_for_side(
+                slot_action.target,
+                field_idx=fi,
+                party=party,
+                leads=leads,
+                foe_party=foe_party,
+                foe_leads=foe_leads,
+            ):
                 return False
 
             chosen_switch_targets.add(to_pi)
@@ -172,10 +223,22 @@ def legal_flat_mask_alpha(
                 if float(party_a[pi0].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_a[pi0], game=game):
                     out[1 * n + ji] = True
 
+            elif isinstance(j.active_0, SendOutMoveSlotAction):
+                pi0 = bench_slot_to_party_index(leads_a, j.active_0.bench_index, brought=state.brought_alpha_sorted())
+
+                if pi0 is not None and float(party_a[pi0].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_a[pi0], game=game):
+                    out[1 * n + ji] = True
+
             if isinstance(j.active_1, MoveSlotAction):
                 pi1 = leads_a[1]
 
                 if float(party_a[pi1].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_a[pi1], game=game):
+                    out[2 * n + ji] = True
+
+            elif isinstance(j.active_1, SendOutMoveSlotAction):
+                pi1 = bench_slot_to_party_index(leads_a, j.active_1.bench_index, brought=state.brought_alpha_sorted())
+
+                if pi1 is not None and float(party_a[pi1].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_a[pi1], game=game):
                     out[2 * n + ji] = True
 
         elif game == "sv" and allow_terastal and not state.alpha_tera_used:
@@ -185,10 +248,22 @@ def legal_flat_mask_alpha(
                 if float(party_a[pi0].get("hpPercentage") or 0) > 0 and can_terastal(party_a[pi0], game=game):
                     out[1 * n + ji] = True
 
+            elif isinstance(j.active_0, SendOutMoveSlotAction):
+                pi0 = bench_slot_to_party_index(leads_a, j.active_0.bench_index, brought=state.brought_alpha_sorted())
+
+                if pi0 is not None and float(party_a[pi0].get("hpPercentage") or 0) > 0 and can_terastal(party_a[pi0], game=game):
+                    out[1 * n + ji] = True
+
             if isinstance(j.active_1, MoveSlotAction):
                 pi1 = leads_a[1]
 
                 if float(party_a[pi1].get("hpPercentage") or 0) > 0 and can_terastal(party_a[pi1], game=game):
+                    out[2 * n + ji] = True
+
+            elif isinstance(j.active_1, SendOutMoveSlotAction):
+                pi1 = bench_slot_to_party_index(leads_a, j.active_1.bench_index, brought=state.brought_alpha_sorted())
+
+                if pi1 is not None and float(party_a[pi1].get("hpPercentage") or 0) > 0 and can_terastal(party_a[pi1], game=game):
                     out[2 * n + ji] = True
 
     return out
@@ -223,10 +298,22 @@ def legal_flat_mask_beta(
                 if float(party_b[pi0].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_b[pi0], game=game):
                     out[1 * n + ji] = True
 
+            elif isinstance(j.active_0, SendOutMoveSlotAction):
+                pi0 = bench_slot_to_party_index(leads_b, j.active_0.bench_index, brought=state.brought_beta_sorted())
+
+                if pi0 is not None and float(party_b[pi0].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_b[pi0], game=game):
+                    out[1 * n + ji] = True
+
             if isinstance(j.active_1, MoveSlotAction):
                 pi1 = leads_b[1]
 
                 if float(party_b[pi1].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_b[pi1], game=game):
+                    out[2 * n + ji] = True
+
+            elif isinstance(j.active_1, SendOutMoveSlotAction):
+                pi1 = bench_slot_to_party_index(leads_b, j.active_1.bench_index, brought=state.brought_beta_sorted())
+
+                if pi1 is not None and float(party_b[pi1].get("hpPercentage") or 0) > 0 and can_mega_evolve_species(party_b[pi1], game=game):
                     out[2 * n + ji] = True
 
         elif game == "sv" and allow_terastal and not state.beta_tera_used:
@@ -236,10 +323,22 @@ def legal_flat_mask_beta(
                 if float(party_b[pi0].get("hpPercentage") or 0) > 0 and can_terastal(party_b[pi0], game=game):
                     out[1 * n + ji] = True
 
+            elif isinstance(j.active_0, SendOutMoveSlotAction):
+                pi0 = bench_slot_to_party_index(leads_b, j.active_0.bench_index, brought=state.brought_beta_sorted())
+
+                if pi0 is not None and float(party_b[pi0].get("hpPercentage") or 0) > 0 and can_terastal(party_b[pi0], game=game):
+                    out[1 * n + ji] = True
+
             if isinstance(j.active_1, MoveSlotAction):
                 pi1 = leads_b[1]
 
                 if float(party_b[pi1].get("hpPercentage") or 0) > 0 and can_terastal(party_b[pi1], game=game):
+                    out[2 * n + ji] = True
+
+            elif isinstance(j.active_1, SendOutMoveSlotAction):
+                pi1 = bench_slot_to_party_index(leads_b, j.active_1.bench_index, brought=state.brought_beta_sorted())
+
+                if pi1 is not None and float(party_b[pi1].get("hpPercentage") or 0) > 0 and can_terastal(party_b[pi1], game=game):
                     out[2 * n + ji] = True
 
     return out

@@ -4,7 +4,7 @@ import random
 from dataclasses import dataclass, field
 from typing import Any
 
-from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SwitchSlotAction, DoublesTarget
+from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
 from vgc_rl.example_teams import with_active_move
 from vgc_rl.oracle_client import OracleClient
 from vgc_rl.turn_sim import STATUS_NO_CALC, _initiative_first, _sort_by_initiative
@@ -281,7 +281,7 @@ def joint_to_planned_side(
     serial_base: int,
     brought: tuple[int, int, int, int],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    def slot_plan(slot_action: MoveSlotAction | SwitchSlotAction, field_idx: int, serial: int) -> dict[str, Any]:
+    def slot_plan(slot_action: MoveSlotAction | SwitchSlotAction | SendOutMoveSlotAction, field_idx: int, serial: int) -> dict[str, Any]:
         if isinstance(slot_action, SwitchSlotAction):
             to_pi = bench_slot_to_party_index(leads, slot_action.bench_index, brought=brought)
 
@@ -294,6 +294,22 @@ def joint_to_planned_side(
                 "field_idx": field_idx,
                 "to_party": to_pi,
                 "orig_index": serial,
+            }
+
+        if isinstance(slot_action, SendOutMoveSlotAction):
+            to_pi = bench_slot_to_party_index(leads, slot_action.bench_index, brought=brought)
+
+            if to_pi is None:
+                return {"kind": "skip", "atk_side": atk_side, "field_idx": field_idx, "orig_index": serial}
+
+            return {
+                "kind": "switch",
+                "atk_side": atk_side,
+                "field_idx": field_idx,
+                "to_party": to_pi,
+                "orig_index": serial,
+                "forced_replace_move_slot": slot_action.move_slot + 1,
+                "forced_replace_target": int(slot_action.target),
             }
 
         ms = slot_action.move_slot + 1
@@ -652,12 +668,16 @@ def resolve_turn_flat(
             out_m = pty[old_pi]
             in_m = pty[to_pi]
             old_addr = active_address(side, fi, out_m)
+            was_faint = float(out_m.get("hpPercentage") or 0) <= 0
             tok = "a" if side == "alpha" else "b"
 
             state.electro_shot_charging.pop((tok, old_pi), None)
             ld[fi] = to_pi
 
-            events.append(("switch", f"{old_addr} withdrew · go! {in_m.get('name')} (party #{to_pi})"))
+            if was_faint:
+                events.append(("switch", f"{old_addr} fainted · go! {in_m.get('name')} (party #{to_pi})"))
+            else:
+                events.append(("switch", f"{old_addr} withdrew · go! {in_m.get('name')} (party #{to_pi})"))
 
             ab_in = str(in_m.get("ability") or "")
             pair_in = _ENTRY_WEATHER_ABILITIES.get(ab_in)
@@ -683,9 +703,52 @@ def resolve_turn_flat(
 
     moves_only = [x for x in planned if x["kind"] == "move"]
 
+    forced_follow: list[dict[str, Any]] = []
+
+    for x in planned:
+        if x.get("kind") != "switch":
+            continue
+
+        fms = x.get("forced_replace_move_slot")
+
+        if fms is None:
+            continue
+
+        forced_follow.append(
+            {
+                "atk_side": x["atk_side"],
+                "field_idx": int(x["field_idx"]),
+                "move_slot": int(fms),
+                "orig_index": int(x["orig_index"]),
+                "doubles_target": int(x.get("forced_replace_target", int(DoublesTarget.NONE))),
+            }
+        )
+
     prepared: list[dict[str, Any]] = []
 
     for it in moves_only:
+        pty = party_a if it["atk_side"] == "alpha" else party_b
+        ld = leads_a if it["atk_side"] == "alpha" else leads_b
+        fi = it["field_idx"]
+        pi = ld[fi]
+
+        if float(pty[pi].get("hpPercentage") or 0) <= 0:
+            continue
+
+        ms = it["move_slot"]
+
+        prepared.append(
+            {
+                "atk_side": it["atk_side"],
+                "field_idx": fi,
+                "move_slot": ms,
+                "atk_payload": with_active_move(pty[pi], ms),
+                "orig_index": it["orig_index"],
+                "doubles_target": it.get("doubles_target"),
+            }
+        )
+
+    for it in forced_follow:
         pty = party_a if it["atk_side"] == "alpha" else party_b
         ld = leads_a if it["atk_side"] == "alpha" else leads_b
         fi = it["field_idx"]
