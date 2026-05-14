@@ -27,7 +27,7 @@ ITEM_DEFERRALS: tuple[dict[str, str], ...] = (
     {"name": "Expert Belt", "disposition": "oracle_only", "reason": "super-effective damage"},
     {"name": "Light Clay", "disposition": "deferred", "reason": "screen duration"},
     {"name": "Mental Herb", "disposition": "deferred", "reason": "Taunt Encore Attract"},
-    {"name": "White Herb", "disposition": "engine", "reason": "implemented via held_item_effects"},
+    {"name": "White Herb", "disposition": "engine", "reason": "held_item_effects.try_white_herb_clear"},
     {"name": "Power Herb", "disposition": "deferred", "reason": "two-turn charge skip"},
     {"name": "Focus Band", "disposition": "deferred", "reason": "probabilistic survival"},
 )

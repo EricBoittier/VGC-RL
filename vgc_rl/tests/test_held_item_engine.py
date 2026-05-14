@@ -54,7 +54,7 @@ def test_sitrus_triggers_after_damage_threshold() -> None:
     client = _HighDamageFake()
     planned = [
         {"kind": "move", "atk_side": "alpha", "field_idx": 0, "move_slot": 1, "orig_index": 0, "doubles_target": int(DoublesTarget.FOE_SLOT_0)},
-        {"kind": "move", "atk_side": "alpha", "field_idx": 1, "move_slot": 2, "orig_index": 1},
+        {"kind": "move", "atk_side": "alpha", "field_idx": 1, "move_slot": 2, "orig_index": 1, "doubles_target": int(DoublesTarget.FOE_SLOT_1)},
         {"kind": "move", "atk_side": "beta", "field_idx": 0, "move_slot": 1, "orig_index": 2},
         {"kind": "move", "atk_side": "beta", "field_idx": 1, "move_slot": 1, "orig_index": 3},
     ]
