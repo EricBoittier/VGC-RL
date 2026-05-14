@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-
-def normalize_item_key(item: Any) -> str:
-    return str(item or "").strip().lower()
+from vgc_rl.held_item_rules import normalize_item_key
 
 _MEGA_ITEM_TO_FORM: dict[str, tuple[str, str]] = {
     "charizardite y": ("Charizard-Mega-Y", "Drought"),

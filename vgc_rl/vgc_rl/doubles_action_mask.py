@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import numpy as np
+from typing import Any
 
 from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction
 from vgc_rl.doubles_mega_tera import can_mega_evolve_species, can_terastal
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _ELECTRO_SHOT, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index
+from vgc_rl.held_item_rules import move_slot_illegal_assault_vest, move_slot_illegal_choice_lock
 
 
 FORM_ACTION_BRANCHES = 3
@@ -12,6 +14,16 @@ FORM_ACTION_BRANCHES = 3
 
 def encode_flat_form_action(form_branch: int, joint_idx: int, num_joints: int) -> int:
     return form_branch * num_joints + joint_idx
+
+
+def _move_slots_item_legal(mon: dict[str, Any], move_slot: int, game: str) -> bool:
+    if move_slot_illegal_choice_lock(mon, move_slot):
+        return False
+
+    if move_slot_illegal_assault_vest(mon, move_slot, game=game):
+        return False
+
+    return True
 
 
 def decode_flat_form_action(flat_idx: int, num_joints: int) -> tuple[int, int]:
@@ -66,7 +78,7 @@ def _move_target_legal_for_side(
     return True
 
 
-def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, atk_side: str) -> bool:
+def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, atk_side: str, game: str) -> bool:
     party = state.party_a if atk_side == "alpha" else state.party_b
     leads = state.leads_a if atk_side == "alpha" else state.leads_b
     foe_party = state.party_b if atk_side == "alpha" else state.party_a
@@ -125,6 +137,9 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
             incoming = party[to_pi]
             mv_name = str(incoming["moves"][slot_action.move_slot]["name"]).strip()
 
+            if not _move_slots_item_legal(incoming, slot_action.move_slot, game):
+                return False
+
             ck = ("a" if atk_side == "alpha" else "b", to_pi)
 
             if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
@@ -155,6 +170,9 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
 
         mv_name = str(party[pi_cur]["moves"][slot_action.move_slot]["name"]).strip()
 
+        if not _move_slots_item_legal(party[pi_cur], slot_action.move_slot, game):
+            return False
+
         ck = ("a" if atk_side == "alpha" else "b", pi_cur)
 
         if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
@@ -176,20 +194,20 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
     return True
 
 
-def legal_joint_mask_alpha(state: DoublesBattleState, joints: tuple[JointDoublesAction, ...]) -> np.ndarray:
+def legal_joint_mask_alpha(state: DoublesBattleState, joints: tuple[JointDoublesAction, ...], *, game: str = "champions") -> np.ndarray:
     out = np.zeros(len(joints), dtype=np.bool_)
 
     for i, j in enumerate(joints):
-        out[i] = _side_joint_legal(j, state, atk_side="alpha")
+        out[i] = _side_joint_legal(j, state, atk_side="alpha", game=game)
 
     return out
 
 
-def legal_joint_mask_beta(state: DoublesBattleState, joints: tuple[JointDoublesAction, ...]) -> np.ndarray:
+def legal_joint_mask_beta(state: DoublesBattleState, joints: tuple[JointDoublesAction, ...], *, game: str = "champions") -> np.ndarray:
     out = np.zeros(len(joints), dtype=np.bool_)
 
     for i, j in enumerate(joints):
-        out[i] = _side_joint_legal(j, state, atk_side="beta")
+        out[i] = _side_joint_legal(j, state, atk_side="beta", game=game)
 
     return out
 
@@ -203,7 +221,7 @@ def legal_flat_mask_alpha(
     allow_terastal: bool = True,
 ) -> np.ndarray:
     n = len(joints)
-    base = legal_joint_mask_alpha(state, joints)
+    base = legal_joint_mask_alpha(state, joints, game=game)
     out = np.zeros(n * FORM_ACTION_BRANCHES, dtype=np.bool_)
     party_a = state.party_a
     leads_a = state.leads_a
@@ -278,7 +296,7 @@ def legal_flat_mask_beta(
     allow_terastal: bool = True,
 ) -> np.ndarray:
     n = len(joints)
-    base = legal_joint_mask_beta(state, joints)
+    base = legal_joint_mask_beta(state, joints, game=game)
     out = np.zeros(n * FORM_ACTION_BRANCHES, dtype=np.bool_)
     party_b = state.party_b
     leads_b = state.leads_b
