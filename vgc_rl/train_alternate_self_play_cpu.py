@@ -39,19 +39,28 @@ def main() -> int:
     parser.add_argument(
         "--six-bring",
         action="store_true",
-        help="Six-mon teams: first env step each episode is a 90-way bring pick for the learning side; pass --team-alpha-key / --team-beta-key with 6-mon example_teams keys (e.g. team_eileen, team_eric).",
+        help="Six-mon teams: first env step each episode is a 90-way bring pick for the learning side; pass --team-alpha-key / --team-beta-key with 6-mon example_teams keys (e.g. team_eileen, team_eric). Optional: --diverse-opens or --random-pair-bring-on-reset / --debug-print-bring / --random-bring-alpha / --random-bring-beta.",
     )
     parser.add_argument("--team-alpha-key", default="team_alpha", metavar="KEY", help="Alpha roster key in example_teams.json (must be 6-mon when --six-bring)")
     parser.add_argument("--team-beta-key", default="team_beta", metavar="KEY", help="Beta roster key (must be 6-mon when --six-bring)")
-    parser.add_argument(
+    br = parser.add_argument_group("Six-bring openings (only with --six-bring)")
+    br.add_argument(
+        "--diverse-opens",
+        action="store_true",
+        help="Shorthand: set --random-pair-bring-on-reset (both sides random bring on reset; first step is battle).",
+    )
+    br.add_argument(
         "--random-pair-bring-on-reset",
         action="store_true",
-        help="With --six-bring: sample both brings on reset (skip bring step) in both envs.",
+        help="Sample both brings on reset (skip bring step) in both envs.",
     )
-    parser.add_argument("--debug-print-bring", action="store_true", help="With --six-bring: print lead prefs after each bring resolution.")
-    parser.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha-side bring uniform RNG where that env controls Alpha on bring step.")
-    parser.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta-side bring uniform RNG where that env controls Beta on bring step.")
+    br.add_argument("--debug-print-bring", action="store_true", help="Print lead prefs after each bring resolution.")
+    br.add_argument("--random-bring-alpha", action="store_true", help="Alpha bring uniform RNG on the bring step where that env controls Alpha.")
+    br.add_argument("--random-bring-beta", action="store_true", help="Beta bring uniform RNG on the bring step where that env controls Beta.")
     args = parser.parse_args()
+
+    if bool(args.six_bring) and bool(args.diverse_opens):
+        args.random_pair_bring_on_reset = True
 
     try:
         from sb3_contrib import MaskablePPO
@@ -130,6 +139,18 @@ def main() -> int:
         flush=True,
     )
 
+    six_bring_extras: dict[str, bool] = {}
+
+    if args.six_bring:
+        six_bring_extras = {
+            "random_bring_alpha": bool(args.random_bring_alpha),
+            "random_bring_beta": bool(args.random_bring_beta),
+            "random_pair_bring_on_reset": bool(args.random_pair_bring_on_reset),
+            "debug_print_bring": bool(args.debug_print_bring),
+        }
+
+        print("six-bring env: " + " ".join(f"{k}={v}" for k, v in six_bring_extras.items()), flush=True)
+
     for rnd in range(args.alternating_rounds):
         beta_inner = BetaControlledOracleDoublesEnv(
             oracle=client,
@@ -142,10 +163,7 @@ def main() -> int:
             six_mon_bring=args.six_bring,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
-            random_bring_alpha=bool(args.random_bring_alpha),
-            random_bring_beta=bool(args.random_bring_beta),
-            random_pair_bring_on_reset=bool(args.random_pair_bring_on_reset),
-            debug_print_bring=bool(args.debug_print_bring),
+            **six_bring_extras,
         )
 
         beta_wrapped = ActionMasker(beta_inner, action_mask_fn=lambda e: e.unwrapped.action_masks())
@@ -218,10 +236,7 @@ def main() -> int:
             six_mon_bring=args.six_bring,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
-            random_bring_alpha=bool(args.random_bring_alpha),
-            random_bring_beta=bool(args.random_bring_beta),
-            random_pair_bring_on_reset=bool(args.random_pair_bring_on_reset),
-            debug_print_bring=bool(args.debug_print_bring),
+            **six_bring_extras,
         )
 
         alpha_wrapped = ActionMasker(alpha_inner, action_mask_fn=lambda e: e.unwrapped.action_masks())
