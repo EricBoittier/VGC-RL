@@ -14,6 +14,7 @@ from vgc_rl.doubles_turn_engine import (
     resolve_turn_flat,
     side_party_wiped,
 )
+from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.example_teams import party_member, with_active_move
 from vgc_rl.oracle_client import OracleClient
 from vgc_rl.rich_report import print_showdown_line, render_self_play_doubles_snapshot, render_self_play_field_snapshot
@@ -21,7 +22,7 @@ from vgc_rl.turn_sim import STATUS_NO_CALC
 
 _TAILWIND_DURATION_TURNS = 4
 
-_PROTECT_STALL_MOVES = frozenset({"Protect", "Detect", "Spiky Shield", "Baneful Bunker", "Burning Bulwark", "Silk Trap"})
+_PROTECT_STALL_MOVES = PROTECT_FAMILY_MOVES
 
 
 def _protect_success_probability(prior_consecutive_successes: int) -> float:

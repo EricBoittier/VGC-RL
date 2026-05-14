@@ -5,13 +5,14 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
+from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.example_teams import with_active_move
 from vgc_rl.oracle_client import OracleClient
 from vgc_rl.turn_sim import STATUS_NO_CALC, _initiative_first, _sort_by_initiative
 
 TAILWIND_DURATION_TURNS = 4
 
-_PROTECT_STALL_MOVES = frozenset({"Protect", "Detect", "Spiky Shield", "Baneful Bunker", "Burning Bulwark", "Silk Trap"})
+_PROTECT_STALL_MOVES = PROTECT_FAMILY_MOVES
 
 _SPREAD_BOTH_OPPONENTS_MOVES = frozenset(
     {
@@ -19,7 +20,6 @@ _SPREAD_BOTH_OPPONENTS_MOVES = frozenset(
         "Boomburst",
         "Breaking Swipe",
         "Dazzling Gleam",
-        "Echoed Voice",
         "Growl",
         "Heat Wave",
         "Hyper Voice",
@@ -27,7 +27,6 @@ _SPREAD_BOTH_OPPONENTS_MOVES = frozenset(
         "Incinerate",
         "Leer",
         "Rock Slide",
-        "Searing Shot",
         "Snarl",
         "Struggle Bug",
         "Sweet Scent",

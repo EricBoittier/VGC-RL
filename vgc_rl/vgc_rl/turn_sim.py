@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Literal
 
+from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.example_teams import load_example_teams, with_active_move
 from vgc_rl.oracle_client import OracleClient
 
@@ -49,7 +50,7 @@ class SimLine:
     segments: tuple[SimSeg, ...]
 
 
-PROTECT_FAMILY = frozenset({"Protect", "Detect", "Spiky Shield", "Baneful Bunker", "Burning Bulwark", "Silk Trap"})
+PROTECT_FAMILY = PROTECT_FAMILY_MOVES
 STATUS_NO_CALC = frozenset({
     "Tailwind",
     "Trick Room",

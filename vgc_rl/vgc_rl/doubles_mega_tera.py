@@ -6,7 +6,6 @@ from typing import Any
 def normalize_item_key(item: Any) -> str:
     return str(item or "").strip().lower()
 
-#todo: extend this to include all mega stones
 _MEGA_ITEM_TO_FORM: dict[str, tuple[str, str]] = {
     "charizardite y": ("Charizard-Mega-Y", "Drought"),
     "charizardite x": ("Charizard-Mega-X", "Tough Claws"),
