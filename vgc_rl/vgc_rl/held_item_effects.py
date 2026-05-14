@@ -56,6 +56,17 @@ def _def_types(mon: dict[str, Any]) -> list[str]:
     return []
 
 
+def maybe_unburden_on_item_consumed(mon: dict[str, Any], events: list[tuple[str, str]], addr: str) -> None:
+    if str(mon.get("ability") or "").strip() != "Unburden":
+        return
+
+    if bool(mon.get("abilityOn")):
+        return
+
+    mon["abilityOn"] = True
+    events.append(("-activate", f"{addr} Unburden"))
+
+
 def try_white_herb_clear(mon: dict[str, Any], events: list[tuple[str, str]], addr: str) -> None:
     if normalize_item_key(mon.get("item")) != WHITE_HERB_KEY:
         return
@@ -75,7 +86,9 @@ def try_white_herb_clear(mon: dict[str, Any], events: list[tuple[str, str]], add
             mon["boosts"][k] = 0
 
     mon["white_herb_consumed"] = True
+    mon["item"] = ""
     events.append(("-activate", f"{addr} White Herb"))
+    maybe_unburden_on_item_consumed(mon, events, addr)
 
 
 def maybe_trigger_heal_berries(mon: dict[str, Any], prev_hp: float, new_hp: float, events: list[tuple[str, str]], addr: str) -> float:
@@ -90,6 +103,7 @@ def maybe_trigger_heal_berries(mon: dict[str, Any], prev_hp: float, new_hp: floa
             mon["sitrus_berry_consumed"] = True
             mon["item"] = ""
             events.append(("-activate", f"{addr} Sitrus Berry"))
+            maybe_unburden_on_item_consumed(mon, events, addr)
 
             return hp
 
@@ -104,6 +118,7 @@ def maybe_trigger_heal_berries(mon: dict[str, Any], prev_hp: float, new_hp: floa
             mon["pinch_berry_consumed"] = True
             mon["item"] = ""
             events.append(("-activate", f"{addr} pinch berry"))
+            maybe_unburden_on_item_consumed(mon, events, addr)
 
             return hp
 
@@ -147,6 +162,7 @@ def maybe_weakness_policy(
     def_mon["weakness_policy_consumed"] = True
     def_mon["item"] = ""
     events.append(("-activate", f"{addr} Weakness Policy"))
+    maybe_unburden_on_item_consumed(def_mon, events, addr)
 
 
 def maybe_lum_berry(mon: dict[str, Any], events: list[tuple[str, str]], addr: str) -> None:
@@ -165,6 +181,7 @@ def maybe_lum_berry(mon: dict[str, Any], events: list[tuple[str, str]], addr: st
     mon["lum_berry_consumed"] = True
     mon["item"] = ""
     events.append(("-activate", f"{addr} Lum Berry"))
+    maybe_unburden_on_item_consumed(mon, events, addr)
 
 
 def leftovers_heal(mon: dict[str, Any], events: list[tuple[str, str]], addr: str) -> None:

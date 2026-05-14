@@ -200,6 +200,109 @@ def test_intimidate_on_switch_lowers_both_foes_atk() -> None:
     assert int(b1.get("boosts", {}).get("atk", 0)) == -1
 
 
+def test_defiant_triggers_on_intimidate_net_plus_one_atk() -> None:
+    party_a = [party_member("team_eileen", i) for i in range(6)]
+    party_b = [party_member("team_eric", i) for i in range(6)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    state = DoublesBattleState(
+        party_a=party_a,
+        party_b=party_b,
+        leads_a=[0, 1],
+        leads_b=[1, 2],
+        brought_a=tuple(range(6)),
+        brought_b=tuple(range(6)),
+    )
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    planned = [
+        {"kind": "switch", "atk_side": "alpha", "field_idx": 0, "to_party": 3, "orig_index": 0},
+        {"kind": "skip", "atk_side": "alpha", "field_idx": 1, "orig_index": 1},
+        {"kind": "skip", "atk_side": "beta", "field_idx": 0, "orig_index": 2},
+        {"kind": "skip", "atk_side": "beta", "field_idx": 1, "orig_index": 3},
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", planned)
+
+    king = party_b[state.leads_b[0]]
+    other = party_b[state.leads_b[1]]
+
+    assert str(king.get("ability")) == "Defiant"
+    assert int(king.get("boosts", {}).get("atk", 0)) == 1
+    assert int(other.get("boosts", {}).get("atk", 0)) == -1
+
+
+def test_stamina_raises_def_when_damaged() -> None:
+    party_a = [party_member("team_eileen", i) for i in range(6)]
+    party_b = [party_member("team_eric", i) for i in range(6)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    state = DoublesBattleState(
+        party_a=party_a,
+        party_b=party_b,
+        leads_a=[0, 1],
+        leads_b=[0, 1],
+        brought_a=tuple(range(6)),
+        brought_b=tuple(range(6)),
+    )
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 1, 0, doubles_target=int(DoublesTarget.FOE_SLOT_0)),
+        _mv("alpha", 1, 1, 1),
+        _mv("beta", 0, 1, 2),
+        _mv("beta", 1, 1, 3),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", planned)
+
+    arch = party_b[state.leads_b[0]]
+
+    assert str(arch.get("ability")) == "Stamina"
+    assert int(arch.get("boosts", {}).get("def", 0)) == 1
+
+
+def test_rough_skin_chips_contact_attacker() -> None:
+    party_a = [party_member("team_eileen", i) for i in range(6)]
+    party_b = [party_member("team_beta", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    atk = party_b[0]
+    atk["moves"] = [{"name": "Dragon Claw"}, {"name": "Protect"}, {"name": "Leer"}, {"name": "Growl"}]
+
+    state = DoublesBattleState(
+        party_a=party_a,
+        party_b=party_b,
+        leads_a=[4, 0],
+        leads_b=[0, 1],
+        brought_a=tuple(range(6)),
+    )
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    hp_atk_before = float(atk["hpPercentage"])
+
+    planned = [
+        _mv("beta", 0, 1, 2, doubles_target=int(DoublesTarget.FOE_SLOT_0)),
+        _mv("beta", 1, 1, 3),
+        _mv("alpha", 0, 4, 0),
+        _mv("alpha", 1, 1, 1),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", planned)
+
+    assert str(party_a[4].get("ability")) == "Rough Skin"
+    assert float(atk["hpPercentage"]) < hp_atk_before
+
+
 class _OhkoFakeOracle(FakeOracleClient):
     def batch(self, body: dict) -> dict:
         results = []

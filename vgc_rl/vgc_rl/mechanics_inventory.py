@@ -34,9 +34,13 @@ def python_mechanics_string_inventory() -> dict[str, Any]:
         "item_deferrals": [{"name": r["name"], "disposition": r["disposition"]} for r in ITEM_DEFERRALS],
         "hardcoded_engine_strings": sorted(
             {
+                "Defiant",
                 "Electro Shot",
                 "Intimidate",
+                "Rough Skin",
+                "Stamina",
                 "Tailwind",
+                "Unburden",
             }
         ),
     }
