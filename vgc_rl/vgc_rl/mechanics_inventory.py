@@ -5,12 +5,12 @@ from typing import Any
 
 from vgc_rl.doubles_mega_tera import _MEGA_ITEM_TO_FORM
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
+from vgc_rl.doubles_move_targeting import ALL_ADJACENT_EXCEPT_USER_MOVES, SPREAD_BOTH_OPPONENTS_MOVES
 from vgc_rl.doubles_turn_engine import (
     TAILWIND_DURATION_TURNS,
     _ENTRY_WEATHER_ABILITIES,
     _FOCUS_SASH_ITEM_NAMES,
     _SELF_STAT_DROP_AFTER_HIT,
-    _SPREAD_BOTH_OPPONENTS_MOVES,
     _SPREAD_FOE_STAT_DROPS,
     _WEATHER_SETTING_MOVES,
 )
@@ -22,7 +22,8 @@ from vgc_rl.turn_sim import STATUS_NO_CALC
 def python_mechanics_string_inventory() -> dict[str, Any]:
     return {
         "protect_family_moves": sorted(PROTECT_FAMILY_MOVES),
-        "spread_both_opponents_moves": sorted(_SPREAD_BOTH_OPPONENTS_MOVES),
+        "spread_both_opponents_moves": sorted(SPREAD_BOTH_OPPONENTS_MOVES),
+        "all_adjacent_except_user_moves": sorted(ALL_ADJACENT_EXCEPT_USER_MOVES),
         "spread_foe_stat_drops": {k: dict(v) for k, v in sorted(_SPREAD_FOE_STAT_DROPS.items())},
         "self_stat_drop_after_hit": {k: dict(v) for k, v in sorted(_SELF_STAT_DROP_AFTER_HIT.items())},
         "weather_setting_moves": {k: list(v) for k, v in sorted(_WEATHER_SETTING_MOVES.items())},

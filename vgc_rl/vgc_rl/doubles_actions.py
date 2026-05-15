@@ -17,6 +17,7 @@ class DoublesTarget(IntEnum):
     BOTH_FOES = 4
     FIELD = 5
     NONE = 6
+    ALL_OTHERS = 7
 
 
 @dataclass(frozen=True, slots=True)

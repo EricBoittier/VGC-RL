@@ -5,7 +5,8 @@ from typing import Any, Callable, Literal, Sequence
 
 import numpy as np
 
-from vgc_rl.doubles_action_mask import legal_joint_mask_alpha, legal_joint_mask_beta, structural_target_allowed
+from vgc_rl.doubles_action_mask import legal_joint_mask_alpha, legal_joint_mask_beta
+from vgc_rl.doubles_move_targeting import structural_target_allowed
 from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, decode_joint_index
 from vgc_rl.doubles_obs_identity import DOUBLES_OBS_TOTAL_DIM, DOUBLES_RL_BRING_TAIL_DIM, doubles_obs_boost_features, doubles_obs_identity_features
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _PROTECT_STALL_MOVES, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index, joint_to_planned_side, resolve_turn
@@ -41,6 +42,11 @@ def _target_choice_label(
         if t == DoublesTarget.SELF:
             return f"Self ({_mon_name(party, leads[field_idx])})"
 
+        if t == DoublesTarget.ALL_OTHERS:
+            ally = _mon_name(party, leads[1 - field_idx])
+
+            return f"All others ({_mon_name(foe_party, foe_leads[0])} · {_mon_name(foe_party, foe_leads[1])} · Ally {ally})"
+
     if t == DoublesTarget.FOE_SLOT_0:
         return "Foe A"
 
@@ -61,6 +67,9 @@ def _target_choice_label(
 
     if t == DoublesTarget.NONE:
         return "—"
+
+    if t == DoublesTarget.ALL_OTHERS:
+        return "All others"
 
     return t.name
 

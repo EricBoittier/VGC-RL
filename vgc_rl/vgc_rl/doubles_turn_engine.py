@@ -7,6 +7,7 @@ from typing import Any
 from vgc_rl.champions_metadata import move_category_champions
 from vgc_rl.doubles_ability_hooks import defiant_boost_after_opponent_unboost, rough_skin_if, stamina_if_damaging_hit
 from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
+from vgc_rl.doubles_move_targeting import ALL_ADJACENT_EXCEPT_USER_MOVES, SPREAD_BOTH_OPPONENTS_MOVES
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.example_teams import with_active_move
 from vgc_rl.held_item_effects import (
@@ -27,25 +28,7 @@ TAILWIND_DURATION_TURNS = 4
 
 _PROTECT_STALL_MOVES = PROTECT_FAMILY_MOVES
 
-_SPREAD_BOTH_OPPONENTS_MOVES = frozenset(
-    {
-        "Blizzard",
-        "Boomburst",
-        "Breaking Swipe",
-        "Dazzling Gleam",
-        "Growl",
-        "Heat Wave",
-        "Hyper Voice",
-        "Icy Wind",
-        "Incinerate",
-        "Leer",
-        "Rock Slide",
-        "Snarl",
-        "Struggle Bug",
-        "Sweet Scent",
-        "Tail Whip",
-    },
-)
+_SPREAD_BOTH_OPPONENTS_MOVES = SPREAD_BOTH_OPPONENTS_MOVES
 
 _BOOST_KEYS = ("atk", "def", "spa", "spd", "spe")
 
@@ -934,7 +917,15 @@ def resolve_turn_flat(
 
         hit_sequence: list[tuple[str, int, dict[str, Any]]]
 
-        if slot_mv in _SPREAD_BOTH_OPPONENTS_MOVES:
+        if slot_mv in ALL_ADJACENT_EXCEPT_USER_MOVES:
+            hit_sequence = [(def_side_default, df_i, dm) for df_i, dm in foes]
+            ally_fi = 1 - field_idx
+            ally_pi = own_leads[ally_fi]
+            ally_mon = own_party[ally_pi]
+
+            if float(ally_mon.get("hpPercentage") or 0) > 0:
+                hit_sequence.append((atk_side, ally_fi, ally_mon))
+        elif slot_mv in _SPREAD_BOTH_OPPONENTS_MOVES:
             hit_sequence = [(def_side_default, df_i, dm) for df_i, dm in foes]
         else:
             dt_raw = item.get("doubles_target")
@@ -974,6 +965,14 @@ def resolve_turn_flat(
                     dm = own_party[dpi]
 
                     hit_sequence = [(atk_side, field_idx, dm)] if float(dm.get("hpPercentage") or 0) > 0 else []
+                elif dt == DoublesTarget.ALL_OTHERS:
+                    hit_sequence = [(def_side_default, df_i, dm) for df_i, dm in foes]
+                    ally_fi = 1 - field_idx
+                    ally_pi = own_leads[ally_fi]
+                    ally_mon = own_party[ally_pi]
+
+                    if float(ally_mon.get("hpPercentage") or 0) > 0:
+                        hit_sequence.append((atk_side, ally_fi, ally_mon))
                 else:
                     pick_fi, pick_m = rng.choice(foes)
 
