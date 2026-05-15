@@ -957,7 +957,12 @@ def resolve_turn_flat(
 
                     hit_sequence = [(def_side_default, 1, dm1)] if float(dm1.get("hpPercentage") or 0) > 0 else []
                 elif dt == DoublesTarget.BOTH_FOES:
-                    hit_sequence = [(def_side_default, df_i, dm) for df_i, dm in foes]
+                    if slot_mv in _SPREAD_BOTH_OPPONENTS_MOVES:
+                        hit_sequence = [(def_side_default, df_i, dm) for df_i, dm in foes]
+                    else:
+                        pick_fi, pick_m = rng.choice(foes)
+
+                        hit_sequence = [(def_side_default, pick_fi, pick_m)]
                 elif dt == DoublesTarget.ALLY_ACTIVE:
                     ally_fi = 1 - field_idx
                     dpi = own_leads[ally_fi]

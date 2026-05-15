@@ -5,7 +5,7 @@ from typing import Any, Callable, Literal, Sequence
 
 import numpy as np
 
-from vgc_rl.doubles_action_mask import legal_joint_mask_alpha, legal_joint_mask_beta
+from vgc_rl.doubles_action_mask import legal_joint_mask_alpha, legal_joint_mask_beta, structural_target_allowed
 from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, decode_joint_index
 from vgc_rl.doubles_obs_identity import DOUBLES_OBS_TOTAL_DIM, DOUBLES_RL_BRING_TAIL_DIM, doubles_obs_boost_features, doubles_obs_identity_features
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _PROTECT_STALL_MOVES, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index, joint_to_planned_side, resolve_turn
@@ -316,11 +316,7 @@ def _prompt_one_slot_menu(
             mvname = str(party[pi]["moves"][m]["name"])
             tgts_set = send_outs[(b, m)]
 
-            if mvname in _PROTECT_STALL_MOVES and DoublesTarget.SELF in tgts_set:
-                tgts_set = {DoublesTarget.SELF}
-
-            if mvname in _SPREAD_BOTH_OPPONENTS_MOVES and DoublesTarget.BOTH_FOES in tgts_set:
-                tgts_set = {DoublesTarget.BOTH_FOES}
+            tgts_set = {t for t in tgts_set if structural_target_allowed(mvname, t)}
 
             tgts = sorted(tgts_set, key=lambda t: t.value)
             label = f"Send {mon_name}: {mvname}"
@@ -420,11 +416,7 @@ def _prompt_one_slot_menu(
         tgts_set = set(move_targets[m])
         mvname = str(party[pi_act]["moves"][m]["name"])
 
-        if mvname in _PROTECT_STALL_MOVES and DoublesTarget.SELF in tgts_set:
-            tgts_set = {DoublesTarget.SELF}
-
-        if mvname in _SPREAD_BOTH_OPPONENTS_MOVES and DoublesTarget.BOTH_FOES in tgts_set:
-            tgts_set = {DoublesTarget.BOTH_FOES}
+        tgts_set = {t for t in tgts_set if structural_target_allowed(mvname, t)}
 
         tgts = sorted(tgts_set, key=lambda t: t.value)
 

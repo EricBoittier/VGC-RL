@@ -6,6 +6,7 @@ from typing import Any
 from vgc_rl.champions_metadata import move_category_champions
 from vgc_rl.doubles_actions import DoublesTarget, JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction
 from vgc_rl.doubles_mega_tera import can_mega_evolve_species, can_terastal
+from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
 from vgc_rl.doubles_turn_engine import DoublesBattleState, _ELECTRO_SHOT, _SPREAD_BOTH_OPPONENTS_MOVES, bench_slot_to_party_index
 from vgc_rl.held_item_rules import move_slot_illegal_assault_vest, move_slot_illegal_choice_lock
 
@@ -79,17 +80,21 @@ def _move_target_legal_for_side(
     return True
 
 
-def _single_target_offensive_self_blocked(move_name: str, target: DoublesTarget) -> bool:
-    if target != DoublesTarget.SELF:
-        return False
+def structural_target_allowed(move_name: str, target: DoublesTarget) -> bool:
+    if move_name in PROTECT_FAMILY_MOVES:
+        return target == DoublesTarget.SELF
+
+    if move_name in _SPREAD_BOTH_OPPONENTS_MOVES:
+        return target == DoublesTarget.BOTH_FOES
+
+    if move_name == "Sucker Punch":
+        return target in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1)
 
     cat = move_category_champions(move_name)
 
-    if cat not in ("Physical", "Special"):
-        return False
-
-    if move_name in _SPREAD_BOTH_OPPONENTS_MOVES:
-        return False
+    if cat in ("Physical", "Special"):
+        if target in (DoublesTarget.SELF, DoublesTarget.BOTH_FOES):
+            return False
 
     return True
 
@@ -161,13 +166,7 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
             if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
                 return False
 
-            if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
-                return False
-
-            if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
-                return False
-
-            if _single_target_offensive_self_blocked(mv_name, slot_action.target):
+            if not structural_target_allowed(mv_name, slot_action.target):
                 return False
 
             if slot_action.target == DoublesTarget.SELF:
@@ -200,13 +199,7 @@ def _side_joint_legal(joint: JointDoublesAction, state: DoublesBattleState, *, a
         if state.electro_shot_charging.get(ck) and mv_name != _ELECTRO_SHOT:
             return False
 
-        if mv_name in _SPREAD_BOTH_OPPONENTS_MOVES and slot_action.target != DoublesTarget.BOTH_FOES:
-            return False
-
-        if mv_name == "Sucker Punch" and slot_action.target not in (DoublesTarget.FOE_SLOT_0, DoublesTarget.FOE_SLOT_1):
-            return False
-
-        if _single_target_offensive_self_blocked(mv_name, slot_action.target):
+        if not structural_target_allowed(mv_name, slot_action.target):
             return False
 
         if not _move_target_legal_for_side(
