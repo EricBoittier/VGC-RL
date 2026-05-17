@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VGC RL Replay Viewer</title>
+    <link rel="stylesheet" href="viewer.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>VGC RL Replay</h1>
+      <div class="controls">
+        <label class="file-pick">
+          <span>Open replay JSON</span>
+          <input id="file-input" type="file" accept=".json,application/json" />
+        </label>
+        <select id="replay-select" aria-label="Saved replays">
+          <option value="">— saved replays —</option>
+        </select>
+        <button id="reload-list" type="button">Refresh list</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="meta-panel" id="meta-panel">
+          <p class="placeholder">Load a replay to begin.</p>
+        </section>
+        <section class="timeline">
+          <h2>Turns</h2>
+          <ol id="frame-list"></ol>
+        </section>
+      </aside>
+
+      <section class="stage">
+        <div class="field-header">
+          <h2 id="turn-title">—</h2>
+          <p id="weather-line" class="weather"></p>
+        </div>
+
+        <div class="sides">
+          <div class="side alpha">
+            <h3>Alpha</h3>
+            <div class="active-row" id="alpha-active"></div>
+            <p class="bench" id="alpha-bench"></p>
+            <p class="choice" id="alpha-choice"></p>
+          </div>
+          <div class="side beta">
+            <h3>Beta</h3>
+            <div class="active-row" id="beta-active"></div>
+            <p class="bench" id="beta-bench"></p>
+            <p class="choice" id="beta-choice"></p>
+          </div>
+        </div>
+
+        <section class="events">
+          <h3>Battle log</h3>
+          <ul id="event-log"></ul>
+        </section>
+
+        <nav class="scrubber">
+          <button id="prev-frame" type="button">← Prev</button>
+          <input id="frame-slider" type="range" min="0" max="0" value="0" />
+          <button id="next-frame" type="button">Next →</button>
+        </nav>
+      </section>
+    </main>
+
+    <script src="viewer.js"></script>
+  </body>
+</html>

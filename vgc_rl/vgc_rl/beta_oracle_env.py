@@ -22,6 +22,7 @@ from vgc_rl.doubles_turn_engine import DoublesBattleState, apply_initial_field_w
 from vgc_rl.example_teams import load_example_teams, party_member
 from vgc_rl.interactive_doubles import doubles_obs_vector, doubles_rl_six_bring_observation
 from vgc_rl.oracle_client import OracleClient
+from vgc_rl.replay import attach_bring_replay_frame, attach_turn_replay_frame
 from vgc_rl.sb3_masked_policy import predict_masked_joint_index
 
 
@@ -315,12 +316,21 @@ class BetaControlledOracleDoublesEnv(gym.Env):
                 "events": [],
                 "debug": {},
                 "alpha_joint_index": -1,
+                "beta_joint_index": -1,
                 "party_wiped_alpha": side_party_wiped_brought(self._state, alpha=True),
                 "party_wiped_beta": side_party_wiped_brought(self._state, alpha=False),
                 "awaiting_bring": False,
                 "alpha_bring_action": alpha_bring,
                 "beta_bring_action": beta_bring,
             }
+
+            attach_bring_replay_frame(
+                info,
+                state_after_bring=self._state,
+                game=self._game,
+                alpha_bring_id=alpha_bring,
+                beta_bring_id=beta_bring,
+            )
 
             return self._obs_vec(), 0.0, False, False, info
 
@@ -463,6 +473,8 @@ class BetaControlledOracleDoublesEnv(gym.Env):
         j_alpha = self._joints[ji_a]
         j_beta = self._joints[ji_b]
 
+        state_before = deepcopy(self._state)
+
         planned_alpha = joint_to_planned_side(
             j_alpha,
             self._state.party_a,
@@ -510,9 +522,28 @@ class BetaControlledOracleDoublesEnv(gym.Env):
             "events": events,
             "debug": debug,
             "alpha_joint_index": ji_a,
+            "beta_joint_index": ji_b,
             "party_wiped_alpha": side_party_wiped_brought(self._state, alpha=True),
             "party_wiped_beta": side_party_wiped_brought(self._state, alpha=False),
             "awaiting_bring": False,
         }
+
+        attach_turn_replay_frame(
+            info,
+            state_before=state_before,
+            game=self._game,
+            step_index=self._step_count,
+            joints=self._joints,
+            joint_index_alpha=ji_a,
+            joint_index_beta=ji_b,
+            mega_alpha=mega_alpha,
+            mega_beta=mega_beta,
+            tera_alpha=tera_alpha,
+            tera_beta=tera_beta,
+            events=events,
+            reward=float(reward),
+            terminated=bool(terminated),
+            truncated=bool(truncated),
+        )
 
         return obs, reward_beta, terminated, truncated, info

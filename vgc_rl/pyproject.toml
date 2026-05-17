@@ -20,10 +20,11 @@ dev = ["pytest>=8.0"]
 
 [project.scripts]
 vgc-rl = "vgc_rl.cli:main"
+vgc-rl-replay-viewer = "vgc_rl.replay_server:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["vgc_rl"]
 
 [tool.setuptools.package-data]
-vgc_rl = ["examples/*.json", "examples/*.txt", "examples/*.md"]
+vgc_rl = ["examples/*.json", "examples/*.txt", "examples/*.md", "replay_viewer/*"]

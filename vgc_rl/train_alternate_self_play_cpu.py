@@ -63,6 +63,9 @@ def main() -> int:
     )
     br.add_argument("--random-bring-alpha", action="store_true", help="Alpha bring uniform RNG on the bring step where that env controls Alpha.")
     br.add_argument("--random-bring-beta", action="store_true", help="Beta bring uniform RNG on the bring step where that env controls Beta.")
+    parser.add_argument("--replay-dir", type=Path, default=Path("replays"), metavar="DIR", help="Save training battle replays as JSON (browser viewer: vgc-rl-replay-viewer)")
+    parser.add_argument("--replay-every-episodes", type=int, default=20, metavar="N", help="Write a replay file every N completed episodes per training env")
+    parser.add_argument("--no-replay", action="store_true", help="Disable replay capture during training")
     args = parser.parse_args()
 
     if bool(args.six_bring) and bool(args.diverse_opens):
@@ -81,6 +84,7 @@ def main() -> int:
     from vgc_rl.fake_oracle_client import FakeOracleClient
     from vgc_rl.oracle_client import OracleClient
     from vgc_rl.oracle_doubles_rl_env import OracleDoublesRlEnv
+    from vgc_rl.replay_recorder import ReplayCaptureWrapper
     from vgc_rl.rl_policy_paths import alpha_policy_zip_filename, beta_policy_zip_filename
 
     game = "sv" if args.sv else "champions"
@@ -145,6 +149,28 @@ def main() -> int:
         flush=True,
     )
 
+    replay_enabled = not bool(args.no_replay)
+    replay_meta: dict[str, object] = {
+        "team_alpha_key": str(args.team_alpha_key),
+        "team_beta_key": str(args.team_beta_key),
+        "six_bring": bool(args.six_bring),
+        "game": game,
+    }
+
+    def _wrap_replay(env: object, *, phase: str) -> object:
+        if not replay_enabled:
+            return env
+
+        meta = dict(replay_meta)
+        meta["phase"] = phase
+
+        return ReplayCaptureWrapper(
+            env,
+            save_dir=args.replay_dir,
+            save_every_n_episodes=int(args.replay_every_episodes),
+            meta_fn=lambda m=meta: dict(m),
+        )
+
     six_bring_extras: dict[str, bool] = {}
 
     if args.six_bring:
@@ -158,7 +184,12 @@ def main() -> int:
         if args.debug_print_bring:
             print("six-bring env: " + " ".join(f"{k}={v}" for k, v in six_bring_extras.items()), flush=True)
 
+    beta_replay: ReplayCaptureWrapper | None = None
+    alpha_replay: ReplayCaptureWrapper | None = None
+
     for rnd in range(args.alternating_rounds):
+        replay_meta["round"] = rnd + 1
+
         beta_inner = BetaControlledOracleDoublesEnv(
             oracle=client,
             game=game,
@@ -173,7 +204,10 @@ def main() -> int:
             **six_bring_extras,
         )
 
-        beta_wrapped = ActionMasker(beta_inner, action_mask_fn=lambda e: e.unwrapped.action_masks())
+        beta_wrapped = ActionMasker(_wrap_replay(beta_inner, phase="beta"), action_mask_fn=lambda e: e.unwrapped.action_masks())
+
+        if isinstance(beta_wrapped.env, ReplayCaptureWrapper):
+            beta_replay = beta_wrapped.env
 
         if beta_model is None:
             beta_reset_ts = True
@@ -232,6 +266,12 @@ def main() -> int:
 
         print(f"Round {rnd + 1} Beta saved → {beta_path.resolve()}", flush=True)
 
+        if beta_replay is not None:
+            saved = beta_replay.flush_replay(force=True)
+
+            if saved is not None:
+                print(f"Round {rnd + 1} Beta replay → {saved}", flush=True)
+
         alpha_inner = OracleDoublesRlEnv(
             oracle=client,
             game=game,
@@ -246,7 +286,10 @@ def main() -> int:
             **six_bring_extras,
         )
 
-        alpha_wrapped = ActionMasker(alpha_inner, action_mask_fn=lambda e: e.unwrapped.action_masks())
+        alpha_wrapped = ActionMasker(_wrap_replay(alpha_inner, phase="alpha"), action_mask_fn=lambda e: e.unwrapped.action_masks())
+
+        if isinstance(alpha_wrapped.env, ReplayCaptureWrapper):
+            alpha_replay = alpha_wrapped.env
 
         if alpha_model is None:
             alpha_reset_ts = True
@@ -304,6 +347,15 @@ def main() -> int:
         alpha_model.save(str(alpha_path))
 
         print(f"Round {rnd + 1} Alpha saved → {alpha_path.resolve()}", flush=True)
+
+        if alpha_replay is not None:
+            saved = alpha_replay.flush_replay(force=True)
+
+            if saved is not None:
+                print(f"Round {rnd + 1} Alpha replay → {saved}", flush=True)
+
+    if replay_enabled:
+        print(f"Replays directory: {args.replay_dir.resolve()} · viewer: vgc-rl-replay-viewer --replay-dir {args.replay_dir}", flush=True)
 
     print("done:", alpha_path.resolve(), beta_path.resolve(), flush=True)
 

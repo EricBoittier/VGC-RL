@@ -1592,11 +1592,25 @@ def cmd_battle_sim(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_replay_viewer(args: argparse.Namespace) -> int:
+    from vgc_rl.replay_server import serve_replay_viewer
+
+    serve_replay_viewer(replay_dir=args.replay_dir, host=str(args.host), port=int(args.port))
+
+    return 0
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="vgc-rl")
     parser.add_argument("--oracle-url", default=os.environ.get("ORACLE_URL"), help="Base URL for oracle-server (default ORACLE_URL or http://127.0.0.1:8765)")
 
     sub = parser.add_subparsers(dest="command", required=True)
+
+    p_rv = sub.add_parser("replay-viewer", help="Serve browser replay viewer (static UI + replay JSON API)")
+    p_rv.add_argument("--replay-dir", type=Path, default=Path("replays"), help="Directory containing saved replay JSON files")
+    p_rv.add_argument("--host", default="127.0.0.1")
+    p_rv.add_argument("--port", type=int, default=8766)
+    p_rv.set_defaults(func=cmd_replay_viewer)
 
     p_smoke = sub.add_parser("smoke", help="GET /health and POST /batch sample matchup")
     p_smoke.add_argument("--champions", action="store_true")
