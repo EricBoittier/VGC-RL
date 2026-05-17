@@ -17,6 +17,11 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
+train = [
+  "sb3-contrib>=2.3.0",
+  "stable-baselines3>=2.3.0",
+  "torch>=2.2.0",
+]
 
 [project.scripts]
 vgc-rl = "vgc_rl.cli:main"
