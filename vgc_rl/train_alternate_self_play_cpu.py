@@ -15,7 +15,7 @@ def main() -> int:
     parser.add_argument("--oracle-url", default=os.environ.get("ORACLE_URL"), help="Oracle base URL when not --fake-oracle")
     parser.add_argument("--alternating-rounds", type=int, default=4, metavar="N", help="Full cycles (Beta phase then Alpha phase each)")
     parser.add_argument("--steps-per-phase", type=int, default=4096, metavar="T", help="MaskablePPO.learn timesteps per side per round")
-    parser.add_argument("--learning-rate", type=float, default=1e-3)
+    parser.add_argument("--learning-rate", type=float, default=None, help="PPO learning rate (default 1e-3; with --finetune default 3e-4)")
     parser.add_argument(
         "--save-alpha",
         type=str,
@@ -71,6 +71,13 @@ def main() -> int:
     parser.add_argument("--replay-dir", type=Path, default=Path("replays"), metavar="DIR", help="Save training battle replays as JSON (browser viewer: vgc-rl-replay-viewer)")
     parser.add_argument("--replay-every-episodes", type=int, default=20, metavar="N", help="Write a replay file every N completed episodes per training env")
     parser.add_argument("--no-replay", action="store_true", help="Disable replay capture during training")
+    parser.add_argument("--init-policy-beta", default=None, metavar="PATH", help="Load Beta weights from PATH on first Beta phase")
+    parser.add_argument("--init-policy-alpha", default=None, metavar="PATH", help="Load Alpha weights from PATH on first Alpha phase")
+    parser.add_argument(
+        "--finetune",
+        action="store_true",
+        help="Fine-tune mode: default learning rate 3e-4 when --learning-rate omitted",
+    )
     args = parser.parse_args()
 
     if bool(args.six_bring) and bool(args.diverse_opens):
@@ -103,8 +110,12 @@ def main() -> int:
     from vgc_rl.oracle_doubles_rl_env import OracleDoublesRlEnv
     from vgc_rl.replay_recorder import ReplayCaptureWrapper
     from vgc_rl.rl_policy_paths import alpha_policy_zip_filename, beta_policy_zip_filename
+    from vgc_rl.training_utils import load_or_create_maskable_ppo, resolve_learning_rate
 
     game = "sv" if args.sv else "champions"
+    learning_rate = resolve_learning_rate(finetune=bool(args.finetune), learning_rate=args.learning_rate)
+    init_policy_beta = Path(args.init_policy_beta) if args.init_policy_beta else None
+    init_policy_alpha = Path(args.init_policy_alpha) if args.init_policy_alpha else None
     allow_mega = not args.no_mega
     allow_tera = not args.no_tera
 

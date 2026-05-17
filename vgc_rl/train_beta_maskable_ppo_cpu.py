@@ -13,7 +13,7 @@ def main() -> int:
     parser.add_argument("--fake-oracle", action="store_true", help="Use deterministic FakeOracleClient (no oracle-server).")
     parser.add_argument("--oracle-url", default=os.environ.get("ORACLE_URL"), help="Oracle base URL when not --fake-oracle")
     parser.add_argument("--timesteps", type=int, default=4096)
-    parser.add_argument("--learning-rate", type=float, default=1e-3, help="PPO optimizer learning rate (default raised from SB3 3e-4)")
+    parser.add_argument("--learning-rate", type=float, default=None, help="PPO learning rate (default 1e-3; with --finetune default 3e-4)")
     parser.add_argument(
         "--save",
         default=None,
@@ -61,6 +61,17 @@ def main() -> int:
         action="store_true",
         help="Sample two distinct teams from meta_teams/ each reset (requires --six-bring). Policy zip gets a _meta suffix.",
     )
+    parser.add_argument(
+        "--init-policy",
+        default=None,
+        metavar="PATH",
+        help="Load weights from PATH before training (overwrites --save on completion; ignores existing --save unless --fresh-start without init)",
+    )
+    parser.add_argument(
+        "--finetune",
+        action="store_true",
+        help="Fine-tune mode: default learning rate 3e-4 when --learning-rate omitted; continues timesteps from loaded zip",
+    )
     args = parser.parse_args()
 
     if bool(args.meta_pool) and not bool(args.six_bring):
@@ -88,8 +99,10 @@ def main() -> int:
     from vgc_rl.fake_oracle_client import FakeOracleClient
     from vgc_rl.oracle_client import OracleClient
     from vgc_rl.rl_policy_paths import beta_policy_zip_filename
+    from vgc_rl.training_utils import load_or_create_maskable_ppo, resolve_learning_rate
 
     game = "sv" if args.sv else "champions"
+    learning_rate = resolve_learning_rate(finetune=bool(args.finetune), learning_rate=args.learning_rate)
 
     save_path = (
         Path(args.save)
@@ -157,46 +170,35 @@ def main() -> int:
         flush=True,
     )
 
-    resume = save_path.is_file() and not args.fresh_start
+    init_policy = Path(args.init_policy) if args.init_policy else None
 
-    if resume:
-        try:
-            model = MaskablePPO.load(str(save_path), env=env, device="cpu")
-        except Exception as exc:
-            print(f"Failed to load policy zip ({save_path}): {exc}", file=sys.stderr)
-            print(
-                "Older models used a smaller observation vector or joint-only actions (no mega/tera branch); "
-                "run with --fresh-start to train a new policy.",
-                file=sys.stderr,
-            )
+    if args.fresh_start and save_path.is_file() and init_policy is None:
+        print(f"--fresh-start: ignoring existing {save_path.resolve()}", flush=True)
 
-            return 1
-
-        model.learning_rate = args.learning_rate
-
-        print(f"Checkpoint restart: loaded {save_path.resolve()} · num_timesteps={model.num_timesteps}", flush=True)
-
-        reset_ts = False
-    else:
-        if args.fresh_start and save_path.is_file():
-            print(f"--fresh-start: ignoring existing {save_path.resolve()}", flush=True)
-
-        print(f"Training new MaskablePPO · save → {save_path.resolve()}", flush=True)
-
-        model = MaskablePPO(
-            "MlpPolicy",
-            env,
-            verbose=1,
-            device="cpu",
+    try:
+        loaded = load_or_create_maskable_ppo(
+            env=env,
+            save_path=save_path,
+            init_policy=init_policy,
+            fresh_start=bool(args.fresh_start),
+            learning_rate=learning_rate,
             seed=args.seed,
-            learning_rate=args.learning_rate,
-            n_steps=128,
-            batch_size=64,
+            label="Beta",
         )
+    except (FileNotFoundError, RuntimeError) as exc:
+        print(str(exc), file=sys.stderr)
 
-        reset_ts = True
+        return 1
 
-    model.learn(total_timesteps=args.timesteps, reset_num_timesteps=reset_ts)
+    model = loaded.model
+
+    print(
+        f"Beta policy · source={loaded.source} · lr={learning_rate} · save → {save_path.resolve()} · "
+        f"num_timesteps={model.num_timesteps}",
+        flush=True,
+    )
+
+    model.learn(total_timesteps=args.timesteps, reset_num_timesteps=loaded.reset_num_timesteps)
     model.save(str(save_path))
 
     print("saved:", save_path.resolve(), flush=True)

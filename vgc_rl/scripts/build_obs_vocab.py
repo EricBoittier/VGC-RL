@@ -49,6 +49,13 @@ def main() -> int:
 
     _collect_from_teams_blob(json.loads(example_path.read_text(encoding="utf-8")), species, moves, abilities, items)
 
+    mega_path = resources.files("vgc_rl").joinpath("examples/mega_evolution_champions.json")
+    mega_data = json.loads(mega_path.read_text(encoding="utf-8"))
+
+    for row in mega_data.get("megaForms") or []:
+        if isinstance(row, dict) and row.get("mega"):
+            species.add(str(row["mega"]))
+
     meta_dir = resources.files("vgc_rl").joinpath("examples/meta_teams")
 
     for entry in meta_dir.iterdir():
@@ -63,7 +70,7 @@ def main() -> int:
 
     vocab = {
         "version": 2,
-        "sources": ["example_teams.json", "meta_teams/*.json"],
+        "sources": ["example_teams.json", "meta_teams/*.json", "mega_evolution_champions.json"],
         "species": sorted(species),
         "moves": sorted(moves),
         "abilities": sorted(abilities),
