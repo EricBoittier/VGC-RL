@@ -1595,7 +1595,18 @@ def cmd_battle_sim(args: argparse.Namespace) -> int:
 def cmd_replay_viewer(args: argparse.Namespace) -> int:
     from vgc_rl.replay_server import serve_replay_viewer
 
-    serve_replay_viewer(replay_dir=args.replay_dir, host=str(args.host), port=int(args.port))
+    serve_replay_viewer(
+        replay_dir=args.replay_dir,
+        host=str(args.host),
+        port=int(args.port),
+        policy_dir=getattr(args, "policy_dir", None),
+        default_alpha_policy=getattr(args, "alpha_policy", None),
+        default_beta_policy=getattr(args, "beta_policy", None),
+        fake_oracle=not bool(getattr(args, "live_oracle", False)),
+        oracle_url=getattr(args, "oracle_url", None),
+        game="sv" if bool(getattr(args, "sv", False)) else "champions",
+        meta_pool_policies=not bool(getattr(args, "named_policies", False)),
+    )
 
     return 0
 
@@ -1608,6 +1619,16 @@ def main(argv: list[str] | None = None) -> None:
 
     p_rv = sub.add_parser("replay-viewer", help="Serve browser replay viewer (static UI + replay JSON API)")
     p_rv.add_argument("--replay-dir", type=Path, default=Path("replays"), help="Directory containing saved replay JSON files")
+    p_rv.add_argument("--policy-dir", type=Path, default=None, help="MaskablePPO zip directory for AI simulate (default: parent of --replay-dir)")
+    p_rv.add_argument("--alpha-policy", type=Path, default=None, help="Default Alpha policy zip for simulate")
+    p_rv.add_argument("--beta-policy", type=Path, default=None, help="Default Beta policy zip for simulate")
+    p_rv.add_argument("--live-oracle", action="store_true", help="Simulate with live oracle-server instead of FakeOracleClient")
+    p_rv.add_argument("--sv", action="store_true", help="Scarlet/Violet rules for simulate")
+    p_rv.add_argument(
+        "--named-policies",
+        action="store_true",
+        help="Resolve simulate policy zips from team keys instead of meta-pool bring6_meta defaults",
+    )
     p_rv.add_argument("--host", default="127.0.0.1")
     p_rv.add_argument("--port", type=int, default=8766)
     p_rv.set_defaults(func=cmd_replay_viewer)

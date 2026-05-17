@@ -8,7 +8,7 @@
   </head>
   <body>
     <header class="top-bar">
-      <h1>VGC RL Replay</h1>
+      <h1>VGC RL · AI Showcase</h1>
       <div class="controls">
         <label class="file-pick">
           <span>Open replay JSON</span>
@@ -23,6 +23,71 @@
 
     <main class="layout">
       <aside class="sidebar">
+        <section class="simulate-panel" id="simulate-panel">
+          <h2>AI battle</h2>
+          <p class="simulate-hint">Six-mon team preview, then full doubles. Tune options below or open Advanced.</p>
+          <div class="simulate-actions-row">
+            <button id="swap-teams-btn" type="button" title="Swap Alpha and Beta teams">⇄ Teams</button>
+            <button id="random-seed-btn" type="button" title="Pick a random seed">🎲 Seed</button>
+          </div>
+          <label class="simulate-field">
+            <span>Alpha team</span>
+            <select id="team-alpha-select" aria-label="Alpha team"></select>
+          </label>
+          <label class="simulate-field">
+            <span>Beta team</span>
+            <select id="team-beta-select" aria-label="Beta team"></select>
+          </label>
+          <label class="simulate-field">
+            <span>Alpha policy</span>
+            <select id="policy-alpha-select" aria-label="Alpha policy zip"></select>
+          </label>
+          <label class="simulate-field">
+            <span>Beta policy</span>
+            <select id="policy-beta-select" aria-label="Beta policy zip"></select>
+          </label>
+          <div class="simulate-grid-2">
+            <label class="simulate-field">
+              <span>Game rules</span>
+              <select id="simulate-game" aria-label="Game rules">
+                <option value="champions">Champions</option>
+                <option value="sv">Scarlet / Violet</option>
+              </select>
+            </label>
+            <label class="simulate-field">
+              <span>Max turns</span>
+              <input id="simulate-max-turns" type="number" min="1" max="512" value="128" />
+            </label>
+          </div>
+          <label class="simulate-field simulate-field-inline">
+            <span>Seed</span>
+            <input id="simulate-seed" type="number" placeholder="random" />
+          </label>
+          <details class="simulate-advanced" id="simulate-advanced">
+            <summary>Advanced</summary>
+            <fieldset class="simulate-checks">
+              <label class="simulate-check"><input id="opt-save-replay" type="checkbox" checked /> Save replay JSON</label>
+              <label class="simulate-check"><input id="opt-named-policies" type="checkbox" /> Named policies (from team keys)</label>
+              <label class="simulate-check"><input id="opt-alpha-stochastic" type="checkbox" /> Alpha samples actions</label>
+              <label class="simulate-check"><input id="opt-beta-stochastic" type="checkbox" /> Beta samples actions</label>
+              <label class="simulate-check"><input id="opt-allow-mega" type="checkbox" checked /> Allow Mega Evolution</label>
+              <label class="simulate-check"><input id="opt-allow-tera" type="checkbox" checked /> Allow Terastal</label>
+              <label class="simulate-check"><input id="opt-random-bring-alpha" type="checkbox" /> Random Alpha bring</label>
+              <label class="simulate-check"><input id="opt-random-bring-beta" type="checkbox" /> Random Beta bring</label>
+              <label class="simulate-check"><input id="opt-live-oracle" type="checkbox" /> Live oracle-server</label>
+            </fieldset>
+            <label class="simulate-field">
+              <span>Vs greedy</span>
+              <select id="simulate-vs-greedy" aria-label="Greedy opponent side">
+                <option value="">Both as configured above</option>
+                <option value="alpha">Alpha greedy · Beta samples</option>
+                <option value="beta">Beta greedy · Alpha samples</option>
+              </select>
+            </label>
+          </details>
+          <button id="simulate-btn" type="button" class="simulate-primary">Simulate battle</button>
+          <p id="simulate-status" class="simulate-status" aria-live="polite"></p>
+        </section>
         <section class="meta-panel" id="meta-panel">
           <p class="placeholder">Load a replay to begin.</p>
         </section>

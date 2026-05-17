@@ -33,14 +33,14 @@ def register_vgc_envs() -> None:
     gym.register(
         id="vgc_rl/BetaOracleDoubles-v0",
         entry_point="vgc_rl.beta_oracle_env:BetaControlledOracleDoublesEnv",
-        kwargs={"game": "champions", "max_steps": 128},
+        kwargs={"game": "champions", "max_steps": 512},
         max_episode_steps=128,
     )
 
     gym.register(
         id="vgc_rl/OracleDoubles-v0",
         entry_point="vgc_rl.oracle_doubles_rl_env:OracleDoublesRlEnv",
-        kwargs={"game": "champions", "max_steps": 128},
+        kwargs={"game": "champions", "max_steps": 512},
         max_episode_steps=128,
     )
 

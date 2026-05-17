@@ -82,7 +82,7 @@ button:hover {
 
 .layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: minmax(280px, 320px) 1fr;
   min-height: calc(100vh - 52px);
 }
 
@@ -90,6 +90,130 @@ button:hover {
   border-right: 1px solid var(--border);
   padding: 1rem;
   overflow: auto;
+}
+
+.simulate-panel {
+  background: linear-gradient(165deg, #1e2a3d 0%, var(--panel) 100%);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.simulate-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.simulate-hint {
+  margin: 0 0 0.65rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.simulate-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.simulate-field select,
+.simulate-field input[type="number"] {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+}
+
+.simulate-field-inline input[type="number"] {
+  max-width: 8rem;
+}
+
+.simulate-actions-row {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.simulate-actions-row button {
+  flex: 1;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.45rem;
+}
+
+.simulate-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+
+.simulate-advanced {
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.82rem;
+}
+
+.simulate-advanced summary {
+  cursor: pointer;
+  color: var(--accent);
+  user-select: none;
+  margin-bottom: 0.35rem;
+}
+
+.simulate-checks {
+  border: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.simulate-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.simulate-check input {
+  accent-color: var(--accent);
+}
+
+.simulate-primary {
+  width: 100%;
+  margin-top: 0.25rem;
+  background: #2a3f5f;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.simulate-primary:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.simulate-status {
+  margin: 0.5rem 0 0;
+  min-height: 1.2em;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.simulate-status.error {
+  color: var(--hp-low);
+}
+
+.simulate-status.ok {
+  color: var(--hp-high);
 }
 
 .meta-panel {

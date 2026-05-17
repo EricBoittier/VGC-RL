@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from vgc_rl.doubles_checkpoint import battle_state_to_checkpoint_dict
-from vgc_rl.doubles_turn_engine import DoublesBattleState
+from vgc_rl.doubles_turn_engine import DoublesBattleState, side_party_wiped_brought
 from vgc_rl.interactive_doubles import format_joint_human_summary
 
 REPLAY_SCHEMA_VERSION = 1
@@ -175,10 +175,14 @@ def attach_bring_replay_frame(
     )
 
 
-def replay_outcome(*, terminated: bool, truncated: bool, party_wiped_alpha: bool, party_wiped_beta: bool) -> str:
-    if truncated and not terminated:
-        return "truncated"
-
+def replay_outcome(
+    *,
+    terminated: bool,
+    truncated: bool,
+    party_wiped_alpha: bool,
+    party_wiped_beta: bool,
+    last_reward_beta: float | None = None,
+) -> str:
     if party_wiped_alpha and not party_wiped_beta:
         return "beta_win"
 
@@ -188,7 +192,141 @@ def replay_outcome(*, terminated: bool, truncated: bool, party_wiped_alpha: bool
     if party_wiped_alpha and party_wiped_beta:
         return "draw"
 
+    if terminated and last_reward_beta is not None:
+        if last_reward_beta > 1e-6:
+            return "beta_win"
+
+        if last_reward_beta < -1e-6:
+            return "alpha_win"
+
+        return "draw"
+
+    if truncated and not terminated:
+        return "truncated"
+
     return "ongoing"
+
+
+def _living_brought_speed_total(state: DoublesBattleState, *, alpha: bool) -> float:
+    party = state.party_a if alpha else state.party_b
+    brought = state.brought_alpha_sorted() if alpha else state.brought_beta_sorted()
+    total = 0.0
+
+    for idx in brought:
+        mon = party[idx]
+
+        if float(mon.get("hpPercentage") or 0) <= 0:
+            continue
+
+        evs = mon.get("evs") if isinstance(mon.get("evs"), dict) else {}
+        boosts = mon.get("boosts") if isinstance(mon.get("boosts"), dict) else {}
+        total += float(evs.get("spe", 0) or 0) + float(boosts.get("spe", 0) or 0)
+
+    return total
+
+
+def _living_brought_hp_total(state: DoublesBattleState, *, alpha: bool) -> float:
+    party = state.party_a if alpha else state.party_b
+    brought = state.brought_alpha_sorted() if alpha else state.brought_beta_sorted()
+
+    return sum(float(party[i].get("hpPercentage") or 0) for i in brought)
+
+
+def force_battle_outcome(
+    state: DoublesBattleState | None,
+    *,
+    last_reward_beta: float | None = None,
+) -> str:
+    if state is not None:
+        party_wiped_alpha = side_party_wiped_brought(state, alpha=True)
+        party_wiped_beta = side_party_wiped_brought(state, alpha=False)
+
+        if party_wiped_alpha and not party_wiped_beta:
+            return "beta_win"
+
+        if party_wiped_beta and not party_wiped_alpha:
+            return "alpha_win"
+
+        hp_a = _living_brought_hp_total(state, alpha=True)
+        hp_b = _living_brought_hp_total(state, alpha=False)
+
+        if hp_a > hp_b + 1e-6:
+            return "alpha_win"
+
+        if hp_b > hp_a + 1e-6:
+            return "beta_win"
+
+        spe_a = _living_brought_speed_total(state, alpha=True)
+        spe_b = _living_brought_speed_total(state, alpha=False)
+
+        if spe_a > spe_b + 1e-6:
+            return "alpha_win"
+
+        if spe_b > spe_a + 1e-6:
+            return "beta_win"
+
+    if last_reward_beta is not None:
+        if last_reward_beta > 1e-6:
+            return "beta_win"
+
+        if last_reward_beta < -1e-6:
+            return "alpha_win"
+
+    return "alpha_win"
+
+
+def replay_outcome_from_state(
+    state: DoublesBattleState | None,
+    *,
+    terminated: bool,
+    truncated: bool,
+    last_reward_beta: float | None = None,
+    require_winner: bool = False,
+) -> str:
+    if require_winner:
+        if state is not None:
+            party_wiped_alpha = side_party_wiped_brought(state, alpha=True)
+            party_wiped_beta = side_party_wiped_brought(state, alpha=False)
+
+            if party_wiped_alpha or party_wiped_beta or terminated or truncated:
+                return force_battle_outcome(state, last_reward_beta=last_reward_beta)
+
+        return force_battle_outcome(state, last_reward_beta=last_reward_beta)
+
+    if state is None:
+        return replay_outcome(
+            terminated=terminated,
+            truncated=truncated,
+            party_wiped_alpha=False,
+            party_wiped_beta=False,
+            last_reward_beta=last_reward_beta,
+        )
+
+    party_wiped_alpha = side_party_wiped_brought(state, alpha=True)
+    party_wiped_beta = side_party_wiped_brought(state, alpha=False)
+
+    if not party_wiped_alpha and not party_wiped_beta and (terminated or truncated):
+        brought_a = state.brought_alpha_sorted()
+        brought_b = state.brought_beta_sorted()
+        hp_a = sum(float(state.party_a[i].get("hpPercentage") or 0) for i in brought_a)
+        hp_b = sum(float(state.party_b[i].get("hpPercentage") or 0) for i in brought_b)
+
+        if hp_a > hp_b + 1e-6:
+            return "alpha_win"
+
+        if hp_b > hp_a + 1e-6:
+            return "beta_win"
+
+        if terminated or truncated:
+            return force_battle_outcome(state, last_reward_beta=last_reward_beta)
+
+    return replay_outcome(
+        terminated=terminated,
+        truncated=truncated,
+        party_wiped_alpha=party_wiped_alpha,
+        party_wiped_beta=party_wiped_beta,
+        last_reward_beta=last_reward_beta,
+    )
 
 
 def build_replay_document(

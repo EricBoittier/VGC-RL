@@ -1,10 +1,32 @@
 let replay = null
 let frameIndex = 0
+let simulateDefaults = null
 
 const els = {
   fileInput: document.getElementById("file-input"),
   replaySelect: document.getElementById("replay-select"),
   reloadList: document.getElementById("reload-list"),
+  teamAlphaSelect: document.getElementById("team-alpha-select"),
+  teamBetaSelect: document.getElementById("team-beta-select"),
+  policyAlphaSelect: document.getElementById("policy-alpha-select"),
+  policyBetaSelect: document.getElementById("policy-beta-select"),
+  simulateSeed: document.getElementById("simulate-seed"),
+  simulateGame: document.getElementById("simulate-game"),
+  simulateMaxTurns: document.getElementById("simulate-max-turns"),
+  simulateVsGreedy: document.getElementById("simulate-vs-greedy"),
+  swapTeamsBtn: document.getElementById("swap-teams-btn"),
+  randomSeedBtn: document.getElementById("random-seed-btn"),
+  optSaveReplay: document.getElementById("opt-save-replay"),
+  optNamedPolicies: document.getElementById("opt-named-policies"),
+  optAlphaStochastic: document.getElementById("opt-alpha-stochastic"),
+  optBetaStochastic: document.getElementById("opt-beta-stochastic"),
+  optAllowMega: document.getElementById("opt-allow-mega"),
+  optAllowTera: document.getElementById("opt-allow-tera"),
+  optRandomBringAlpha: document.getElementById("opt-random-bring-alpha"),
+  optRandomBringBeta: document.getElementById("opt-random-bring-beta"),
+  optLiveOracle: document.getElementById("opt-live-oracle"),
+  simulateBtn: document.getElementById("simulate-btn"),
+  simulateStatus: document.getElementById("simulate-status"),
   metaPanel: document.getElementById("meta-panel"),
   frameList: document.getElementById("frame-list"),
   turnTitle: document.getElementById("turn-title"),
@@ -121,6 +143,13 @@ function renderMeta(doc) {
     ["Episode", meta.episode_index != null ? String(meta.episode_index) : "—"],
     ["Alpha team", meta.team_alpha_key || "—"],
     ["Beta team", meta.team_beta_key || "—"],
+    ["Alpha policy", meta.alpha_policy || "—"],
+    ["Beta policy", meta.beta_policy || "—"],
+    ["Seed", meta.seed != null ? String(meta.seed) : "—"],
+    ["Max turns", meta.max_steps != null ? String(meta.max_steps) : "—"],
+    ["Alpha mode", meta.alpha_deterministic === false ? "stochastic" : meta.alpha_deterministic === true ? "greedy" : "—"],
+    ["Beta mode", meta.beta_deterministic === false ? "stochastic" : meta.beta_deterministic === true ? "greedy" : "—"],
+    ["Oracle", meta.fake_oracle === false ? "live" : meta.fake_oracle === true ? "fake" : "—"],
     ["Frames", String((doc.frames || []).length)],
   ]
 
@@ -252,6 +281,217 @@ async function refreshReplaySelect() {
   if (items.includes(cur)) els.replaySelect.value = cur
 }
 
+function fillSelect(select, options, preferred) {
+  if (!select) return
+
+  select.innerHTML = ""
+  options.forEach(({ value, label }) => {
+    const opt = document.createElement("option")
+    opt.value = value
+    opt.textContent = label
+    select.appendChild(opt)
+  })
+
+  if (preferred && options.some(o => o.value === preferred)) {
+    select.value = preferred
+  }
+}
+
+function policyOptionsWithAuto(names, preferredAlpha, preferredBeta) {
+  const opts = [{ value: "auto", label: "Auto (server default)" }]
+  names.forEach(name => opts.push({ value: name, label: name }))
+
+  fillSelect(els.policyAlphaSelect, opts, preferredAlpha || "auto")
+  fillSelect(els.policyBetaSelect, opts, preferredBeta || "auto")
+}
+
+function applySimulateDefaults(def) {
+  if (!def) return
+
+  simulateDefaults = def
+
+  if (els.simulateGame && def.game) els.simulateGame.value = def.game
+
+  if (els.simulateMaxTurns && def.max_turns != null) els.simulateMaxTurns.value = String(def.max_turns)
+
+  if (els.optSaveReplay) els.optSaveReplay.checked = def.save !== false
+
+  if (els.optNamedPolicies) els.optNamedPolicies.checked = def.meta_pool_policies === false
+
+  if (els.optAlphaStochastic) els.optAlphaStochastic.checked = def.alpha_deterministic === false
+
+  if (els.optBetaStochastic) els.optBetaStochastic.checked = def.beta_deterministic === false
+
+  if (els.optAllowMega) els.optAllowMega.checked = def.allow_mega_evolution !== false
+
+  if (els.optAllowTera) els.optAllowTera.checked = def.allow_terastal !== false
+
+  if (els.optRandomBringAlpha) els.optRandomBringAlpha.checked = Boolean(def.random_bring_alpha)
+
+  if (els.optRandomBringBeta) els.optRandomBringBeta.checked = Boolean(def.random_bring_beta)
+
+  if (els.optLiveOracle) {
+    els.optLiveOracle.checked = Boolean(def.live_oracle)
+    els.optLiveOracle.disabled = false
+  }
+}
+
+function buildSimulateBody() {
+  const teamAlpha = els.teamAlphaSelect?.value
+  const teamBeta = els.teamBetaSelect?.value
+  const alphaPolicy = els.policyAlphaSelect?.value
+  const betaPolicy = els.policyBetaSelect?.value
+  const seedRaw = els.simulateSeed?.value?.trim()
+  const maxTurnsRaw = els.simulateMaxTurns?.value
+  const vsGreedy = els.simulateVsGreedy?.value || ""
+  const body = {
+    team_alpha_key: teamAlpha,
+    team_beta_key: teamBeta,
+    save: els.optSaveReplay?.checked !== false,
+    game: els.simulateGame?.value || "champions",
+    max_turns: maxTurnsRaw ? Number(maxTurnsRaw) : 128,
+    meta_pool_policies: els.optNamedPolicies?.checked !== true,
+    alpha_stochastic: els.optAlphaStochastic?.checked === true,
+    beta_stochastic: els.optBetaStochastic?.checked === true,
+    allow_mega_evolution: els.optAllowMega?.checked !== false,
+    allow_terastal: els.optAllowTera?.checked !== false,
+    random_bring_alpha: els.optRandomBringAlpha?.checked === true,
+    random_bring_beta: els.optRandomBringBeta?.checked === true,
+    live_oracle: els.optLiveOracle?.checked === true,
+  }
+
+  if (alphaPolicy && alphaPolicy !== "auto") body.alpha_policy = alphaPolicy
+
+  if (betaPolicy && betaPolicy !== "auto") body.beta_policy = betaPolicy
+
+  if (seedRaw) body.seed = Number(seedRaw)
+
+  if (vsGreedy) body.vs_greedy = vsGreedy
+
+  return body
+}
+
+function teamOptionLabel(team) {
+  const species = (team.species || []).slice(0, 3).join(" / ")
+  const tail = team.species && team.species.length > 3 ? " …" : ""
+
+  return `${team.label || team.key} · ${species}${tail}`
+}
+
+async function fetchTeamsAndPolicies() {
+  try {
+    const [teamsRes, policiesRes] = await Promise.all([fetch("/api/teams"), fetch("/api/policies")])
+
+    if (!teamsRes.ok || !policiesRes.ok) {
+      return null
+    }
+
+    const teamsPayload = await teamsRes.json()
+    const policiesPayload = await policiesRes.json()
+
+    return {
+      teams: teamsPayload.teams || [],
+      policies: policiesPayload.policies || [],
+      defaults: policiesPayload.defaults || {},
+      options: policiesPayload.options || {},
+    }
+  } catch {
+    return null
+  }
+}
+
+async function initSimulatePanel() {
+  const data = await fetchTeamsAndPolicies()
+
+  if (!data) {
+    if (els.simulateStatus) {
+      els.simulateStatus.textContent = "Simulate API unavailable (open via replay-viewer server)."
+      els.simulateStatus.classList.add("error")
+    }
+
+    if (els.simulateBtn) els.simulateBtn.disabled = true
+
+    return
+  }
+
+  const teamOptions = data.teams.map(t => ({
+    value: t.key,
+    label: teamOptionLabel(t),
+  }))
+  const policyOptions = data.policies.map(name => ({ value: name, label: name }))
+
+  fillSelect(els.teamAlphaSelect, teamOptions, data.defaults.team_alpha_key)
+  fillSelect(els.teamBetaSelect, teamOptions, data.defaults.team_beta_key)
+  policyOptionsWithAuto(data.policies, data.defaults.alpha_policy, data.defaults.beta_policy)
+  applySimulateDefaults(data.defaults)
+
+  if (els.simulateVsGreedy && els.optAlphaStochastic && els.optBetaStochastic) {
+    const syncGreedy = () => {
+      const v = els.simulateVsGreedy.value
+
+      if (v === "alpha") {
+        els.optAlphaStochastic.checked = false
+        els.optBetaStochastic.checked = true
+      } else if (v === "beta") {
+        els.optAlphaStochastic.checked = true
+        els.optBetaStochastic.checked = false
+      }
+    }
+
+    els.simulateVsGreedy.addEventListener("change", syncGreedy)
+  }
+
+  if (els.simulateStatus) {
+    els.simulateStatus.textContent = policyOptions.length ? "Ready — pick teams and simulate." : "No policy zips found in policy directory."
+    els.simulateStatus.classList.remove("error")
+  }
+}
+
+function setSimulateStatus(message, kind) {
+  if (!els.simulateStatus) return
+
+  els.simulateStatus.textContent = message
+  els.simulateStatus.classList.remove("error", "ok")
+
+  if (kind) els.simulateStatus.classList.add(kind)
+}
+
+async function runSimulate() {
+  if (!els.simulateBtn) return
+
+  const body = buildSimulateBody()
+
+  els.simulateBtn.disabled = true
+  setSimulateStatus("Running battle…", null)
+
+  try {
+    const res = await fetch("/api/simulate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+    const payload = await res.json()
+
+    if (!res.ok) {
+      throw new Error(payload.error || `Simulate failed (${res.status})`)
+    }
+
+    await loadReplay(payload.replay)
+    await refreshReplaySelect()
+
+    if (payload.saved_as && els.replaySelect) {
+      els.replaySelect.value = payload.saved_as
+    }
+
+    const outcome = payload.replay?.outcome || "done"
+    setSimulateStatus(`Battle finished · ${outcome}${payload.saved_as ? ` · saved ${payload.saved_as}` : ""}`, "ok")
+  } catch (err) {
+    setSimulateStatus(String(err), "error")
+  } finally {
+    els.simulateBtn.disabled = false
+  }
+}
+
 async function loadReplayByName(name) {
   const res = await fetch(`/api/replays/${encodeURIComponent(name)}`)
   if (!res.ok) throw new Error(`Failed to load ${name}`)
@@ -279,6 +519,37 @@ els.replaySelect.addEventListener("change", async () => {
 
 els.reloadList.addEventListener("click", () => refreshReplaySelect())
 
+if (els.simulateBtn) {
+  els.simulateBtn.addEventListener("click", () => runSimulate())
+}
+
+if (els.swapTeamsBtn) {
+  els.swapTeamsBtn.addEventListener("click", () => {
+    if (!els.teamAlphaSelect || !els.teamBetaSelect) return
+
+    const a = els.teamAlphaSelect.value
+    const b = els.teamBetaSelect.value
+    const pa = els.policyAlphaSelect?.value
+    const pb = els.policyBetaSelect?.value
+
+    els.teamAlphaSelect.value = b
+    els.teamBetaSelect.value = a
+
+    if (els.policyAlphaSelect && els.policyBetaSelect && pa && pb) {
+      els.policyAlphaSelect.value = pb
+      els.policyBetaSelect.value = pa
+    }
+  })
+}
+
+if (els.randomSeedBtn) {
+  els.randomSeedBtn.addEventListener("click", () => {
+    if (!els.simulateSeed) return
+
+    els.simulateSeed.value = String(Math.floor(Math.random() * 2_147_483_647))
+  })
+}
+
 els.frameSlider.addEventListener("input", () => renderFrame(Number(els.frameSlider.value)))
 els.prevFrame.addEventListener("click", () => renderFrame(frameIndex - 1))
 els.nextFrame.addEventListener("click", () => renderFrame(frameIndex + 1))
@@ -291,6 +562,7 @@ document.addEventListener("keydown", e => {
 
 loadSpriteMap().then(() => {
   refreshReplaySelect()
+  initSimulatePanel()
 
   if (replay) renderFrame(frameIndex)
 })

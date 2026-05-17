@@ -6,7 +6,8 @@ from typing import Any, Callable
 
 import gymnasium as gym
 
-from vgc_rl.replay import build_replay_document, replay_outcome, snapshot_state, write_replay
+from vgc_rl.doubles_turn_engine import DoublesBattleState
+from vgc_rl.replay import build_replay_document, replay_outcome_from_state, snapshot_state, write_replay
 
 
 class ReplayCaptureWrapper(gym.Wrapper):
@@ -90,7 +91,7 @@ class ReplayCaptureWrapper(gym.Wrapper):
         return obs, info
 
     def step(self, action: Any) -> tuple[Any, float, bool, bool, dict[str, Any]]:
-        obs, reward, terminated, truncated, info = self.env.step(action)
+        obs, reward_beta, terminated, truncated, info = self.env.step(action)
         frame = info.get("replay_frame")
 
         if isinstance(frame, dict):
@@ -100,14 +101,16 @@ class ReplayCaptureWrapper(gym.Wrapper):
         state = getattr(inner, "_state", None)
         step_count = int(getattr(inner, "_step_count", 0) or 0)
         self._last_final = snapshot_state(state, game=self._game, step_count=step_count)
-        self._last_outcome = replay_outcome(
+
+        self._last_outcome = replay_outcome_from_state(
+            state if isinstance(state, DoublesBattleState) else None,
             terminated=bool(terminated),
             truncated=bool(truncated),
-            party_wiped_alpha=bool(info.get("party_wiped_alpha")),
-            party_wiped_beta=bool(info.get("party_wiped_beta")),
+            last_reward_beta=float(reward_beta),
+            require_winner=True,
         )
 
-        return obs, reward, terminated, truncated, info
+        return obs, reward_beta, terminated, truncated, info
 
 
 def find_replay_wrapper(env: gym.Env) -> ReplayCaptureWrapper | None:

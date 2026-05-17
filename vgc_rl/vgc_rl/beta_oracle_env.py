@@ -8,6 +8,7 @@ import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
 
+from vgc_rl.battle_completion import alpha_reward_for_outcome, apply_step_cap_as_decisive_end
 from vgc_rl.bring_selection import BRING_ACTION_SPACE_SIZE, battle_state_from_bring_actions, format_six_bring_lead_prefs_line
 from vgc_rl.doubles_action_mask import (
     FORM_ACTION_BRANCHES,
@@ -516,7 +517,15 @@ class BetaControlledOracleDoublesEnv(gym.Env):
         reward_beta = -float(reward)
 
         self._step_count += 1
-        truncated = self._step_count >= self._max_steps and not terminated
+        terminated, truncated, forced_outcome = apply_step_cap_as_decisive_end(
+            self._state,
+            step_count=self._step_count,
+            max_steps=self._max_steps,
+            terminated=bool(terminated),
+        )
+
+        if forced_outcome is not None:
+            reward_beta = -alpha_reward_for_outcome(forced_outcome)
 
         mask_next = self.action_masks()
 
