@@ -1,18 +1,18 @@
 from __future__ import annotations
 
+import json
 import zlib
 from functools import lru_cache
+from importlib import resources
 from typing import Any
 
 import numpy as np
-
-from vgc_rl.example_teams import load_example_teams
 
 from vgc_rl.doubles_turn_engine import normalize_mon_boosts
 
 DOUBLES_OBS_SCALAR_DIM = 18
 DOUBLES_OBS_BOOST_DIM = 40
-DOUBLES_OBS_IDENTITY_PER_SLOT = 5
+DOUBLES_OBS_IDENTITY_PER_SLOT = 7
 DOUBLES_OBS_PARTY_SLOTS = 8
 DOUBLES_OBS_IDENTITY_DIM = DOUBLES_OBS_IDENTITY_PER_SLOT * DOUBLES_OBS_PARTY_SLOTS
 DOUBLES_OBS_TOTAL_DIM = DOUBLES_OBS_SCALAR_DIM + DOUBLES_OBS_BOOST_DIM + DOUBLES_OBS_IDENTITY_DIM
@@ -24,29 +24,47 @@ DOUBLES_OBS_BATTLE_DIM = DOUBLES_OBS_SCALAR_DIM
 
 
 @lru_cache(maxsize=1)
-def _vocab_sizes_and_maps() -> tuple[int, int, dict[str, int], dict[str, int]]:
-    data = load_example_teams()
-    species: set[str] = set()
-    moves: set[str] = set()
+def load_obs_vocab() -> dict[str, list[str]]:
+    raw = resources.files("vgc_rl").joinpath("examples/vocab.json").read_text(encoding="utf-8")
+    data = json.loads(raw)
 
-    for tk in sorted(k for k in data if str(k).startswith("team_")):
-        block = data.get(tk)
+    return {
+        "species": list(data.get("species") or []),
+        "moves": list(data.get("moves") or []),
+        "abilities": list(data.get("abilities") or []),
+        "items": list(data.get("items") or []),
+    }
 
-        if not isinstance(block, dict) or not isinstance(block.get("party"), list):
-            continue
 
-        for mon in block["party"]:
-            species.add(str(mon["name"]))
+@lru_cache(maxsize=1)
+def _vocab_sizes_and_maps() -> tuple[int, int, int, int, dict[str, int], dict[str, int], dict[str, int], dict[str, int]]:
+    vocab = load_obs_vocab()
+    species_list = vocab["species"]
+    move_list = vocab["moves"]
+    ability_list = vocab["abilities"]
+    item_list = vocab["items"]
 
-            for mv in mon["moves"]:
-                moves.add(str(mv["name"]))
-
-    species_list = sorted(species)
-    move_list = sorted(moves)
     smap = {n: i for i, n in enumerate(species_list)}
     mmap = {n: i for i, n in enumerate(move_list)}
+    amap = {n: i for i, n in enumerate(ability_list)}
+    imap = {n: i for i, n in enumerate(item_list)}
 
-    return len(species_list), len(move_list), smap, mmap
+    return (
+        len(species_list),
+        len(move_list),
+        len(ability_list),
+        len(item_list),
+        smap,
+        mmap,
+        amap,
+        imap,
+    )
+
+
+def obs_vocab_sizes() -> dict[str, int]:
+    ns, nm, na, ni, _, _, _, _ = _vocab_sizes_and_maps()
+
+    return {"species": ns, "moves": nm, "abilities": na, "items": ni}
 
 
 def _norm_vocab(idx: int, size: int) -> float:
@@ -83,7 +101,7 @@ def doubles_obs_boost_features(party_a: list[dict[str, Any]], party_b: list[dict
 
 
 def doubles_obs_identity_features(party_a: list[dict[str, Any]], party_b: list[dict[str, Any]]) -> np.ndarray:
-    ns, nm, smap, mmap = _vocab_sizes_and_maps()
+    ns, nm, na, ni, smap, mmap, amap, imap = _vocab_sizes_and_maps()
     parts: list[float] = []
 
     for party in (party_a, party_b):
@@ -99,5 +117,8 @@ def doubles_obs_identity_features(party_a: list[dict[str, Any]], party_b: list[d
                     pass
 
                 parts.append(_feat_from_vocab_or_hash(mv, mmap, nm))
+
+            parts.append(_feat_from_vocab_or_hash(str(mon.get("ability") or ""), amap, na))
+            parts.append(_feat_from_vocab_or_hash(str(mon.get("item") or ""), imap, ni))
 
     return np.asarray(parts, dtype=np.float32)

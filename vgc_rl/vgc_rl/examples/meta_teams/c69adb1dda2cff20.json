@@ -1,0 +1,198 @@
+{
+  "label": "Sneasler / Pelipper / Starmie / Aegislash / Archaludon / Maushold",
+  "party": [
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 16,
+        "atk": 0,
+        "def": 32,
+        "spa": 0,
+        "spd": 0,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Rain Dance"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Pelipper",
+      "nature": "Modest",
+      "ability": "Drizzle",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Wide Guard"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Starmie",
+      "nature": "Adamant",
+      "ability": "Natural Cure",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Zen Headbutt"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Starminite"
+    },
+    {
+      "name": "Aegislash",
+      "nature": "Adamant",
+      "ability": "Stance Change",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 28,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 6
+      },
+      "moves": [
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Shadow Sneak"
+        },
+        {
+          "name": "Poltergeist"
+        },
+        {
+          "name": "King's Shield"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Spell Tag"
+    },
+    {
+      "name": "Archaludon",
+      "nature": "Modest",
+      "ability": "Stamina",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 0,
+        "spa": 6,
+        "spd": 25,
+        "spe": 3
+      },
+      "moves": [
+        {
+          "name": "Electro Shot"
+        },
+        {
+          "name": "Flash Cannon"
+        },
+        {
+          "name": "Dragon Pulse"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Maushold",
+      "nature": "Impish",
+      "ability": "Friend Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 20,
+        "spa": 0,
+        "spd": 14,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Super Fang"
+        },
+        {
+          "name": "Follow Me"
+        },
+        {
+          "name": "Feint"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/c69adb1dda2cff20"
+}

@@ -1,0 +1,42 @@
+Charizard @ Charizardite Y  
+Ability: Blaze  
+- Heat Wave  
+- Weather Ball  
+- Solar Beam  
+- Protect  
+
+Floette-Eternal @ Floettite  
+Ability: Flower Veil  
+- Dazzling Gleam  
+- Moonblast  
+- Light of Ruin  
+- Protect  
+
+Garchomp @ Soft Sand  
+Ability: Rough Skin  
+- Dragon Claw  
+- Earthquake  
+- Stomping Tantrum  
+- Protect  
+
+Kingambit @ Chople Berry  
+Ability: Defiant  
+- Kowtow Cleave  
+- Low Kick  
+- Sucker Punch  
+- Protect  
+
+Aerodactyl @ Sitrus Berry  
+Ability: Unnerve  
+- Rock Slide  
+- Tailwind  
+- Wide Guard  
+- Protect  
+
+Basculegion @ Choice Scarf  
+Ability: Adaptability  
+- Wave Crash  
+- Last Respects  
+- Aqua Jet  
+- Flip Turn  
+

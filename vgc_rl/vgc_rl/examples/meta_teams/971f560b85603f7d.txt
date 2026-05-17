@@ -1,0 +1,42 @@
+Scizor @ Scizorite  
+Ability: Technician  
+- Bullet Punch  
+- Bug Bite  
+- Protect  
+- Swords Dance  
+
+Sneasler @ Focus Sash  
+Ability: Unburden  
+- Close Combat  
+- Dire Claw  
+- Fake Out  
+- Protect  
+
+Dragonite @ Dragoninite  
+Ability: Multiscale  
+- Dragon Pulse  
+- Hurricane  
+- Tailwind  
+- Protect  
+
+Archaludon @ Leftovers  
+Ability: Stamina  
+- Electro Shot  
+- Dragon Pulse  
+- Flash Cannon  
+- Protect  
+
+Pelipper @ Mystic Water  
+Ability: Drizzle  
+- Weather Ball  
+- Hurricane  
+- Tailwind  
+- Protect  
+
+Basculegion @ Choice Scarf  
+Ability: Adaptability  
+- Wave Crash  
+- Last Respects  
+- Flip Turn  
+- Aqua Jet  
+

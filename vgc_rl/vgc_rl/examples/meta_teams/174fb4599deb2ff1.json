@@ -1,0 +1,198 @@
+{
+  "label": "Scizor / Sneasler / Dragonite / Politoed / Basculegion / Incineroar",
+  "party": [
+    {
+      "name": "Scizor",
+      "nature": "Adamant",
+      "ability": "Technician",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 20,
+        "def": 6,
+        "spa": 0,
+        "spd": 8,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Bug Bite"
+        },
+        {
+          "name": "Swords Dance"
+        },
+        {
+          "name": "Bullet Punch"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Scizorite"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 6,
+        "atk": 25,
+        "def": 3,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Dragonite",
+      "nature": "Modest",
+      "ability": "Multiscale",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 19,
+        "atk": 0,
+        "def": 1,
+        "spa": 27,
+        "spd": 1,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Draco Meteor"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Extreme Speed"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Dragoninite"
+    },
+    {
+      "name": "Politoed",
+      "nature": "Modest",
+      "ability": "Drizzle",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 3,
+        "spa": 20,
+        "spd": 12,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Ice Beam"
+        },
+        {
+          "name": "Encore"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Jolly",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Flip Turn"
+        },
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Impish",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 24,
+        "spa": 0,
+        "spd": 8,
+        "spe": 3
+      },
+      "moves": [
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Darkest Lariat"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/174fb4599deb2ff1"
+}

@@ -1,0 +1,198 @@
+{
+  "label": "Delphox / Garchomp / Sneasler / Floette / Incineroar / Kingambit",
+  "party": [
+    {
+      "name": "Delphox",
+      "nature": "Timid",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 9,
+        "atk": 0,
+        "def": 23,
+        "spa": 5,
+        "spd": 0,
+        "spe": 29
+      },
+      "moves": [
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Psychic"
+        },
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Delphoxite"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 15,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 19
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dragon Claw"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mental Herb"
+    },
+    {
+      "name": "Floette",
+      "nature": "Modest",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 13,
+        "spa": 1,
+        "spd": 0,
+        "spe": 20
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Draining Kiss"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Calm Mind"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Impish",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 21,
+        "spa": 0,
+        "spd": 1,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Throat Chop"
+        },
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 26,
+        "atk": 22,
+        "def": 18,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/1a253a71a2077747"
+}

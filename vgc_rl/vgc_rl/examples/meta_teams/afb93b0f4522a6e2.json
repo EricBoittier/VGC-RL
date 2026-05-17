@@ -1,0 +1,198 @@
+{
+  "label": "Maushold / Weavile / Blastoise / Farigiraf / Sinistcha / Scizor",
+  "party": [
+    {
+      "name": "Maushold",
+      "nature": "Jolly",
+      "ability": "Friend Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Feint"
+        },
+        {
+          "name": "Rain Dance"
+        },
+        {
+          "name": "Follow Me"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Weavile",
+      "nature": "Jolly",
+      "ability": "Pressure",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 12,
+        "atk": 4,
+        "def": 5,
+        "spa": 0,
+        "spd": 13,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Triple Axel"
+        },
+        {
+          "name": "Fling"
+        },
+        {
+          "name": "Helping Hand"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "King's Rock"
+    },
+    {
+      "name": "Blastoise",
+      "nature": "Modest",
+      "ability": "Rain Dish",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 4,
+        "atk": 0,
+        "def": 0,
+        "spa": 31,
+        "spd": 0,
+        "spe": 31
+      },
+      "moves": [
+        {
+          "name": "Water Spout"
+        },
+        {
+          "name": "Dark Pulse"
+        },
+        {
+          "name": "Shell Smash"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Blastoisinite"
+    },
+    {
+      "name": "Farigiraf",
+      "nature": "Modest",
+      "ability": "Armor Tail",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 12,
+        "atk": 0,
+        "def": 23,
+        "spa": 10,
+        "spd": 17,
+        "spe": 4
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Psychic"
+        },
+        {
+          "name": "Ally Switch"
+        },
+        {
+          "name": "Trick Room"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Colbur Berry"
+    },
+    {
+      "name": "Sinistcha",
+      "nature": "Bold",
+      "ability": "Hospitality",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 14,
+        "spa": 0,
+        "spd": 21,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Matcha Gotcha"
+        },
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Life Dew"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Scizor",
+      "nature": "Adamant",
+      "ability": "Technician",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 30,
+        "atk": 31,
+        "def": 0,
+        "spa": 0,
+        "spd": 3,
+        "spe": 2
+      },
+      "moves": [
+        {
+          "name": "Bug Bite"
+        },
+        {
+          "name": "Bullet Punch"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Metal Coat"
+    }
+  ],
+  "pokepast": "https://pokepast.es/afb93b0f4522a6e2"
+}

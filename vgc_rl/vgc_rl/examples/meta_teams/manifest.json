@@ -1,0 +1,986 @@
+{
+  "meta": {
+    "source": "pokepast.es",
+    "game": "champions",
+    "count": 61,
+    "importedAt": "2026-05-17"
+  },
+  "teams": [
+    {
+      "key": "meta_01_44c2d848ea8b9f24",
+      "id": "44c2d848ea8b9f24",
+      "url": "https://pokepast.es/44c2d848ea8b9f24",
+      "label": "Gengar / Kingambit / Basculegion / Sneasler / Aerodactyl / Sylveon",
+      "showdown": "44c2d848ea8b9f24.txt",
+      "json": "44c2d848ea8b9f24.json",
+      "species": [
+        "Gengar",
+        "Kingambit",
+        "Basculegion",
+        "Sneasler",
+        "Aerodactyl",
+        "Sylveon"
+      ]
+    },
+    {
+      "key": "meta_02_174fb4599deb2ff1",
+      "id": "174fb4599deb2ff1",
+      "url": "https://pokepast.es/174fb4599deb2ff1",
+      "label": "Scizor / Sneasler / Dragonite / Politoed / Basculegion / Incineroar",
+      "showdown": "174fb4599deb2ff1.txt",
+      "json": "174fb4599deb2ff1.json",
+      "species": [
+        "Scizor",
+        "Sneasler",
+        "Dragonite",
+        "Politoed",
+        "Basculegion",
+        "Incineroar"
+      ]
+    },
+    {
+      "key": "meta_03_19bfb6a4c2264cf9",
+      "id": "19bfb6a4c2264cf9",
+      "url": "https://pokepast.es/19bfb6a4c2264cf9",
+      "label": "Gengar / Tinkaton / Incineroar / Sableye / Meowscarada / Kommo-o",
+      "showdown": "19bfb6a4c2264cf9.txt",
+      "json": "19bfb6a4c2264cf9.json",
+      "species": [
+        "Gengar",
+        "Tinkaton",
+        "Incineroar",
+        "Sableye",
+        "Meowscarada",
+        "Kommo-o"
+      ]
+    },
+    {
+      "key": "meta_04_80d837bcfa686f59",
+      "id": "80d837bcfa686f59",
+      "url": "https://pokepast.es/80d837bcfa686f59",
+      "label": "Blastoise / Sinistcha / Sneasler / Basculegion / Talonflame / Gengar",
+      "showdown": "80d837bcfa686f59.txt",
+      "json": "80d837bcfa686f59.json",
+      "species": [
+        "Blastoise",
+        "Sinistcha",
+        "Sneasler",
+        "Basculegion",
+        "Talonflame",
+        "Gengar"
+      ]
+    },
+    {
+      "key": "meta_05_c12e5da78d0d38c4",
+      "id": "c12e5da78d0d38c4",
+      "url": "https://pokepast.es/c12e5da78d0d38c4",
+      "label": "Gardevoir / Incineroar / Garchomp / Basculegion / Aerodactyl / Charizard",
+      "showdown": "c12e5da78d0d38c4.txt",
+      "json": "c12e5da78d0d38c4.json",
+      "species": [
+        "Gardevoir",
+        "Incineroar",
+        "Garchomp",
+        "Basculegion",
+        "Aerodactyl",
+        "Charizard"
+      ]
+    },
+    {
+      "key": "meta_06_afb93b0f4522a6e2",
+      "id": "afb93b0f4522a6e2",
+      "url": "https://pokepast.es/afb93b0f4522a6e2",
+      "label": "Maushold / Weavile / Blastoise / Farigiraf / Sinistcha / Scizor",
+      "showdown": "afb93b0f4522a6e2.txt",
+      "json": "afb93b0f4522a6e2.json",
+      "species": [
+        "Maushold",
+        "Weavile",
+        "Blastoise",
+        "Farigiraf",
+        "Sinistcha",
+        "Scizor"
+      ]
+    },
+    {
+      "key": "meta_07_3f405eeb6bcfd036",
+      "id": "3f405eeb6bcfd036",
+      "url": "https://pokepast.es/3f405eeb6bcfd036",
+      "label": "Charizard / Talonflame / Garchomp / Floette / Sneasler / Kingambit",
+      "showdown": "3f405eeb6bcfd036.txt",
+      "json": "3f405eeb6bcfd036.json",
+      "species": [
+        "Charizard",
+        "Talonflame",
+        "Garchomp",
+        "Floette",
+        "Sneasler",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_08_ff0f6d9d49a3e703",
+      "id": "ff0f6d9d49a3e703",
+      "url": "https://pokepast.es/ff0f6d9d49a3e703",
+      "label": "Froslass / Milotic / Basculegion / Sneasler / Meowstic / Kingambit",
+      "showdown": "ff0f6d9d49a3e703.txt",
+      "json": "ff0f6d9d49a3e703.json",
+      "species": [
+        "Froslass",
+        "Milotic",
+        "Basculegion",
+        "Sneasler",
+        "Meowstic",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_09_53cb2a5b80f371d2",
+      "id": "53cb2a5b80f371d2",
+      "url": "https://pokepast.es/53cb2a5b80f371d2",
+      "label": "Rotom-Wash / Garchomp / Incineroar / Ninetales-Alola / Gengar / Aegislash",
+      "showdown": "53cb2a5b80f371d2.txt",
+      "json": "53cb2a5b80f371d2.json",
+      "species": [
+        "Rotom-Wash",
+        "Garchomp",
+        "Incineroar",
+        "Ninetales-Alola",
+        "Gengar",
+        "Aegislash"
+      ]
+    },
+    {
+      "key": "meta_10_374287b23334e5bb",
+      "id": "374287b23334e5bb",
+      "url": "https://pokepast.es/374287b23334e5bb",
+      "label": "Sableye / Archaludon / Basculegion / Floette / Dragonite / Sneasler",
+      "showdown": "374287b23334e5bb.txt",
+      "json": "374287b23334e5bb.json",
+      "species": [
+        "Sableye",
+        "Archaludon",
+        "Basculegion",
+        "Floette",
+        "Dragonite",
+        "Sneasler"
+      ]
+    },
+    {
+      "key": "meta_11_1205c758da04ffc1",
+      "id": "1205c758da04ffc1",
+      "url": "https://pokepast.es/1205c758da04ffc1",
+      "label": "Garchomp / Farigiraf / Charizard / Incineroar / Aegislash / Sylveon",
+      "showdown": "1205c758da04ffc1.txt",
+      "json": "1205c758da04ffc1.json",
+      "species": [
+        "Garchomp",
+        "Farigiraf",
+        "Charizard",
+        "Incineroar",
+        "Aegislash",
+        "Sylveon"
+      ]
+    },
+    {
+      "key": "meta_12_6b4fb095fd343f1e",
+      "id": "6b4fb095fd343f1e",
+      "url": "https://pokepast.es/6b4fb095fd343f1e",
+      "label": "Incineroar / Milotic / Garchomp / Sneasler / Venusaur / Floette",
+      "showdown": "6b4fb095fd343f1e.txt",
+      "json": "6b4fb095fd343f1e.json",
+      "species": [
+        "Incineroar",
+        "Milotic",
+        "Garchomp",
+        "Sneasler",
+        "Venusaur",
+        "Floette"
+      ]
+    },
+    {
+      "key": "meta_13_d466236588ebde30",
+      "id": "d466236588ebde30",
+      "url": "https://pokepast.es/d466236588ebde30",
+      "label": "Archaludon / Kingambit / Basculegion / Pelipper / Sableye / Venusaur",
+      "showdown": "d466236588ebde30.txt",
+      "json": "d466236588ebde30.json",
+      "species": [
+        "Archaludon",
+        "Kingambit",
+        "Basculegion",
+        "Pelipper",
+        "Sableye",
+        "Venusaur"
+      ]
+    },
+    {
+      "key": "meta_14_47c0a153d7454020",
+      "id": "47c0a153d7454020",
+      "url": "https://pokepast.es/47c0a153d7454020",
+      "label": "Charizard / Scizor / Sneasler / Incineroar / Sinistcha / Milotic",
+      "showdown": "47c0a153d7454020.txt",
+      "json": "47c0a153d7454020.json",
+      "species": [
+        "Charizard",
+        "Scizor",
+        "Sneasler",
+        "Incineroar",
+        "Sinistcha",
+        "Milotic"
+      ]
+    },
+    {
+      "key": "meta_15_11b2cb9752b1483b",
+      "id": "11b2cb9752b1483b",
+      "url": "https://pokepast.es/11b2cb9752b1483b",
+      "label": "Floette / Charizard / Garchomp / Basculegion / Kingambit / Sneasler",
+      "showdown": "11b2cb9752b1483b.txt",
+      "json": "11b2cb9752b1483b.json",
+      "species": [
+        "Floette",
+        "Charizard",
+        "Garchomp",
+        "Basculegion",
+        "Kingambit",
+        "Sneasler"
+      ]
+    },
+    {
+      "key": "meta_16_08faae6de43bfd7b",
+      "id": "08faae6de43bfd7b",
+      "url": "https://pokepast.es/08faae6de43bfd7b",
+      "label": "Blastoise / Scizor / Meowstic / Sneasler / Orthworm / Sinistcha",
+      "showdown": "08faae6de43bfd7b.txt",
+      "json": "08faae6de43bfd7b.json",
+      "species": [
+        "Blastoise",
+        "Scizor",
+        "Meowstic",
+        "Sneasler",
+        "Orthworm",
+        "Sinistcha"
+      ]
+    },
+    {
+      "key": "meta_17_7e5fee00c045d9cb",
+      "id": "7e5fee00c045d9cb",
+      "url": "https://pokepast.es/7e5fee00c045d9cb",
+      "label": "Basculegion / Aggron / Garchomp / Maushold / Meganium / Whimsicott",
+      "showdown": "7e5fee00c045d9cb.txt",
+      "json": "7e5fee00c045d9cb.json",
+      "species": [
+        "Basculegion",
+        "Aggron",
+        "Garchomp",
+        "Maushold",
+        "Meganium",
+        "Whimsicott"
+      ]
+    },
+    {
+      "key": "meta_18_5890bfd7324e4c57",
+      "id": "5890bfd7324e4c57",
+      "url": "https://pokepast.es/5890bfd7324e4c57",
+      "label": "Lopunny / Sylveon / Talonflame / Basculegion / Dragonite / Archaludon",
+      "showdown": "5890bfd7324e4c57.txt",
+      "json": "5890bfd7324e4c57.json",
+      "species": [
+        "Lopunny",
+        "Sylveon",
+        "Talonflame",
+        "Basculegion",
+        "Dragonite",
+        "Archaludon"
+      ]
+    },
+    {
+      "key": "meta_19_709aa0f59cca2cba",
+      "id": "709aa0f59cca2cba",
+      "url": "https://pokepast.es/709aa0f59cca2cba",
+      "label": "Floette / Whimsicott / Garchomp / Basculegion / Kingambit / Charizard",
+      "showdown": "709aa0f59cca2cba.txt",
+      "json": "709aa0f59cca2cba.json",
+      "species": [
+        "Floette",
+        "Whimsicott",
+        "Garchomp",
+        "Basculegion",
+        "Kingambit",
+        "Charizard"
+      ]
+    },
+    {
+      "key": "meta_20_504d67dc8354f602",
+      "id": "504d67dc8354f602",
+      "url": "https://pokepast.es/504d67dc8354f602",
+      "label": "Aerodactyl / Charizard / Sylveon / Aegislash / Garchomp / Kingambit",
+      "showdown": "504d67dc8354f602.txt",
+      "json": "504d67dc8354f602.json",
+      "species": [
+        "Aerodactyl",
+        "Charizard",
+        "Sylveon",
+        "Aegislash",
+        "Garchomp",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_21_3b26c853abf7d9f4",
+      "id": "3b26c853abf7d9f4",
+      "url": "https://pokepast.es/3b26c853abf7d9f4",
+      "label": "Charizard / Kingambit / Sylveon / Garchomp / Aerodactyl / Basculegion",
+      "showdown": "3b26c853abf7d9f4.txt",
+      "json": "3b26c853abf7d9f4.json",
+      "species": [
+        "Charizard",
+        "Kingambit",
+        "Sylveon",
+        "Garchomp",
+        "Aerodactyl",
+        "Basculegion"
+      ]
+    },
+    {
+      "key": "meta_22_c69adb1dda2cff20",
+      "id": "c69adb1dda2cff20",
+      "url": "https://pokepast.es/c69adb1dda2cff20",
+      "label": "Sneasler / Pelipper / Starmie / Aegislash / Archaludon / Maushold",
+      "showdown": "c69adb1dda2cff20.txt",
+      "json": "c69adb1dda2cff20.json",
+      "species": [
+        "Sneasler",
+        "Pelipper",
+        "Starmie",
+        "Aegislash",
+        "Archaludon",
+        "Maushold"
+      ]
+    },
+    {
+      "key": "meta_23_ff7e147eba00ff6e",
+      "id": "ff7e147eba00ff6e",
+      "url": "https://pokepast.es/ff7e147eba00ff6e",
+      "label": "Charizard / Venusaur / Garchomp / Wyrdeer / Corviknight / Milotic",
+      "showdown": "ff7e147eba00ff6e.txt",
+      "json": "ff7e147eba00ff6e.json",
+      "species": [
+        "Charizard",
+        "Venusaur",
+        "Garchomp",
+        "Wyrdeer",
+        "Corviknight",
+        "Milotic"
+      ]
+    },
+    {
+      "key": "meta_24_1d099b0c9536bca4",
+      "id": "1d099b0c9536bca4",
+      "url": "https://pokepast.es/1d099b0c9536bca4",
+      "label": "Gardevoir / Talonflame / Garchomp / Rotom-Wash / Kingambit / Zoroark-Hisui",
+      "showdown": "1d099b0c9536bca4.txt",
+      "json": "1d099b0c9536bca4.json",
+      "species": [
+        "Gardevoir",
+        "Talonflame",
+        "Garchomp",
+        "Rotom-Wash",
+        "Kingambit",
+        "Zoroark-Hisui"
+      ]
+    },
+    {
+      "key": "meta_25_4b8de440eb41120f",
+      "id": "4b8de440eb41120f",
+      "url": "https://pokepast.es/4b8de440eb41120f",
+      "label": "Charizard / Farigiraf / Incineroar / Sylveon / Garchomp / Aegislash",
+      "showdown": "4b8de440eb41120f.txt",
+      "json": "4b8de440eb41120f.json",
+      "species": [
+        "Charizard",
+        "Farigiraf",
+        "Incineroar",
+        "Sylveon",
+        "Garchomp",
+        "Aegislash"
+      ]
+    },
+    {
+      "key": "meta_26_50cbad627a62f5ea",
+      "id": "50cbad627a62f5ea",
+      "url": "https://pokepast.es/50cbad627a62f5ea",
+      "label": "Venusaur / Scizor / Archaludon / Basculegion / Pelipper / Incineroar",
+      "showdown": "50cbad627a62f5ea.txt",
+      "json": "50cbad627a62f5ea.json",
+      "species": [
+        "Venusaur",
+        "Scizor",
+        "Archaludon",
+        "Basculegion",
+        "Pelipper",
+        "Incineroar"
+      ]
+    },
+    {
+      "key": "meta_27_eafdca3706c02574",
+      "id": "eafdca3706c02574",
+      "url": "https://pokepast.es/eafdca3706c02574",
+      "label": "Kangaskhan / Farigiraf / Torkoal / Sneasler / Charizard / Primarina",
+      "showdown": "eafdca3706c02574.txt",
+      "json": "eafdca3706c02574.json",
+      "species": [
+        "Kangaskhan",
+        "Farigiraf",
+        "Torkoal",
+        "Sneasler",
+        "Charizard",
+        "Primarina"
+      ]
+    },
+    {
+      "key": "meta_28_f5ac5d30fedb98d5",
+      "id": "f5ac5d30fedb98d5",
+      "url": "https://pokepast.es/f5ac5d30fedb98d5",
+      "label": "Basculegion / Sneasler / Meganium / Aerodactyl / Kingambit / Farigiraf",
+      "showdown": "f5ac5d30fedb98d5.txt",
+      "json": "f5ac5d30fedb98d5.json",
+      "species": [
+        "Basculegion",
+        "Sneasler",
+        "Meganium",
+        "Aerodactyl",
+        "Kingambit",
+        "Farigiraf"
+      ]
+    },
+    {
+      "key": "meta_29_3e07f5052c39e85b",
+      "id": "3e07f5052c39e85b",
+      "url": "https://pokepast.es/3e07f5052c39e85b",
+      "label": "Froslass / Sneasler / Basculegion / Kingambit / Milotic / Dragonite",
+      "showdown": "3e07f5052c39e85b.txt",
+      "json": "3e07f5052c39e85b.json",
+      "species": [
+        "Froslass",
+        "Sneasler",
+        "Basculegion",
+        "Kingambit",
+        "Milotic",
+        "Dragonite"
+      ]
+    },
+    {
+      "key": "meta_30_bc99081e201154a0",
+      "id": "bc99081e201154a0",
+      "url": "https://pokepast.es/bc99081e201154a0",
+      "label": "Sneasler / Kingambit / Basculegion / Froslass / Garchomp / Dragonite",
+      "showdown": "bc99081e201154a0.txt",
+      "json": "bc99081e201154a0.json",
+      "species": [
+        "Sneasler",
+        "Kingambit",
+        "Basculegion",
+        "Froslass",
+        "Garchomp",
+        "Dragonite"
+      ]
+    },
+    {
+      "key": "meta_31_f46e8c179f42a9b7",
+      "id": "f46e8c179f42a9b7",
+      "url": "https://pokepast.es/f46e8c179f42a9b7",
+      "label": "Charizard / Garchomp / Heracross / Incineroar / Maushold / Whimsicott",
+      "showdown": "f46e8c179f42a9b7.txt",
+      "json": "f46e8c179f42a9b7.json",
+      "species": [
+        "Charizard",
+        "Garchomp",
+        "Heracross",
+        "Incineroar",
+        "Maushold",
+        "Whimsicott"
+      ]
+    },
+    {
+      "key": "meta_32_314825f9e17b700d",
+      "id": "314825f9e17b700d",
+      "url": "https://pokepast.es/314825f9e17b700d",
+      "label": "Scovillain / Kingambit / Sylveon / Basculegion / Aerodactyl / Sneasler",
+      "showdown": "314825f9e17b700d.txt",
+      "json": "314825f9e17b700d.json",
+      "species": [
+        "Scovillain",
+        "Kingambit",
+        "Sylveon",
+        "Basculegion",
+        "Aerodactyl",
+        "Sneasler"
+      ]
+    },
+    {
+      "key": "meta_33_75a93b5efdd4ff0f",
+      "id": "75a93b5efdd4ff0f",
+      "url": "https://pokepast.es/75a93b5efdd4ff0f",
+      "label": "Kingambit / Sneasler / Rotom-Wash / Floette / Garchomp / Aerodactyl",
+      "showdown": "75a93b5efdd4ff0f.txt",
+      "json": "75a93b5efdd4ff0f.json",
+      "species": [
+        "Kingambit",
+        "Sneasler",
+        "Rotom-Wash",
+        "Floette",
+        "Garchomp",
+        "Aerodactyl"
+      ]
+    },
+    {
+      "key": "meta_34_677e22143b1c107b",
+      "id": "677e22143b1c107b",
+      "url": "https://pokepast.es/677e22143b1c107b",
+      "label": "Charizard / Floette / Basculegion / Whimsicott / Glimmora / Farigiraf",
+      "showdown": "677e22143b1c107b.txt",
+      "json": "677e22143b1c107b.json",
+      "species": [
+        "Charizard",
+        "Floette",
+        "Basculegion",
+        "Whimsicott",
+        "Glimmora",
+        "Farigiraf"
+      ]
+    },
+    {
+      "key": "meta_35_333dc97e13bcda20",
+      "id": "333dc97e13bcda20",
+      "url": "https://pokepast.es/333dc97e13bcda20",
+      "label": "Charizard / Garchomp / Sneasler / Kingambit / Aerodactyl / Floette",
+      "showdown": "333dc97e13bcda20.txt",
+      "json": "333dc97e13bcda20.json",
+      "species": [
+        "Charizard",
+        "Garchomp",
+        "Sneasler",
+        "Kingambit",
+        "Aerodactyl",
+        "Floette"
+      ]
+    },
+    {
+      "key": "meta_36_8872710ff73c4b3f",
+      "id": "8872710ff73c4b3f",
+      "url": "https://pokepast.es/8872710ff73c4b3f",
+      "label": "Talonflame / Glimmora / Garchomp / Ninetales-Alola / Aegislash / Rotom-Wash",
+      "showdown": "8872710ff73c4b3f.txt",
+      "json": "8872710ff73c4b3f.json",
+      "species": [
+        "Talonflame",
+        "Glimmora",
+        "Garchomp",
+        "Ninetales-Alola",
+        "Aegislash",
+        "Rotom-Wash"
+      ]
+    },
+    {
+      "key": "meta_37_971f560b85603f7d",
+      "id": "971f560b85603f7d",
+      "url": "https://pokepast.es/971f560b85603f7d",
+      "label": "Scizor / Sneasler / Dragonite / Archaludon / Pelipper / Basculegion",
+      "showdown": "971f560b85603f7d.txt",
+      "json": "971f560b85603f7d.json",
+      "species": [
+        "Scizor",
+        "Sneasler",
+        "Dragonite",
+        "Archaludon",
+        "Pelipper",
+        "Basculegion"
+      ]
+    },
+    {
+      "key": "meta_38_6d8d8c857f2c380b",
+      "id": "6d8d8c857f2c380b",
+      "url": "https://pokepast.es/6d8d8c857f2c380b",
+      "label": "Charizard / Floette / Garchomp / Kingambit / Aerodactyl / Basculegion",
+      "showdown": "6d8d8c857f2c380b.txt",
+      "json": "6d8d8c857f2c380b.json",
+      "species": [
+        "Charizard",
+        "Floette",
+        "Garchomp",
+        "Kingambit",
+        "Aerodactyl",
+        "Basculegion"
+      ]
+    },
+    {
+      "key": "meta_39_ae516ffce0fe7251",
+      "id": "ae516ffce0fe7251",
+      "url": "https://pokepast.es/ae516ffce0fe7251",
+      "label": "Aerodactyl / Basculegion / Kingambit / Floette / Sneasler / Garchomp",
+      "showdown": "ae516ffce0fe7251.txt",
+      "json": "ae516ffce0fe7251.json",
+      "species": [
+        "Aerodactyl",
+        "Basculegion",
+        "Kingambit",
+        "Floette",
+        "Sneasler",
+        "Garchomp"
+      ]
+    },
+    {
+      "key": "meta_40_1a52952ee179797d",
+      "id": "1a52952ee179797d",
+      "url": "https://pokepast.es/1a52952ee179797d",
+      "label": "Charizard / Kingambit / Garchomp / Sylveon / Aerodactyl / Basculegion",
+      "showdown": "1a52952ee179797d.txt",
+      "json": "1a52952ee179797d.json",
+      "species": [
+        "Charizard",
+        "Kingambit",
+        "Garchomp",
+        "Sylveon",
+        "Aerodactyl",
+        "Basculegion"
+      ]
+    },
+    {
+      "key": "meta_41_9c89d416fc111174",
+      "id": "9c89d416fc111174",
+      "url": "https://pokepast.es/9c89d416fc111174",
+      "label": "Basculegion / Sneasler / Scovillain / Corviknight / Tyranitar / Excadrill",
+      "showdown": "9c89d416fc111174.txt",
+      "json": "9c89d416fc111174.json",
+      "species": [
+        "Basculegion",
+        "Sneasler",
+        "Scovillain",
+        "Corviknight",
+        "Tyranitar",
+        "Excadrill"
+      ]
+    },
+    {
+      "key": "meta_42_6ce53663f641c308",
+      "id": "6ce53663f641c308",
+      "url": "https://pokepast.es/6ce53663f641c308",
+      "label": "Typhlosion-Hisui / Basculegion / Golurk / Froslass / Sinistcha / Aegislash",
+      "showdown": "6ce53663f641c308.txt",
+      "json": "6ce53663f641c308.json",
+      "species": [
+        "Typhlosion-Hisui",
+        "Basculegion",
+        "Golurk",
+        "Froslass",
+        "Sinistcha",
+        "Aegislash"
+      ]
+    },
+    {
+      "key": "meta_43_1a253a71a2077747",
+      "id": "1a253a71a2077747",
+      "url": "https://pokepast.es/1a253a71a2077747",
+      "label": "Delphox / Garchomp / Sneasler / Floette / Incineroar / Kingambit",
+      "showdown": "1a253a71a2077747.txt",
+      "json": "1a253a71a2077747.json",
+      "species": [
+        "Delphox",
+        "Garchomp",
+        "Sneasler",
+        "Floette",
+        "Incineroar",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_44_8e98aa5005367f06",
+      "id": "8e98aa5005367f06",
+      "url": "https://pokepast.es/8e98aa5005367f06",
+      "label": "Charizard / Aerodactyl / Garchomp / Kingambit / Basculegion / Floette",
+      "showdown": "8e98aa5005367f06.txt",
+      "json": "8e98aa5005367f06.json",
+      "species": [
+        "Charizard",
+        "Aerodactyl",
+        "Garchomp",
+        "Kingambit",
+        "Basculegion",
+        "Floette"
+      ]
+    },
+    {
+      "key": "meta_45_cde5a715af3fff84",
+      "id": "cde5a715af3fff84",
+      "url": "https://pokepast.es/cde5a715af3fff84",
+      "label": "Aerodactyl / Floette / Chandelure / Tsareena / Basculegion / Sneasler",
+      "showdown": "cde5a715af3fff84.txt",
+      "json": "cde5a715af3fff84.json",
+      "species": [
+        "Aerodactyl",
+        "Floette",
+        "Chandelure",
+        "Tsareena",
+        "Basculegion",
+        "Sneasler"
+      ]
+    },
+    {
+      "key": "meta_46_7ab2b2920d92280f",
+      "id": "7ab2b2920d92280f",
+      "url": "https://pokepast.es/7ab2b2920d92280f",
+      "label": "Charizard / Venusaur / Basculegion / Incineroar / Garchomp / Sneasler",
+      "showdown": "7ab2b2920d92280f.txt",
+      "json": "7ab2b2920d92280f.json",
+      "species": [
+        "Charizard",
+        "Venusaur",
+        "Basculegion",
+        "Incineroar",
+        "Garchomp",
+        "Sneasler"
+      ]
+    },
+    {
+      "key": "meta_47_716dffe25a855236",
+      "id": "716dffe25a855236",
+      "url": "https://pokepast.es/716dffe25a855236",
+      "label": "Charizard / Sneasler / Milotic / Garchomp / Incineroar / Venusaur",
+      "showdown": "716dffe25a855236.txt",
+      "json": "716dffe25a855236.json",
+      "species": [
+        "Charizard",
+        "Sneasler",
+        "Milotic",
+        "Garchomp",
+        "Incineroar",
+        "Venusaur"
+      ]
+    },
+    {
+      "key": "meta_48_fd62b2862d49c78b",
+      "id": "fd62b2862d49c78b",
+      "url": "https://pokepast.es/fd62b2862d49c78b",
+      "label": "Talonflame / Garchomp / Basculegion / Kingambit / Sneasler / Floette",
+      "showdown": "fd62b2862d49c78b.txt",
+      "json": "fd62b2862d49c78b.json",
+      "species": [
+        "Talonflame",
+        "Garchomp",
+        "Basculegion",
+        "Kingambit",
+        "Sneasler",
+        "Floette"
+      ]
+    },
+    {
+      "key": "meta_49_d378e96b903dcff5",
+      "id": "d378e96b903dcff5",
+      "url": "https://pokepast.es/d378e96b903dcff5",
+      "label": "Venusaur / Tyranitar / Corviknight / Garchomp / Rotom-Heat / Primarina",
+      "showdown": "d378e96b903dcff5.txt",
+      "json": "d378e96b903dcff5.json",
+      "species": [
+        "Venusaur",
+        "Tyranitar",
+        "Corviknight",
+        "Garchomp",
+        "Rotom-Heat",
+        "Primarina"
+      ]
+    },
+    {
+      "key": "meta_50_22d85b73d74b58d2",
+      "id": "22d85b73d74b58d2",
+      "url": "https://pokepast.es/22d85b73d74b58d2",
+      "label": "Lopunny / Basculegion / Pelipper / Archaludon / Sinistcha / Kingambit",
+      "showdown": "22d85b73d74b58d2.txt",
+      "json": "22d85b73d74b58d2.json",
+      "species": [
+        "Lopunny",
+        "Basculegion",
+        "Pelipper",
+        "Archaludon",
+        "Sinistcha",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_51_bb22c6441ed3116c",
+      "id": "bb22c6441ed3116c",
+      "url": "https://pokepast.es/bb22c6441ed3116c",
+      "label": "Excadrill / Tyranitar / Rotom-Wash / Sneasler / Dragapult / Meganium",
+      "showdown": "bb22c6441ed3116c.txt",
+      "json": "bb22c6441ed3116c.json",
+      "species": [
+        "Excadrill",
+        "Tyranitar",
+        "Rotom-Wash",
+        "Sneasler",
+        "Dragapult",
+        "Meganium"
+      ]
+    },
+    {
+      "key": "meta_52_110f1ffe9d58776b",
+      "id": "110f1ffe9d58776b",
+      "url": "https://pokepast.es/110f1ffe9d58776b",
+      "label": "Sneasler / Floette / Basculegion / Maushold / Aerodactyl / Kingambit",
+      "showdown": "110f1ffe9d58776b.txt",
+      "json": "110f1ffe9d58776b.json",
+      "species": [
+        "Sneasler",
+        "Floette",
+        "Basculegion",
+        "Maushold",
+        "Aerodactyl",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_53_d4a4030826913c70",
+      "id": "d4a4030826913c70",
+      "url": "https://pokepast.es/d4a4030826913c70",
+      "label": "Garchomp / Maushold / Delphox / Aerodactyl / Floette / Sneasler",
+      "showdown": "d4a4030826913c70.txt",
+      "json": "d4a4030826913c70.json",
+      "species": [
+        "Garchomp",
+        "Maushold",
+        "Delphox",
+        "Aerodactyl",
+        "Floette",
+        "Sneasler"
+      ]
+    },
+    {
+      "key": "meta_54_44dace349421e14c",
+      "id": "44dace349421e14c",
+      "url": "https://pokepast.es/44dace349421e14c",
+      "label": "Golurk / Farigiraf / Incineroar / Torkoal / Sneasler / Venusaur",
+      "showdown": "44dace349421e14c.txt",
+      "json": "44dace349421e14c.json",
+      "species": [
+        "Golurk",
+        "Farigiraf",
+        "Incineroar",
+        "Torkoal",
+        "Sneasler",
+        "Venusaur"
+      ]
+    },
+    {
+      "key": "meta_55_bfcfc47093e5ed1b",
+      "id": "bfcfc47093e5ed1b",
+      "url": "https://pokepast.es/bfcfc47093e5ed1b",
+      "label": "Clefable / Kingambit / Sneasler / Dragonite / Delphox / Basculegion",
+      "showdown": "bfcfc47093e5ed1b.txt",
+      "json": "bfcfc47093e5ed1b.json",
+      "species": [
+        "Clefable",
+        "Kingambit",
+        "Sneasler",
+        "Dragonite",
+        "Delphox",
+        "Basculegion"
+      ]
+    },
+    {
+      "key": "meta_56_0b77e085c8177eb3",
+      "id": "0b77e085c8177eb3",
+      "url": "https://pokepast.es/0b77e085c8177eb3",
+      "label": "Floette / Vivillon / Basculegion / Garchomp / Incineroar / Charizard",
+      "showdown": "0b77e085c8177eb3.txt",
+      "json": "0b77e085c8177eb3.json",
+      "species": [
+        "Floette",
+        "Vivillon",
+        "Basculegion",
+        "Garchomp",
+        "Incineroar",
+        "Charizard"
+      ]
+    },
+    {
+      "key": "meta_57_a81abbf4ab14e717",
+      "id": "a81abbf4ab14e717",
+      "url": "https://pokepast.es/a81abbf4ab14e717",
+      "label": "Lopunny / Basculegion / Pelipper / Archaludon / Sinistcha / Incineroar",
+      "showdown": "a81abbf4ab14e717.txt",
+      "json": "a81abbf4ab14e717.json",
+      "species": [
+        "Lopunny",
+        "Basculegion",
+        "Pelipper",
+        "Archaludon",
+        "Sinistcha",
+        "Incineroar"
+      ]
+    },
+    {
+      "key": "meta_58_ddd1e5c85adbef80",
+      "id": "ddd1e5c85adbef80",
+      "url": "https://pokepast.es/ddd1e5c85adbef80",
+      "label": "Dragonite / Glimmora / Torterra / Incineroar / Rotom-Wash / Scizor",
+      "showdown": "ddd1e5c85adbef80.txt",
+      "json": "ddd1e5c85adbef80.json",
+      "species": [
+        "Dragonite",
+        "Glimmora",
+        "Torterra",
+        "Incineroar",
+        "Rotom-Wash",
+        "Scizor"
+      ]
+    },
+    {
+      "key": "meta_59_071ccbb83885360a",
+      "id": "071ccbb83885360a",
+      "url": "https://pokepast.es/071ccbb83885360a",
+      "label": "Charizard / Aerodactyl / Sylveon / Kingambit / Basculegion / Garchomp",
+      "showdown": "071ccbb83885360a.txt",
+      "json": "071ccbb83885360a.json",
+      "species": [
+        "Charizard",
+        "Aerodactyl",
+        "Sylveon",
+        "Kingambit",
+        "Basculegion",
+        "Garchomp"
+      ]
+    },
+    {
+      "key": "meta_60_868af4a892140681",
+      "id": "868af4a892140681",
+      "url": "https://pokepast.es/868af4a892140681",
+      "label": "Charizard / Whimsicott / Garchomp / Basculegion / Glimmora / Kingambit",
+      "showdown": "868af4a892140681.txt",
+      "json": "868af4a892140681.json",
+      "species": [
+        "Charizard",
+        "Whimsicott",
+        "Garchomp",
+        "Basculegion",
+        "Glimmora",
+        "Kingambit"
+      ]
+    },
+    {
+      "key": "meta_61_6fc20ff94dbb449c",
+      "id": "6fc20ff94dbb449c",
+      "url": "https://pokepast.es/6fc20ff94dbb449c",
+      "label": "Charizard / Whimsicott / Floette / Garchomp / Basculegion / Kingambit",
+      "showdown": "6fc20ff94dbb449c.txt",
+      "json": "6fc20ff94dbb449c.json",
+      "species": [
+        "Charizard",
+        "Whimsicott",
+        "Floette",
+        "Garchomp",
+        "Basculegion",
+        "Kingambit"
+      ]
+    }
+  ]
+}

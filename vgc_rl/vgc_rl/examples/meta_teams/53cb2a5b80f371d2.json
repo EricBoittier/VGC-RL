@@ -1,0 +1,198 @@
+{
+  "label": "Rotom-Wash / Garchomp / Incineroar / Ninetales-Alola / Gengar / Aegislash",
+  "party": [
+    {
+      "name": "Rotom-Wash",
+      "nature": "Calm",
+      "ability": "Levitate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Hydro Pump"
+        },
+        {
+          "name": "Volt Switch"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Will-O-Wisp"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Tomb"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Stomping Tantrum"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Careful",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Parting Shot"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Ninetales-Alola",
+      "nature": "Timid",
+      "ability": "Snow Warning",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Blizzard"
+        },
+        {
+          "name": "Freeze-Dry"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Encore"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Gengar",
+      "nature": "Timid",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Perish Song"
+        },
+        {
+          "name": "Shadow Ball"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Gengarite"
+    },
+    {
+      "name": "Aegislash",
+      "nature": "Adamant",
+      "ability": "Stance Change",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Poltergeist"
+        },
+        {
+          "name": "Shadow Sneak"
+        },
+        {
+          "name": "King's Shield"
+        },
+        {
+          "name": "Sacred Sword"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Spell Tag"
+    }
+  ],
+  "pokepast": "https://pokepast.es/53cb2a5b80f371d2"
+}

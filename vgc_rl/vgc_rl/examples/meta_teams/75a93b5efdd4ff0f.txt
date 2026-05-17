@@ -1,0 +1,56 @@
+Kingambit @ Black Glasses  
+Ability: Defiant  
+Tera Type: Dark  
+EVs: 25 HP / 32 Atk / 9 Spe  
+Adamant Nature  
+- Assurance  
+- Sucker Punch  
+- Iron Head  
+- Protect  
+
+Sneasler @ White Herb  
+Ability: Unburden  
+EVs: 12 HP / 11 Atk / 6 SpD / 32 Spe  
+Adamant Nature  
+- Dire Claw  
+- Close Combat  
+- Fake Out  
+- Protect  
+
+Rotom-Wash @ Magnet  
+Ability: Levitate  
+EVs: 32 HP / 12 Def / 2 SpA / 8 SpD / 12 Spe  
+Bold Nature  
+- Thunderbolt  
+- Electroweb  
+- Will-O-Wisp  
+- Hydro Pump  
+
+Floette-Eternal @ Floettite  
+Ability: Flower Veil  
+EVs: 24 HP / 17 Def / 15 SpA / 10 Spe  
+Modest Nature  
+- Moonblast  
+- Dazzling Gleam  
+- Light of Ruin  
+- Protect  
+
+Garchomp @ Soft Sand  
+Ability: Rough Skin  
+Tera Type: Dragon  
+EVs: 4 HP / 26 Atk / 4 SpD / 32 Spe  
+Jolly Nature  
+- Earthquake  
+- Dragon Claw  
+- Rock Slide  
+- Protect  
+
+Aerodactyl @ Focus Sash  
+Ability: Unnerve  
+EVs: 2 HP / 32 Atk / 32 Spe  
+Jolly Nature  
+- Rock Slide  
+- Dual Wingbeat  
+- Tailwind  
+- Protect  
+

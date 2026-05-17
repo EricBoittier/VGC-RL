@@ -56,7 +56,17 @@ def main() -> int:
     )
     parser.add_argument("--random-bring-alpha", action="store_true", help="With --six-bring: Alpha bring is uniform RNG (ignore policy on bring step).")
     parser.add_argument("--random-bring-beta", action="store_true", help="With --six-bring: Beta bring is uniform RNG (ignore policy / frozen zip on bring step).")
+    parser.add_argument(
+        "--meta-pool",
+        action="store_true",
+        help="Sample two distinct teams from meta_teams/ each reset (requires --six-bring). Policy zip gets a _meta suffix.",
+    )
     args = parser.parse_args()
+
+    if bool(args.meta_pool) and not bool(args.six_bring):
+        print("--meta-pool requires --six-bring", file=sys.stderr)
+
+        return 2
 
     try:
         from sb3_contrib import MaskablePPO
@@ -73,6 +83,7 @@ def main() -> int:
         DOUBLES_OBS_IDENTITY_DIM,
         DOUBLES_OBS_TOTAL_DIM,
         DOUBLES_OBS_WITH_SIX_BRING_DIM,
+        obs_vocab_sizes,
     )
     from vgc_rl.fake_oracle_client import FakeOracleClient
     from vgc_rl.oracle_client import OracleClient
@@ -89,6 +100,7 @@ def main() -> int:
                 beta_team_key=str(args.team_beta_key),
                 game=game,
                 six_bring=bool(args.six_bring),
+                meta_pool=bool(args.meta_pool),
             )
         )
     )
@@ -120,6 +132,7 @@ def main() -> int:
         six_mon_bring=args.six_bring,
         team_alpha_key=str(args.team_alpha_key),
         team_beta_key=str(args.team_beta_key),
+        meta_pool=bool(args.meta_pool),
         random_bring_alpha=bool(args.random_bring_alpha),
         random_bring_beta=bool(args.random_bring_beta),
         random_pair_bring_on_reset=bool(args.random_pair_bring_on_reset),
@@ -135,9 +148,12 @@ def main() -> int:
 
         return 2
 
+    vocab = obs_vocab_sizes()
+
     print(
-        f"Beta env observation_dim={obs_dim} ({DOUBLES_OBS_BATTLE_DIM} battle + {DOUBLES_OBS_BOOST_DIM} boosts + {DOUBLES_OBS_IDENTITY_DIM} species/move identity"
-        f"{' + bring tail' if args.six_bring else ''})",
+        f"Beta env observation_dim={obs_dim} ({DOUBLES_OBS_BATTLE_DIM} battle + {DOUBLES_OBS_BOOST_DIM} boosts + {DOUBLES_OBS_IDENTITY_DIM} identity"
+        f"{' + bring tail' if args.six_bring else ''}) · vocab species={vocab['species']} moves={vocab['moves']} "
+        f"abilities={vocab['abilities']} items={vocab['items']}",
         flush=True,
     )
 

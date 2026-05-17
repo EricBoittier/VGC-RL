@@ -1,0 +1,198 @@
+{
+  "label": "Kangaskhan / Farigiraf / Torkoal / Sneasler / Charizard / Primarina",
+  "party": [
+    {
+      "name": "Kangaskhan",
+      "nature": "Brave",
+      "ability": "Scrappy",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Double-Edge"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Hammer Arm"
+        },
+        {
+          "name": "Ice Punch"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Kangaskhanite"
+    },
+    {
+      "name": "Farigiraf",
+      "nature": "Quiet",
+      "ability": "Armor Tail",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 17,
+        "atk": 0,
+        "def": 17,
+        "spa": 10,
+        "spd": 20,
+        "spe": 2
+      },
+      "moves": [
+        {
+          "name": "Psychic"
+        },
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Trick Room"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Torkoal",
+      "nature": "Quiet",
+      "ability": "Drought",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Eruption"
+        },
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charcoal"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 17,
+        "atk": 17,
+        "def": 16,
+        "spa": 0,
+        "spd": 1,
+        "spe": 15
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "U-turn"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Charizard",
+      "nature": "Modest",
+      "ability": "Solar Power",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 6,
+        "atk": 0,
+        "def": 16,
+        "spa": 31,
+        "spd": 0,
+        "spe": 13
+      },
+      "moves": [
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    },
+    {
+      "name": "Primarina",
+      "nature": "Quiet",
+      "ability": "Liquid Voice",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 30,
+        "atk": 0,
+        "def": 8,
+        "spa": 28,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Substitute"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mystic Water"
+    }
+  ],
+  "pokepast": "https://pokepast.es/eafdca3706c02574"
+}

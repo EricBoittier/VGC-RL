@@ -1,0 +1,198 @@
+{
+  "label": "Charizard / Sneasler / Milotic / Garchomp / Incineroar / Venusaur",
+  "party": [
+    {
+      "name": "Charizard",
+      "nature": "Modest",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 6,
+        "atk": 0,
+        "def": 16,
+        "spa": 30,
+        "spd": 0,
+        "spe": 14
+      },
+      "moves": [
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Milotic",
+      "nature": "Bold",
+      "ability": "Competitive",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 21,
+        "spa": 1,
+        "spd": 12,
+        "spe": 1
+      },
+      "moves": [
+        {
+          "name": "Muddy Water"
+        },
+        {
+          "name": "Coil"
+        },
+        {
+          "name": "Hypnosis"
+        },
+        {
+          "name": "Recover"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 24,
+        "atk": 19,
+        "def": 0,
+        "spa": 0,
+        "spd": 1,
+        "spe": 22
+      },
+      "moves": [
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Careful",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 11,
+        "spa": 0,
+        "spd": 16,
+        "spe": 7
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Throat Chop"
+        },
+        {
+          "name": "Parting Shot"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Venusaur",
+      "nature": "Modest",
+      "ability": "Chlorophyll",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Energy Ball"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Sleep Powder"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/716dffe25a855236"
+}

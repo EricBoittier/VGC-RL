@@ -1,0 +1,198 @@
+{
+  "label": "Talonflame / Glimmora / Garchomp / Ninetales-Alola / Aegislash / Rotom-Wash",
+  "party": [
+    {
+      "name": "Talonflame",
+      "nature": "Adamant",
+      "ability": "Gale Wings",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 1,
+        "spe": 31
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Tailwind"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sharp Beak"
+    },
+    {
+      "name": "Glimmora",
+      "nature": "Timid",
+      "ability": "Toxic Debris",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 15,
+        "atk": 0,
+        "def": 1,
+        "spa": 28,
+        "spd": 1,
+        "spe": 21
+      },
+      "moves": [
+        {
+          "name": "Spiky Shield"
+        },
+        {
+          "name": "Power Gem"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Earth Power"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Glimmoranite"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Jolly",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 12,
+        "atk": 24,
+        "def": 2,
+        "spa": 0,
+        "spd": 9,
+        "spe": 19
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Swords Dance"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Lum Berry"
+    },
+    {
+      "name": "Ninetales-Alola",
+      "nature": "Modest",
+      "ability": "Snow Warning",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 11,
+        "atk": 0,
+        "def": 1,
+        "spa": 25,
+        "spd": 1,
+        "spe": 28
+      },
+      "moves": [
+        {
+          "name": "Blizzard"
+        },
+        {
+          "name": "Icy Wind"
+        },
+        {
+          "name": "Freeze-Dry"
+        },
+        {
+          "name": "Moonblast"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Aegislash",
+      "nature": "Adamant",
+      "ability": "Stance Change",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "King's Shield"
+        },
+        {
+          "name": "Poltergeist"
+        },
+        {
+          "name": "Shadow Sneak"
+        },
+        {
+          "name": "Close Combat"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Rotom-Wash",
+      "nature": "Modest",
+      "ability": "Levitate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 2,
+        "spa": 15,
+        "spd": 5,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Thunderbolt"
+        },
+        {
+          "name": "Hydro Pump"
+        },
+        {
+          "name": "Will-O-Wisp"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Magnet"
+    }
+  ],
+  "pokepast": "https://pokepast.es/8872710ff73c4b3f"
+}

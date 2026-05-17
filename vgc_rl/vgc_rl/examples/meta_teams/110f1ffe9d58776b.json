@@ -1,0 +1,198 @@
+{
+  "label": "Sneasler / Floette / Basculegion / Maushold / Aerodactyl / Kingambit",
+  "party": [
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Floette",
+      "nature": "Modest",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 26,
+        "atk": 0,
+        "def": 3,
+        "spa": 25,
+        "spd": 0,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Calm Mind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Jolly",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Flip Turn"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Maushold",
+      "nature": "Jolly",
+      "ability": "Friend Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Super Fang"
+        },
+        {
+          "name": "Follow Me"
+        },
+        {
+          "name": "Helping Hand"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Aerodactyl",
+      "nature": "Jolly",
+      "ability": "Unnerve",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Black Glasses"
+    }
+  ],
+  "pokepast": "https://pokepast.es/110f1ffe9d58776b"
+}

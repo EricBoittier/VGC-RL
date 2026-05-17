@@ -1,0 +1,42 @@
+Venusaur @ Venusaurite  
+Ability: Chlorophyll  
+- Giga Drain  
+- Sludge Bomb  
+- Earth Power  
+- Protect  
+
+Scizor @ Scizorite  
+Ability: Technician  
+- Close Combat  
+- Bullet Punch  
+- Swords Dance  
+- Protect  
+
+Archaludon @ Leftovers  
+Ability: Stamina  
+- Electro Shot  
+- Draco Meteor  
+- Flash Cannon  
+- Protect  
+
+Basculegion @ Choice Scarf  
+Ability: Adaptability  
+- Last Respects  
+- Wave Crash  
+- Flip Turn  
+- Aqua Jet  
+
+Pelipper @ Sitrus Berry  
+Ability: Drizzle  
+- Weather Ball  
+- Hurricane  
+- Helping Hand  
+- Tailwind  
+
+Incineroar @ Chople Berry  
+Ability: Intimidate  
+- Darkest Lariat  
+- Flare Blitz  
+- Parting Shot  
+- Fake Out  
+

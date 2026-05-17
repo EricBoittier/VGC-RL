@@ -1,0 +1,198 @@
+{
+  "label": "Kingambit / Sneasler / Rotom-Wash / Floette / Garchomp / Aerodactyl",
+  "party": [
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "Dark",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 25,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 9
+      },
+      "moves": [
+        {
+          "name": "Assurance"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Black Glasses"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 12,
+        "atk": 11,
+        "def": 0,
+        "spa": 0,
+        "spd": 6,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Rotom-Wash",
+      "nature": "Bold",
+      "ability": "Levitate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 12,
+        "spa": 2,
+        "spd": 8,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Thunderbolt"
+        },
+        {
+          "name": "Electroweb"
+        },
+        {
+          "name": "Will-O-Wisp"
+        },
+        {
+          "name": "Hydro Pump"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Magnet"
+    },
+    {
+      "name": "Floette",
+      "nature": "Modest",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 24,
+        "atk": 0,
+        "def": 17,
+        "spa": 15,
+        "spd": 0,
+        "spe": 10
+      },
+      "moves": [
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Light of Ruin"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Jolly",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "Dragon",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 4,
+        "atk": 26,
+        "def": 0,
+        "spa": 0,
+        "spd": 4,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Soft Sand"
+    },
+    {
+      "name": "Aerodactyl",
+      "nature": "Jolly",
+      "ability": "Unnerve",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/75a93b5efdd4ff0f"
+}

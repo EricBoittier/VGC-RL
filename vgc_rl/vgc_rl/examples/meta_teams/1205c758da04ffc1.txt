@@ -1,0 +1,48 @@
+Garchomp @ Choice Scarf  
+Ability: Rough Skin  
+Level: 50  
+- Stomping Tantrum  
+- Earthquake  
+- Dragon Claw  
+- Rock Slide  
+
+Farigiraf @ Sitrus Berry  
+Ability: Armor Tail  
+Level: 50  
+- Helping Hand  
+- Psyshock  
+- Trick Room  
+- Protect  
+
+Charizard @ Charizardite Y  
+Ability: Blaze  
+Level: 50  
+- Solar Beam  
+- Heat Wave  
+- Weather Ball  
+- Protect  
+
+Incineroar @ Chople Berry  
+Ability: Intimidate  
+Level: 50  
+- Flare Blitz  
+- Darkest Lariat  
+- Fake Out  
+- Parting Shot  
+
+Aegislash @ Focus Sash  
+Ability: Stance Change  
+Level: 50  
+- Shadow Sneak  
+- Wide Guard  
+- Iron Head  
+- Close Combat  
+
+Sylveon @ Fairy Feather  
+Ability: Pixilate  
+Level: 50  
+- Hyper Voice  
+- Quick Attack  
+- Moonblast  
+- Protect  
+

@@ -1,0 +1,48 @@
+Gardevoir @ Gardevoirite  
+Ability: Trace  
+Timid Nature  
+- Hyper Voice  
+- Psychic  
+- Mystical Fire  
+- Protect  
+
+Talonflame  
+Ability: Gale Wings  
+Adamant Nature  
+- Acrobatics  
+- Flare Blitz  
+- Tailwind  
+- Protect  
+
+Garchomp @ Haban Berry  
+Ability: Rough Skin  
+Jolly Nature  
+- Earthquake  
+- Rock Slide  
+- Dragon Claw  
+- Protect  
+
+Rotom-Wash @ Leftovers  
+Ability: Levitate  
+Bold Nature  
+- Electroweb  
+- Will-O-Wisp  
+- Thunderbolt  
+- Hydro Pump  
+
+Kingambit @ Black Glasses  
+Ability: Defiant  
+Adamant Nature  
+- Kowtow Cleave  
+- Sucker Punch  
+- Iron Head  
+- Low Kick  
+
+Zoroark-Hisui @ Focus Sash  
+Ability: Illusion  
+Timid Nature  
+- Taunt  
+- Flamethrower  
+- Hyper Voice  
+- Shadow Ball  
+

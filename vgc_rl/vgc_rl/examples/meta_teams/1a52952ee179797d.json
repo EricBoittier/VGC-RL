@@ -1,0 +1,198 @@
+{
+  "label": "Charizard / Kingambit / Garchomp / Sylveon / Aerodactyl / Basculegion",
+  "party": [
+    {
+      "name": "Charizard",
+      "nature": "",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Iron Head"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Stomping Tantrum"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Sylveon",
+      "nature": "",
+      "ability": "Pixilate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Yawn"
+        },
+        {
+          "name": "Quick Attack"
+        },
+        {
+          "name": "Detect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Fairy Feather"
+    },
+    {
+      "name": "Aerodactyl",
+      "nature": "",
+      "ability": "Unnerve",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Wide Guard"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Aerodactylite"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/1a52952ee179797d"
+}

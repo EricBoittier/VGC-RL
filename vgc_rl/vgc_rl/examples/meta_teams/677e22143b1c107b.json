@@ -1,0 +1,198 @@
+{
+  "label": "Charizard / Floette / Basculegion / Whimsicott / Glimmora / Farigiraf",
+  "party": [
+    {
+      "name": "Charizard",
+      "nature": "Modest",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 10,
+        "spa": 11,
+        "spd": 0,
+        "spe": 13
+      },
+      "moves": [
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    },
+    {
+      "name": "Floette",
+      "nature": "Modest",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 10,
+        "atk": 0,
+        "def": 19,
+        "spa": 25,
+        "spd": 0,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Light of Ruin"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 8,
+        "atk": 32,
+        "def": 8,
+        "spa": 0,
+        "spd": 0,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mystic Water"
+    },
+    {
+      "name": "Whimsicott",
+      "nature": "Timid",
+      "ability": "Prankster",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 26,
+        "atk": 0,
+        "def": 2,
+        "spa": 32,
+        "spd": 1,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Fairy Feather"
+    },
+    {
+      "name": "Glimmora",
+      "nature": "Modest",
+      "ability": "Toxic Debris",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 1,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Power Gem"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Earth Power"
+        },
+        {
+          "name": "Spiky Shield"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Farigiraf",
+      "nature": "Modest",
+      "ability": "Armor Tail",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 14,
+        "spa": 0,
+        "spd": 21,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Foul Play"
+        },
+        {
+          "name": "Twin Beam"
+        },
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Trick Room"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Colbur Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/677e22143b1c107b"
+}

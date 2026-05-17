@@ -19,7 +19,7 @@ from vgc_rl.doubles_action_mask import (
 from vgc_rl.doubles_actions import enumerate_joint_actions_structural
 from vgc_rl.doubles_obs_identity import DOUBLES_OBS_TOTAL_DIM, DOUBLES_OBS_WITH_SIX_BRING_DIM
 from vgc_rl.doubles_turn_engine import DoublesBattleState, apply_initial_field_weather, joint_to_planned_side, resolve_turn, side_party_wiped_brought
-from vgc_rl.example_teams import load_example_teams, party_member
+from vgc_rl.team_registry import prepare_parties_for_reset
 from vgc_rl.interactive_doubles import doubles_obs_vector, doubles_rl_six_bring_observation
 from vgc_rl.oracle_client import OracleClient
 from vgc_rl.replay import attach_bring_replay_frame, attach_turn_replay_frame
@@ -50,6 +50,8 @@ class BetaControlledOracleDoublesEnv(gym.Env):
         random_bring_beta: bool = False,
         random_pair_bring_on_reset: bool = False,
         debug_print_bring: bool = False,
+        meta_pool: bool = False,
+        team_pool_keys: list[str] | None = None,
     ) -> None:
         super().__init__()
 
@@ -61,6 +63,9 @@ class BetaControlledOracleDoublesEnv(gym.Env):
 
         if random_pair_bring_on_reset and not six_mon_bring:
             raise ValueError("random_pair_bring_on_reset requires six_mon_bring")
+
+        if meta_pool and not six_mon_bring:
+            raise ValueError("meta_pool requires six_mon_bring")
 
         self._oracle = oracle
         self._game = game if game in ("sv", "champions") else "champions"
@@ -78,6 +83,10 @@ class BetaControlledOracleDoublesEnv(gym.Env):
         self._random_bring_beta = random_bring_beta
         self._random_pair_bring_on_reset = random_pair_bring_on_reset
         self._debug_print_bring = debug_print_bring
+        self._meta_pool = meta_pool
+        self._team_pool_keys = list(team_pool_keys) if team_pool_keys is not None else None
+        self._active_alpha_key = self._team_alpha_key
+        self._active_beta_key = self._team_beta_key
 
         self._joints = enumerate_joint_actions_structural()
         self._n_battle_flat = len(self._joints) * FORM_ACTION_BRANCHES
@@ -171,22 +180,15 @@ class BetaControlledOracleDoublesEnv(gym.Env):
             self._py_rng = random.Random(int(seed))
 
         if self._six_mon_bring:
-            data = load_example_teams()
-
-            if self._team_alpha_key not in data or self._team_beta_key not in data:
-                raise KeyError(f"team keys not in example_teams: {self._team_alpha_key!r} {self._team_beta_key!r}")
-
-            na = len(data[self._team_alpha_key]["party"])
-            nb = len(data[self._team_beta_key]["party"])
-
-            if na != 6 or nb != 6:
-                raise ValueError(f"six_mon_bring requires both teams to have party length 6 (got {na} and {nb})")
-
-            self._reg_party_a = [deepcopy(party_member(self._team_alpha_key, i)) for i in range(6)]
-            self._reg_party_b = [deepcopy(party_member(self._team_beta_key, i)) for i in range(6)]
-
-            for m in self._reg_party_a + self._reg_party_b:
-                m["hpPercentage"] = 100
+            self._active_alpha_key, self._active_beta_key, self._reg_party_a, self._reg_party_b = prepare_parties_for_reset(
+                team_alpha_key=self._team_alpha_key,
+                team_beta_key=self._team_beta_key,
+                meta_pool=self._meta_pool,
+                team_pool_keys=self._team_pool_keys,
+                rng=self._py_rng,
+                six_mon_bring=True,
+                expected_party_len=6,
+            )
 
             if self._random_pair_bring_on_reset:
                 ab = int(self._rng.integers(0, BRING_ACTION_SPACE_SIZE))
@@ -205,6 +207,8 @@ class BetaControlledOracleDoublesEnv(gym.Env):
                     "awaiting_bring": False,
                     "alpha_bring_action": ab,
                     "beta_bring_action": bb,
+                    "team_alpha_key": self._active_alpha_key,
+                    "team_beta_key": self._active_beta_key,
                 }
 
             self._state = None
@@ -213,26 +217,22 @@ class BetaControlledOracleDoublesEnv(gym.Env):
 
             mask_b = self.action_masks()
 
-            return self._obs_vec(), {"legal_actions_mask": mask_b, "awaiting_bring": True}
+            return self._obs_vec(), {
+                "legal_actions_mask": mask_b,
+                "awaiting_bring": True,
+                "team_alpha_key": self._active_alpha_key,
+                "team_beta_key": self._active_beta_key,
+            }
 
-        data = load_example_teams()
-
-        if self._team_alpha_key not in data or self._team_beta_key not in data:
-            raise KeyError(f"team keys not in example_teams: {self._team_alpha_key!r} {self._team_beta_key!r}")
-
-        na = len(data[self._team_alpha_key]["party"])
-        nb = len(data[self._team_beta_key]["party"])
-
-        if na != 4 or nb != 4:
-            raise ValueError(
-                f"expected party length 4 for both teams without six_mon_bring (got {na} for {self._team_alpha_key!r}, {nb} for {self._team_beta_key!r}); use --six-bring for six-mon rosters",
-            )
-
-        party_a = [deepcopy(party_member(self._team_alpha_key, i)) for i in range(4)]
-        party_b = [deepcopy(party_member(self._team_beta_key, i)) for i in range(4)]
-
-        for m in party_a + party_b:
-            m["hpPercentage"] = 100
+        self._active_alpha_key, self._active_beta_key, party_a, party_b = prepare_parties_for_reset(
+            team_alpha_key=self._team_alpha_key,
+            team_beta_key=self._team_beta_key,
+            meta_pool=False,
+            team_pool_keys=self._team_pool_keys,
+            rng=self._py_rng,
+            six_mon_bring=False,
+            expected_party_len=4,
+        )
 
         self._state = DoublesBattleState(
             party_a=party_a,
@@ -252,7 +252,12 @@ class BetaControlledOracleDoublesEnv(gym.Env):
 
         mask_b = self.action_masks()
 
-        return self._obs_vec(), {"legal_actions_mask": mask_b, "awaiting_bring": False}
+        return self._obs_vec(), {
+            "legal_actions_mask": mask_b,
+            "awaiting_bring": False,
+            "team_alpha_key": self._active_alpha_key,
+            "team_beta_key": self._active_beta_key,
+        }
 
     def step(self, action: SupportsFloat) -> tuple[np.ndarray, float, bool, bool, dict[str, Any]]:
         raw = int(action)

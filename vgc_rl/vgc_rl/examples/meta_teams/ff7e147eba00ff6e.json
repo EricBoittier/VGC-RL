@@ -1,0 +1,198 @@
+{
+  "label": "Charizard / Venusaur / Garchomp / Wyrdeer / Corviknight / Milotic",
+  "party": [
+    {
+      "name": "Charizard",
+      "nature": "Modest",
+      "ability": "Solar Power",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 14,
+        "atk": 0,
+        "def": 16,
+        "spa": 7,
+        "spd": 0,
+        "spe": 29
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Weather Ball"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    },
+    {
+      "name": "Venusaur",
+      "nature": "Modest",
+      "ability": "Chlorophyll",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 1,
+        "atk": 0,
+        "def": 1,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Leaf Storm"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Sleep Powder"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 10,
+        "atk": 23,
+        "def": 1,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Stomping Tantrum"
+        },
+        {
+          "name": "Rock Tomb"
+        },
+        {
+          "name": "Earthquake"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Wyrdeer",
+      "nature": "Relaxed",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 18,
+        "spa": 0,
+        "spd": 16,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Psychic"
+        },
+        {
+          "name": "Skill Swap"
+        },
+        {
+          "name": "Trick Room"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Corviknight",
+      "nature": "Adamant",
+      "ability": "Mirror Armor",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 24,
+        "atk": 23,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 17
+      },
+      "moves": [
+        {
+          "name": "Brave Bird"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Roost"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Occa Berry"
+    },
+    {
+      "name": "Milotic",
+      "nature": "Bold",
+      "ability": "Competitive",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 21,
+        "spa": 1,
+        "spd": 11,
+        "spe": 1
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Scald"
+        },
+        {
+          "name": "Ice Beam"
+        },
+        {
+          "name": "Life Dew"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    }
+  ],
+  "pokepast": "https://pokepast.es/ff7e147eba00ff6e"
+}

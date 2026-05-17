@@ -1,0 +1,198 @@
+{
+  "label": "Scizor / Sneasler / Dragonite / Archaludon / Pelipper / Basculegion",
+  "party": [
+    {
+      "name": "Scizor",
+      "nature": "",
+      "ability": "Technician",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Bullet Punch"
+        },
+        {
+          "name": "Bug Bite"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Swords Dance"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Scizorite"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Dragonite",
+      "nature": "",
+      "ability": "Multiscale",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Dragon Pulse"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Dragoninite"
+    },
+    {
+      "name": "Archaludon",
+      "nature": "",
+      "ability": "Stamina",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Electro Shot"
+        },
+        {
+          "name": "Dragon Pulse"
+        },
+        {
+          "name": "Flash Cannon"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Pelipper",
+      "nature": "",
+      "ability": "Drizzle",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mystic Water"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Flip Turn"
+        },
+        {
+          "name": "Aqua Jet"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    }
+  ],
+  "pokepast": "https://pokepast.es/971f560b85603f7d"
+}

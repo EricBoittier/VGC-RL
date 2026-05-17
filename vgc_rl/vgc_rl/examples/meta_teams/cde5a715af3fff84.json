@@ -1,0 +1,198 @@
+{
+  "label": "Aerodactyl / Floette / Chandelure / Tsareena / Basculegion / Sneasler",
+  "party": [
+    {
+      "name": "Aerodactyl",
+      "nature": "Jolly",
+      "ability": "Unnerve",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Wide Guard"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Floette",
+      "nature": "Modest",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 8,
+        "atk": 0,
+        "def": 32,
+        "spa": 14,
+        "spd": 0,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Light of Ruin"
+        },
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    },
+    {
+      "name": "Chandelure",
+      "nature": "Modest",
+      "ability": "Flash Fire",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 24,
+        "atk": 0,
+        "def": 16,
+        "spa": 18,
+        "spd": 1,
+        "spe": 7
+      },
+      "moves": [
+        {
+          "name": "Shadow Ball"
+        },
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Trick Room"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chandelurite"
+    },
+    {
+      "name": "Tsareena",
+      "nature": "Jolly",
+      "ability": "Queenly Majesty",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 4,
+        "atk": 10,
+        "def": 20,
+        "spa": 0,
+        "spd": 1,
+        "spe": 31
+      },
+      "moves": [
+        {
+          "name": "Power Whip"
+        },
+        {
+          "name": "High Jump Kick"
+        },
+        {
+          "name": "Triple Axel"
+        },
+        {
+          "name": "U-turn"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 14,
+        "atk": 16,
+        "def": 1,
+        "spa": 0,
+        "spd": 15,
+        "spe": 20
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Last Respects"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Colbur Berry"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 4,
+        "atk": 0,
+        "def": 32,
+        "spa": 0,
+        "spd": 0,
+        "spe": 30
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Rock Tomb"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    }
+  ],
+  "pokepast": "https://pokepast.es/cde5a715af3fff84"
+}

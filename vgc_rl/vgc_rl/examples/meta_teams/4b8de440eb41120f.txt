@@ -1,0 +1,42 @@
+Charizard @ Charizardite Y  
+Ability: Blaze  
+- Heat Wave  
+- Weather Ball  
+- Solar Beam  
+- Protect  
+
+Farigiraf @ Sitrus Berry  
+Ability: Armor Tail  
+- Hyper Voice  
+- Psyshock  
+- Trick Room  
+- Protect  
+
+Incineroar @ Chople Berry  
+Ability: Intimidate  
+- Flare Blitz  
+- Darkest Lariat  
+- Fake Out  
+- Parting Shot  
+
+Sylveon @ Fairy Feather  
+Ability: Pixilate  
+- Hyper Voice  
+- Hyper Beam  
+- Quick Attack  
+- Protect  
+
+Garchomp @ Choice Scarf  
+Ability: Rough Skin  
+- Dragon Claw  
+- Earthquake  
+- Stomping Tantrum  
+- Rock Slide  
+
+Aegislash @ Focus Sash  
+Ability: Stance Change  
+- Iron Head  
+- Close Combat  
+- Shadow Sneak  
+- Wide Guard  
+

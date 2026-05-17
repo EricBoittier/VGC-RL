@@ -1,0 +1,198 @@
+{
+  "label": "Floette / Vivillon / Basculegion / Garchomp / Incineroar / Charizard",
+  "party": [
+    {
+      "name": "Floette",
+      "nature": "Bold",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 26,
+        "spa": 1,
+        "spd": 1,
+        "spe": 6
+      },
+      "moves": [
+        {
+          "name": "Draining Kiss"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Calm Mind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    },
+    {
+      "name": "Vivillon",
+      "nature": "Timid",
+      "ability": "Friend Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Pollen Puff"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 20,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 14
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mystic Water"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 17,
+        "atk": 20,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 29
+      },
+      "moves": [
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Impish",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 23,
+        "spa": 0,
+        "spd": 11,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Darkest Lariat"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Passho Berry"
+    },
+    {
+      "name": "Charizard",
+      "nature": "Modest",
+      "ability": "Drought",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 5,
+        "spa": 11,
+        "spd": 0,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    }
+  ],
+  "pokepast": "https://pokepast.es/0b77e085c8177eb3"
+}

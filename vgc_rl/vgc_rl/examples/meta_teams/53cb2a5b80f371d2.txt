@@ -1,0 +1,48 @@
+Rotom-Wash @ Sitrus Berry  
+Ability: Levitate  
+Calm Nature  
+- Hydro Pump  
+- Volt Switch  
+- Protect  
+- Will-O-Wisp  
+
+Garchomp @ Choice Scarf  
+Ability: Rough Skin  
+Adamant Nature  
+- Earthquake  
+- Rock Tomb  
+- Rock Slide  
+- Stomping Tantrum  
+
+Incineroar @ Chople Berry  
+Ability: Intimidate  
+Careful Nature  
+- Flare Blitz  
+- Fake Out  
+- Protect  
+- Parting Shot  
+
+Ninetales-Alola @ Focus Sash  
+Ability: Snow Warning  
+Timid Nature  
+- Blizzard  
+- Freeze-Dry  
+- Protect  
+- Encore  
+
+Gengar @ Gengarite  
+Ability: Cursed Body  
+Timid Nature  
+- Sludge Bomb  
+- Protect  
+- Perish Song  
+- Shadow Ball  
+
+Aegislash @ Spell Tag  
+Ability: Stance Change  
+Adamant Nature  
+- Poltergeist  
+- Shadow Sneak  
+- King's Shield  
+- Sacred Sword  
+

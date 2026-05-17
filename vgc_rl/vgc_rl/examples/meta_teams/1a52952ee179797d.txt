@@ -1,0 +1,42 @@
+Charizard @ Charizardite Y  
+Ability: Blaze  
+- Heat Wave  
+- Weather Ball  
+- Solar Beam  
+- Protect  
+
+Kingambit @ Chople Berry  
+Ability: Defiant  
+- Kowtow Cleave  
+- Sucker Punch  
+- Low Kick  
+- Iron Head  
+
+Garchomp @ Choice Scarf  
+Ability: Rough Skin  
+- Earthquake  
+- Dragon Claw  
+- Rock Slide  
+- Stomping Tantrum  
+
+Sylveon @ Fairy Feather  
+Ability: Pixilate  
+- Hyper Voice  
+- Yawn  
+- Quick Attack  
+- Detect  
+
+Aerodactyl @ Aerodactylite  
+Ability: Unnerve  
+- Rock Slide  
+- Dual Wingbeat  
+- Tailwind  
+- Wide Guard  
+
+Basculegion @ Focus Sash  
+Ability: Adaptability  
+- Liquidation  
+- Last Respects  
+- Aqua Jet  
+- Protect  
+

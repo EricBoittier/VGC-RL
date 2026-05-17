@@ -1,0 +1,198 @@
+{
+  "label": "Excadrill / Tyranitar / Rotom-Wash / Sneasler / Dragapult / Meganium",
+  "party": [
+    {
+      "name": "Excadrill",
+      "nature": "Adamant",
+      "ability": "Sand Rush",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "High Horsepower"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Tyranitar",
+      "nature": "Adamant",
+      "ability": "Sand Stream",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 20,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 14
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Knock Off"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Ice Punch"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Rotom-Wash",
+      "nature": "Modest",
+      "ability": "Levitate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 15,
+        "spd": 14,
+        "spe": 4
+      },
+      "moves": [
+        {
+          "name": "Thunderbolt"
+        },
+        {
+          "name": "Hydro Pump"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Volt Switch"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 21,
+        "atk": 12,
+        "def": 14,
+        "spa": 0,
+        "spd": 1,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Dragapult",
+      "nature": "Jolly",
+      "ability": "Clear Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dragon Darts"
+        },
+        {
+          "name": "Phantom Force"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Will-O-Wisp"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Colbur Berry"
+    },
+    {
+      "name": "Meganium",
+      "nature": "Modest",
+      "ability": "Overgrow",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 27,
+        "spd": 1,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Weather Ball"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Meganiumite"
+    }
+  ],
+  "pokepast": "https://pokepast.es/bb22c6441ed3116c"
+}

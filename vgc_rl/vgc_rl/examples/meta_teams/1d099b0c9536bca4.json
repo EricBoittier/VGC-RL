@@ -1,0 +1,197 @@
+{
+  "label": "Gardevoir / Talonflame / Garchomp / Rotom-Wash / Kingambit / Zoroark-Hisui",
+  "party": [
+    {
+      "name": "Gardevoir",
+      "nature": "Timid",
+      "ability": "Trace",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Psychic"
+        },
+        {
+          "name": "Mystical Fire"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Gardevoirite"
+    },
+    {
+      "name": "Talonflame",
+      "nature": "Adamant",
+      "ability": "Gale Wings",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Acrobatics"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Jolly",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Haban Berry"
+    },
+    {
+      "name": "Rotom-Wash",
+      "nature": "Bold",
+      "ability": "Levitate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Electroweb"
+        },
+        {
+          "name": "Will-O-Wisp"
+        },
+        {
+          "name": "Thunderbolt"
+        },
+        {
+          "name": "Hydro Pump"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Low Kick"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Black Glasses"
+    },
+    {
+      "name": "Zoroark-Hisui",
+      "nature": "Timid",
+      "ability": "Illusion",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Taunt"
+        },
+        {
+          "name": "Flamethrower"
+        },
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Shadow Ball"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/1d099b0c9536bca4"
+}

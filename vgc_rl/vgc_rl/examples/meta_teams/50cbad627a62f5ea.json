@@ -1,0 +1,198 @@
+{
+  "label": "Venusaur / Scizor / Archaludon / Basculegion / Pelipper / Incineroar",
+  "party": [
+    {
+      "name": "Venusaur",
+      "nature": "",
+      "ability": "Chlorophyll",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Giga Drain"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Earth Power"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Venusaurite"
+    },
+    {
+      "name": "Scizor",
+      "nature": "",
+      "ability": "Technician",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Bullet Punch"
+        },
+        {
+          "name": "Swords Dance"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Scizorite"
+    },
+    {
+      "name": "Archaludon",
+      "nature": "",
+      "ability": "Stamina",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Electro Shot"
+        },
+        {
+          "name": "Draco Meteor"
+        },
+        {
+          "name": "Flash Cannon"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Flip Turn"
+        },
+        {
+          "name": "Aqua Jet"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Pelipper",
+      "nature": "",
+      "ability": "Drizzle",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Helping Hand"
+        },
+        {
+          "name": "Tailwind"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Darkest Lariat"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/50cbad627a62f5ea"
+}

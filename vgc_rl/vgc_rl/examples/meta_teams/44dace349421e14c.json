@@ -1,0 +1,198 @@
+{
+  "label": "Golurk / Farigiraf / Incineroar / Torkoal / Sneasler / Venusaur",
+  "party": [
+    {
+      "name": "Golurk",
+      "nature": "Adamant",
+      "ability": "Iron Fist",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 27,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Headlong Rush"
+        },
+        {
+          "name": "Poltergeist"
+        },
+        {
+          "name": "Ice Punch"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Golurkite"
+    },
+    {
+      "name": "Farigiraf",
+      "nature": "Quiet",
+      "ability": "Armor Tail",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 24,
+        "spa": 0,
+        "spd": 10,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Psychic"
+        },
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Helping Hand"
+        },
+        {
+          "name": "Trick Room"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Impish",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 30,
+        "atk": 1,
+        "def": 21,
+        "spa": 0,
+        "spd": 9,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Throat Chop"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Shuca Berry"
+    },
+    {
+      "name": "Torkoal",
+      "nature": "Quiet",
+      "ability": "Drought",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 20,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 13,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Eruption"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Heat Wave"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charcoal"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 1,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Coaching"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Venusaur",
+      "nature": "Modest",
+      "ability": "Chlorophyll",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 1,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Leaf Storm"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Sleep Powder"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/44dace349421e14c"
+}

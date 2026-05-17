@@ -1,0 +1,42 @@
+Charizard @ Charizardite X  
+Ability: Blaze  
+- Protect  
+- Dragon Dance  
+- Flare Blitz  
+- Dragon Claw  
+
+Scizor @ Scizorite  
+Ability: Technician  
+- Protect  
+- Swords Dance  
+- Bullet Punch  
+- Bug Bite  
+
+Sneasler @ Focus Sash  
+Ability: Poison Touch  
+- Fake Out  
+- Close Combat  
+- Dire Claw  
+- Coaching  
+
+Incineroar @ Shuca Berry  
+Ability: Intimidate  
+- Fake Out  
+- Throat Chop  
+- Parting Shot  
+- Roar  
+
+Sinistcha @ Sitrus Berry  
+Ability: Hospitality  
+- Matcha Gotcha  
+- Trick Room  
+- Rage Powder  
+- Protect  
+
+Milotic @ Leftovers  
+Ability: Competitive  
+- Protect  
+- Icy Wind  
+- Scald  
+- Recover  
+

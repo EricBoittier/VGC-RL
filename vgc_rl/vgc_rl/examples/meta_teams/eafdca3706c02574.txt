@@ -1,0 +1,54 @@
+Kangaskhan @ Kangaskhanite  
+Ability: Scrappy  
+EVs: 32 HP / 32 Atk / 1 Def / 1 SpD  
+Brave Nature  
+- Double-Edge  
+- Fake Out  
+- Hammer Arm  
+- Ice Punch  
+
+Farigiraf @ Sitrus Berry  
+Ability: Armor Tail  
+EVs: 17 HP / 17 Def / 10 SpA / 20 SpD / 2 Spe  
+Quiet Nature  
+- Psychic  
+- Hyper Voice  
+- Trick Room  
+- Protect  
+
+Torkoal @ Charcoal  
+Ability: Drought  
+EVs: 32 HP / 1 Def / 32 SpA / 1 SpD  
+Quiet Nature  
+- Weather Ball  
+- Eruption  
+- Heat Wave  
+- Protect  
+
+Sneasler @ White Herb  
+Ability: Unburden  
+EVs: 17 HP / 17 Atk / 16 Def / 1 SpD / 15 Spe  
+Adamant Nature  
+- Close Combat  
+- Dire Claw  
+- Fake Out  
+- U-turn  
+
+Charizard @ Charizardite Y  
+Ability: Solar Power  
+EVs: 6 HP / 16 Def / 31 SpA / 13 Spe  
+Modest Nature  
+- Heat Wave  
+- Weather Ball  
+- Solar Beam  
+- Protect  
+
+Primarina @ Mystic Water  
+Ability: Liquid Voice  
+EVs: 30 HP / 8 Def / 28 SpA  
+Quiet Nature  
+- Hyper Voice  
+- Moonblast  
+- Substitute  
+- Protect  
+

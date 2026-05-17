@@ -1,0 +1,198 @@
+{
+  "label": "Talonflame / Garchomp / Basculegion / Kingambit / Sneasler / Floette",
+  "party": [
+    {
+      "name": "Talonflame",
+      "nature": "Adamant",
+      "ability": "Gale Wings",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Tailwind"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sharp Beak"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Jolly",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Dragon Claw"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Roseli Berry"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 13,
+        "atk": 28,
+        "def": 8,
+        "spa": 0,
+        "spd": 8,
+        "spe": 9
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 25,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 9
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Kowtow Cleave"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Black Glasses"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 10,
+        "atk": 15,
+        "def": 23,
+        "spa": 0,
+        "spd": 0,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Gunk Shot"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Floette",
+      "nature": "Modest",
+      "ability": "Flower Veil",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 10,
+        "atk": 0,
+        "def": 19,
+        "spa": 25,
+        "spd": 0,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Light of Ruin"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Moonblast"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Floettite"
+    }
+  ],
+  "pokepast": "https://pokepast.es/fd62b2862d49c78b"
+}

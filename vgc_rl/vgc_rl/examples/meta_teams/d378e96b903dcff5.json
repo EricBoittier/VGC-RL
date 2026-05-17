@@ -1,0 +1,198 @@
+{
+  "label": "Venusaur / Tyranitar / Corviknight / Garchomp / Rotom-Heat / Primarina",
+  "party": [
+    {
+      "name": "Venusaur",
+      "nature": "Modest",
+      "ability": "Chlorophyll",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 8,
+        "spa": 18,
+        "spd": 0,
+        "spe": 8
+      },
+      "moves": [
+        {
+          "name": "Giga Drain"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Earth Power"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Venusaurite"
+    },
+    {
+      "name": "Tyranitar",
+      "nature": "Adamant",
+      "ability": "Sand Stream",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 18,
+        "atk": 26,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 22
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Knock Off"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Corviknight",
+      "nature": "Adamant",
+      "ability": "Mirror Armor",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 13,
+        "def": 0,
+        "spa": 0,
+        "spd": 13,
+        "spe": 8
+      },
+      "moves": [
+        {
+          "name": "Brave Bird"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Roost"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Haban Berry"
+    },
+    {
+      "name": "Rotom-Heat",
+      "nature": "Timid",
+      "ability": "Levitate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 12,
+        "atk": 0,
+        "def": 0,
+        "spa": 29,
+        "spd": 0,
+        "spe": 25
+      },
+      "moves": [
+        {
+          "name": "Thunderbolt"
+        },
+        {
+          "name": "Overheat"
+        },
+        {
+          "name": "Volt Switch"
+        },
+        {
+          "name": "Electroweb"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Primarina",
+      "nature": "Modest",
+      "ability": "Liquid Voice",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 16,
+        "atk": 0,
+        "def": 21,
+        "spa": 24,
+        "spd": 0,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Hydro Cannon"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/d378e96b903dcff5"
+}

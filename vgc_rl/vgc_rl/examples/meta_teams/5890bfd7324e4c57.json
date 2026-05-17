@@ -1,0 +1,197 @@
+{
+  "label": "Lopunny / Sylveon / Talonflame / Basculegion / Dragonite / Archaludon",
+  "party": [
+    {
+      "name": "Lopunny",
+      "nature": "Jolly",
+      "ability": "Cute Charm",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 5,
+        "atk": 29,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Giga Impact"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Encore"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Lopunnite"
+    },
+    {
+      "name": "Sylveon",
+      "nature": "Modest",
+      "ability": "Pixilate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 11,
+        "atk": 0,
+        "def": 27,
+        "spa": 20,
+        "spd": 0,
+        "spe": 8
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Hyper Beam"
+        },
+        {
+          "name": "Quick Attack"
+        },
+        {
+          "name": "Detect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Fairy Feather"
+    },
+    {
+      "name": "Talonflame",
+      "nature": "Adamant",
+      "ability": "Gale Wings",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 7,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 27
+      },
+      "moves": [
+        {
+          "name": "Acrobatics"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Dragonite",
+      "nature": "Modest",
+      "ability": "Inner Focus",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dragon Pulse"
+        },
+        {
+          "name": "Air Slash"
+        },
+        {
+          "name": "Extreme Speed"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Dragoninite"
+    },
+    {
+      "name": "Archaludon",
+      "nature": "Modest",
+      "ability": "Sturdy",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Flash Cannon"
+        },
+        {
+          "name": "Draco Meteor"
+        },
+        {
+          "name": "Thunderbolt"
+        },
+        {
+          "name": "Aura Sphere"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    }
+  ],
+  "pokepast": "https://pokepast.es/5890bfd7324e4c57"
+}

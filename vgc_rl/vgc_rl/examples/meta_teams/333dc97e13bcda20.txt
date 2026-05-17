@@ -1,0 +1,48 @@
+Charizard @ Charizardite Y  
+Ability: Solar Power  
+Timid Nature  
+- Heat Wave  
+- Air Slash  
+- Solar Beam  
+- Protect  
+
+Garchomp @ Choice Scarf  
+Ability: Rough Skin  
+Jolly Nature  
+- Earthquake  
+- Stomping Tantrum  
+- Dragon Claw  
+- Rock Slide  
+
+Sneasler @ White Herb  
+Ability: Unburden  
+Jolly Nature  
+- Dire Claw  
+- Close Combat  
+- Fake Out  
+- Protect  
+
+Kingambit @ Chople Berry  
+Ability: Defiant  
+Adamant Nature  
+- Kowtow Cleave  
+- Sucker Punch  
+- Iron Head  
+- Protect  
+
+Aerodactyl @ Focus Sash  
+Ability: Unnerve  
+Jolly Nature  
+- Rock Slide  
+- Dual Wingbeat  
+- Tailwind  
+- Protect  
+
+Floette-Eternal @ Floettite  
+Ability: Flower Veil  
+Modest Nature  
+- Moonblast  
+- Dazzling Gleam  
+- Calm Mind  
+- Protect  
+

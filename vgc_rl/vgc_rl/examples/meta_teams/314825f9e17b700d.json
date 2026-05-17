@@ -1,0 +1,198 @@
+{
+  "label": "Scovillain / Kingambit / Sylveon / Basculegion / Aerodactyl / Sneasler",
+  "party": [
+    {
+      "name": "Scovillain",
+      "nature": "Calm",
+      "ability": "Moody",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 19,
+        "spa": 0,
+        "spd": 15,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Overheat"
+        },
+        {
+          "name": "Leech Seed"
+        },
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Scovillainite"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 31,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 1
+      },
+      "moves": [
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Iron Head"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Sylveon",
+      "nature": "Modest",
+      "ability": "Pixilate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 19,
+        "atk": 0,
+        "def": 29,
+        "spa": 12,
+        "spd": 0,
+        "spe": 6
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Quick Attack"
+        },
+        {
+          "name": "Calm Mind"
+        },
+        {
+          "name": "Detect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Fairy Feather"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Jolly",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Aerodactyl",
+      "nature": "Jolly",
+      "ability": "Unnerve",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 14,
+        "atk": 22,
+        "def": 1,
+        "spa": 0,
+        "spd": 0,
+        "spe": 29
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Rock Tomb"
+        },
+        {
+          "name": "Tailwind"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Aerodactylite"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 19,
+        "atk": 0,
+        "def": 32,
+        "spa": 0,
+        "spd": 0,
+        "spe": 15
+      },
+      "moves": [
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Feint"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    }
+  ],
+  "pokepast": "https://pokepast.es/314825f9e17b700d"
+}

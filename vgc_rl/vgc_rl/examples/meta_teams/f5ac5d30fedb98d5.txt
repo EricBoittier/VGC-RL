@@ -1,0 +1,47 @@
+Basculegion @ Choice Scarf  
+Ability: Adaptability  
+Shiny: Yes  
+- Wave Crash  
+- Last Respects  
+- Flip Turn  
+- Aqua Jet  
+
+Sneasler @ White Herb  
+Ability: Unburden  
+Shiny: Yes  
+- Protect  
+- Fake Out  
+- Close Combat  
+- Dire Claw  
+
+Meganium @ Meganiumite  
+Ability: Overgrow  
+Shiny: Yes  
+- Protect  
+- Solar Beam  
+- Dazzling Gleam  
+- Weather Ball  
+
+Aerodactyl @ Focus Sash  
+Ability: Unnerve  
+- Protect  
+- Rock Slide  
+- Dual Wingbeat  
+- Tailwind  
+
+Kingambit @ Black Glasses  
+Ability: Defiant  
+Shiny: Yes  
+- Low Kick  
+- Iron Head  
+- Kowtow Cleave  
+- Sucker Punch  
+
+Farigiraf @ Colbur Berry  
+Ability: Armor Tail  
+Shiny: Yes  
+- Trick Room  
+- Helping Hand  
+- Psychic  
+- Hyper Voice  
+

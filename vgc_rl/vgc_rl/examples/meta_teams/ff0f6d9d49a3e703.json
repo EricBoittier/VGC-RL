@@ -1,0 +1,198 @@
+{
+  "label": "Froslass / Milotic / Basculegion / Sneasler / Meowstic / Kingambit",
+  "party": [
+    {
+      "name": "Froslass",
+      "nature": "Modest",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 26,
+        "atk": 0,
+        "def": 2,
+        "spa": 21,
+        "spd": 1,
+        "spe": 16
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Blizzard"
+        },
+        {
+          "name": "Shadow Ball"
+        },
+        {
+          "name": "Substitute"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Froslassite"
+    },
+    {
+      "name": "Milotic",
+      "nature": "Calm",
+      "ability": "Competitive",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 30,
+        "spa": 0,
+        "spd": 0,
+        "spe": 4
+      },
+      "moves": [
+        {
+          "name": "Scald"
+        },
+        {
+          "name": "Whirlpool"
+        },
+        {
+          "name": "Life Dew"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 21,
+        "atk": 0,
+        "def": 30,
+        "spa": 0,
+        "spd": 0,
+        "spe": 15
+      },
+      "moves": [
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Throat Chop"
+        },
+        {
+          "name": "Substitute"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Meowstic",
+      "nature": "Bold",
+      "ability": "Prankster",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 23,
+        "spa": 0,
+        "spd": 11,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Yawn"
+        },
+        {
+          "name": "Rain Dance"
+        },
+        {
+          "name": "Reflect"
+        },
+        {
+          "name": "Light Screen"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 0,
+        "spe": 1
+      },
+      "moves": [
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Iron Head"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/ff0f6d9d49a3e703"
+}

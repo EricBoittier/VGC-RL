@@ -1,0 +1,730 @@
+{
+  "version": 1,
+  "source": "src/data/movesets-champions.ts",
+  "megaFormCount": 60,
+  "lookupCount": 60,
+  "megaForms": [
+    {
+      "mega": "Abomasnow-Mega",
+      "ability": "Snow Warning",
+      "item": "Abomasite"
+    },
+    {
+      "mega": "Absol-Mega",
+      "ability": "Magic Bounce",
+      "item": "Absolite"
+    },
+    {
+      "mega": "Aerodactyl-Mega",
+      "ability": "Tough Claws",
+      "item": "Aerodactylite"
+    },
+    {
+      "mega": "Aggron-Mega",
+      "ability": "Filter",
+      "item": "Aggronite"
+    },
+    {
+      "mega": "Alakazam-Mega",
+      "ability": "Trace",
+      "item": "Alakazite"
+    },
+    {
+      "mega": "Altaria-Mega",
+      "ability": "Pixilate",
+      "item": "Altarianite"
+    },
+    {
+      "mega": "Ampharos-Mega",
+      "ability": "Mold Breaker",
+      "item": "Ampharosite"
+    },
+    {
+      "mega": "Audino-Mega",
+      "ability": "Healer",
+      "item": "Audinite"
+    },
+    {
+      "mega": "Banette-Mega",
+      "ability": "Prankster",
+      "item": "Banettite"
+    },
+    {
+      "mega": "Beedrill-Mega",
+      "ability": "Adaptability",
+      "item": "Beedrillite"
+    },
+    {
+      "mega": "Blastoise-Mega",
+      "ability": "Mega Launcher",
+      "item": "Blastoisinite"
+    },
+    {
+      "mega": "Camerupt-Mega",
+      "ability": "Sheer Force",
+      "item": "Cameruptite"
+    },
+    {
+      "mega": "Chandelure-Mega",
+      "ability": "Infiltrator",
+      "item": "Chandelurite"
+    },
+    {
+      "mega": "Charizard-Mega-X",
+      "ability": "Tough Claws",
+      "item": "Charizardite X"
+    },
+    {
+      "mega": "Charizard-Mega-Y",
+      "ability": "Drought",
+      "item": "Charizardite Y"
+    },
+    {
+      "mega": "Chesnaught-Mega",
+      "ability": "Bulletproof",
+      "item": "Chesnaughtite"
+    },
+    {
+      "mega": "Chimecho-Mega",
+      "ability": "Levitate",
+      "item": "Chimechite"
+    },
+    {
+      "mega": "Clefable-Mega",
+      "ability": "Magic Bounce",
+      "item": "Clefablite"
+    },
+    {
+      "mega": "Crabominable-Mega",
+      "ability": "Iron Fist",
+      "item": "Crabominite"
+    },
+    {
+      "mega": "Delphox-Mega",
+      "ability": "Levitate",
+      "item": "Delphoxite"
+    },
+    {
+      "mega": "Dragonite-Mega",
+      "ability": "Multiscale",
+      "item": "Dragoninite"
+    },
+    {
+      "mega": "Drampa-Mega",
+      "ability": "Berserk",
+      "item": "Drampanite"
+    },
+    {
+      "mega": "Emboar-Mega",
+      "ability": "Mold Breaker",
+      "item": "Emboarite"
+    },
+    {
+      "mega": "Excadrill-Mega",
+      "ability": "Piercing Drill",
+      "item": "Excadrite"
+    },
+    {
+      "mega": "Feraligatr-Mega",
+      "ability": "Dragonize",
+      "item": "Feraligite"
+    },
+    {
+      "mega": "Floette-Mega",
+      "ability": "Fairy Aura",
+      "item": "Floettite"
+    },
+    {
+      "mega": "Froslass-Mega",
+      "ability": "Snow Warning",
+      "item": "Froslassite"
+    },
+    {
+      "mega": "Gallade-Mega",
+      "ability": "Inner Focus",
+      "item": "Galladite"
+    },
+    {
+      "mega": "Garchomp-Mega",
+      "ability": "Sand Force",
+      "item": "Garchompite"
+    },
+    {
+      "mega": "Gardevoir-Mega",
+      "ability": "Pixilate",
+      "item": "Gardevoirite"
+    },
+    {
+      "mega": "Gengar-Mega",
+      "ability": "Shadow Tag",
+      "item": "Gengarite"
+    },
+    {
+      "mega": "Glalie-Mega",
+      "ability": "Refrigerate",
+      "item": "Glalitite"
+    },
+    {
+      "mega": "Glimmora-Mega",
+      "ability": "Adaptability",
+      "item": "Glimmoranite"
+    },
+    {
+      "mega": "Golurk-Mega",
+      "ability": "Unseen Fist",
+      "item": "Golurkite"
+    },
+    {
+      "mega": "Greninja-Mega",
+      "ability": "Protean",
+      "item": "Greninjite"
+    },
+    {
+      "mega": "Gyarados-Mega",
+      "ability": "Mold Breaker",
+      "item": "Gyaradosite"
+    },
+    {
+      "mega": "Hawlucha-Mega",
+      "ability": "No Guard",
+      "item": "Hawluchanite"
+    },
+    {
+      "mega": "Heracross-Mega",
+      "ability": "Skill Link",
+      "item": "Heracronite"
+    },
+    {
+      "mega": "Houndoom-Mega",
+      "ability": "Solar Power",
+      "item": "Houndoominite"
+    },
+    {
+      "mega": "Kangaskhan-Mega",
+      "ability": "Parental Bond",
+      "item": "Kangaskhanite"
+    },
+    {
+      "mega": "Lopunny-Mega",
+      "ability": "Scrappy",
+      "item": "Lopunnite"
+    },
+    {
+      "mega": "Lucario-Mega",
+      "ability": "Adaptability",
+      "item": "Lucarionite"
+    },
+    {
+      "mega": "Manectric-Mega",
+      "ability": "Intimidate",
+      "item": "Manectite"
+    },
+    {
+      "mega": "Medicham-Mega",
+      "ability": "Pure Power",
+      "item": "Medichamite"
+    },
+    {
+      "mega": "Meganium-Mega",
+      "ability": "Mega Sol",
+      "item": "Meganiumite"
+    },
+    {
+      "mega": "Meowstic-F-Mega",
+      "ability": "Trace",
+      "item": "Meowsticite"
+    },
+    {
+      "mega": "Meowstic-M-Mega",
+      "ability": "Trace",
+      "item": "Meowsticite"
+    },
+    {
+      "mega": "Pidgeot-Mega",
+      "ability": "No Guard",
+      "item": "Pidgeotite"
+    },
+    {
+      "mega": "Pinsir-Mega",
+      "ability": "Aerilate",
+      "item": "Pinsirite"
+    },
+    {
+      "mega": "Sableye-Mega",
+      "ability": "Magic Bounce",
+      "item": "Sablenite"
+    },
+    {
+      "mega": "Scizor-Mega",
+      "ability": "Technician",
+      "item": "Scizorite"
+    },
+    {
+      "mega": "Scovillain-Mega",
+      "ability": "Spicy Spray",
+      "item": "Scovillainite"
+    },
+    {
+      "mega": "Sharpedo-Mega",
+      "ability": "Strong Jaw",
+      "item": "Sharpedonite"
+    },
+    {
+      "mega": "Skarmory-Mega",
+      "ability": "Stalwart",
+      "item": "Skarmorite"
+    },
+    {
+      "mega": "Slowbro-Mega",
+      "ability": "Shell Armor",
+      "item": "Slowbronite"
+    },
+    {
+      "mega": "Starmie-Mega",
+      "ability": "Huge Power",
+      "item": "Starminite"
+    },
+    {
+      "mega": "Steelix-Mega",
+      "ability": "Sand Force",
+      "item": "Steelixite"
+    },
+    {
+      "mega": "Tyranitar-Mega",
+      "ability": "Sand Stream",
+      "item": "Tyranitarite"
+    },
+    {
+      "mega": "Venusaur-Mega",
+      "ability": "Thick Fat",
+      "item": "Venusaurite"
+    },
+    {
+      "mega": "Victreebel-Mega",
+      "ability": "Innards Out",
+      "item": "Victreebelite"
+    }
+  ],
+  "lookups": [
+    {
+      "itemKey": "abomasite",
+      "baseSpecies": "Abomasnow",
+      "mega": "Abomasnow-Mega",
+      "ability": "Snow Warning",
+      "item": "Abomasite"
+    },
+    {
+      "itemKey": "absolite",
+      "baseSpecies": "Absol",
+      "mega": "Absol-Mega",
+      "ability": "Magic Bounce",
+      "item": "Absolite"
+    },
+    {
+      "itemKey": "aerodactylite",
+      "baseSpecies": "Aerodactyl",
+      "mega": "Aerodactyl-Mega",
+      "ability": "Tough Claws",
+      "item": "Aerodactylite"
+    },
+    {
+      "itemKey": "aggronite",
+      "baseSpecies": "Aggron",
+      "mega": "Aggron-Mega",
+      "ability": "Filter",
+      "item": "Aggronite"
+    },
+    {
+      "itemKey": "alakazite",
+      "baseSpecies": "Alakazam",
+      "mega": "Alakazam-Mega",
+      "ability": "Trace",
+      "item": "Alakazite"
+    },
+    {
+      "itemKey": "altarianite",
+      "baseSpecies": "Altaria",
+      "mega": "Altaria-Mega",
+      "ability": "Pixilate",
+      "item": "Altarianite"
+    },
+    {
+      "itemKey": "ampharosite",
+      "baseSpecies": "Ampharos",
+      "mega": "Ampharos-Mega",
+      "ability": "Mold Breaker",
+      "item": "Ampharosite"
+    },
+    {
+      "itemKey": "audinite",
+      "baseSpecies": "Audino",
+      "mega": "Audino-Mega",
+      "ability": "Healer",
+      "item": "Audinite"
+    },
+    {
+      "itemKey": "banettite",
+      "baseSpecies": "Banette",
+      "mega": "Banette-Mega",
+      "ability": "Prankster",
+      "item": "Banettite"
+    },
+    {
+      "itemKey": "beedrillite",
+      "baseSpecies": "Beedrill",
+      "mega": "Beedrill-Mega",
+      "ability": "Adaptability",
+      "item": "Beedrillite"
+    },
+    {
+      "itemKey": "blastoisinite",
+      "baseSpecies": "Blastoise",
+      "mega": "Blastoise-Mega",
+      "ability": "Mega Launcher",
+      "item": "Blastoisinite"
+    },
+    {
+      "itemKey": "cameruptite",
+      "baseSpecies": "Camerupt",
+      "mega": "Camerupt-Mega",
+      "ability": "Sheer Force",
+      "item": "Cameruptite"
+    },
+    {
+      "itemKey": "chandelurite",
+      "baseSpecies": "Chandelure",
+      "mega": "Chandelure-Mega",
+      "ability": "Infiltrator",
+      "item": "Chandelurite"
+    },
+    {
+      "itemKey": "charizardite x",
+      "baseSpecies": "Charizard",
+      "mega": "Charizard-Mega-X",
+      "ability": "Tough Claws",
+      "item": "Charizardite X"
+    },
+    {
+      "itemKey": "charizardite y",
+      "baseSpecies": "Charizard",
+      "mega": "Charizard-Mega-Y",
+      "ability": "Drought",
+      "item": "Charizardite Y"
+    },
+    {
+      "itemKey": "chesnaughtite",
+      "baseSpecies": "Chesnaught",
+      "mega": "Chesnaught-Mega",
+      "ability": "Bulletproof",
+      "item": "Chesnaughtite"
+    },
+    {
+      "itemKey": "chimechite",
+      "baseSpecies": "Chimecho",
+      "mega": "Chimecho-Mega",
+      "ability": "Levitate",
+      "item": "Chimechite"
+    },
+    {
+      "itemKey": "clefablite",
+      "baseSpecies": "Clefable",
+      "mega": "Clefable-Mega",
+      "ability": "Magic Bounce",
+      "item": "Clefablite"
+    },
+    {
+      "itemKey": "crabominite",
+      "baseSpecies": "Crabominable",
+      "mega": "Crabominable-Mega",
+      "ability": "Iron Fist",
+      "item": "Crabominite"
+    },
+    {
+      "itemKey": "delphoxite",
+      "baseSpecies": "Delphox",
+      "mega": "Delphox-Mega",
+      "ability": "Levitate",
+      "item": "Delphoxite"
+    },
+    {
+      "itemKey": "dragoninite",
+      "baseSpecies": "Dragonite",
+      "mega": "Dragonite-Mega",
+      "ability": "Multiscale",
+      "item": "Dragoninite"
+    },
+    {
+      "itemKey": "drampanite",
+      "baseSpecies": "Drampa",
+      "mega": "Drampa-Mega",
+      "ability": "Berserk",
+      "item": "Drampanite"
+    },
+    {
+      "itemKey": "emboarite",
+      "baseSpecies": "Emboar",
+      "mega": "Emboar-Mega",
+      "ability": "Mold Breaker",
+      "item": "Emboarite"
+    },
+    {
+      "itemKey": "excadrite",
+      "baseSpecies": "Excadrill",
+      "mega": "Excadrill-Mega",
+      "ability": "Piercing Drill",
+      "item": "Excadrite"
+    },
+    {
+      "itemKey": "feraligite",
+      "baseSpecies": "Feraligatr",
+      "mega": "Feraligatr-Mega",
+      "ability": "Dragonize",
+      "item": "Feraligite"
+    },
+    {
+      "itemKey": "floettite",
+      "baseSpecies": "Floette",
+      "mega": "Floette-Mega",
+      "ability": "Fairy Aura",
+      "item": "Floettite"
+    },
+    {
+      "itemKey": "froslassite",
+      "baseSpecies": "Froslass",
+      "mega": "Froslass-Mega",
+      "ability": "Snow Warning",
+      "item": "Froslassite"
+    },
+    {
+      "itemKey": "galladite",
+      "baseSpecies": "Gallade",
+      "mega": "Gallade-Mega",
+      "ability": "Inner Focus",
+      "item": "Galladite"
+    },
+    {
+      "itemKey": "garchompite",
+      "baseSpecies": "Garchomp",
+      "mega": "Garchomp-Mega",
+      "ability": "Sand Force",
+      "item": "Garchompite"
+    },
+    {
+      "itemKey": "gardevoirite",
+      "baseSpecies": "Gardevoir",
+      "mega": "Gardevoir-Mega",
+      "ability": "Pixilate",
+      "item": "Gardevoirite"
+    },
+    {
+      "itemKey": "gengarite",
+      "baseSpecies": "Gengar",
+      "mega": "Gengar-Mega",
+      "ability": "Shadow Tag",
+      "item": "Gengarite"
+    },
+    {
+      "itemKey": "glalitite",
+      "baseSpecies": "Glalie",
+      "mega": "Glalie-Mega",
+      "ability": "Refrigerate",
+      "item": "Glalitite"
+    },
+    {
+      "itemKey": "glimmoranite",
+      "baseSpecies": "Glimmora",
+      "mega": "Glimmora-Mega",
+      "ability": "Adaptability",
+      "item": "Glimmoranite"
+    },
+    {
+      "itemKey": "golurkite",
+      "baseSpecies": "Golurk",
+      "mega": "Golurk-Mega",
+      "ability": "Unseen Fist",
+      "item": "Golurkite"
+    },
+    {
+      "itemKey": "greninjite",
+      "baseSpecies": "Greninja",
+      "mega": "Greninja-Mega",
+      "ability": "Protean",
+      "item": "Greninjite"
+    },
+    {
+      "itemKey": "gyaradosite",
+      "baseSpecies": "Gyarados",
+      "mega": "Gyarados-Mega",
+      "ability": "Mold Breaker",
+      "item": "Gyaradosite"
+    },
+    {
+      "itemKey": "hawluchanite",
+      "baseSpecies": "Hawlucha",
+      "mega": "Hawlucha-Mega",
+      "ability": "No Guard",
+      "item": "Hawluchanite"
+    },
+    {
+      "itemKey": "heracronite",
+      "baseSpecies": "Heracross",
+      "mega": "Heracross-Mega",
+      "ability": "Skill Link",
+      "item": "Heracronite"
+    },
+    {
+      "itemKey": "houndoominite",
+      "baseSpecies": "Houndoom",
+      "mega": "Houndoom-Mega",
+      "ability": "Solar Power",
+      "item": "Houndoominite"
+    },
+    {
+      "itemKey": "kangaskhanite",
+      "baseSpecies": "Kangaskhan",
+      "mega": "Kangaskhan-Mega",
+      "ability": "Parental Bond",
+      "item": "Kangaskhanite"
+    },
+    {
+      "itemKey": "lopunnite",
+      "baseSpecies": "Lopunny",
+      "mega": "Lopunny-Mega",
+      "ability": "Scrappy",
+      "item": "Lopunnite"
+    },
+    {
+      "itemKey": "lucarionite",
+      "baseSpecies": "Lucario",
+      "mega": "Lucario-Mega",
+      "ability": "Adaptability",
+      "item": "Lucarionite"
+    },
+    {
+      "itemKey": "manectite",
+      "baseSpecies": "Manectric",
+      "mega": "Manectric-Mega",
+      "ability": "Intimidate",
+      "item": "Manectite"
+    },
+    {
+      "itemKey": "medichamite",
+      "baseSpecies": "Medicham",
+      "mega": "Medicham-Mega",
+      "ability": "Pure Power",
+      "item": "Medichamite"
+    },
+    {
+      "itemKey": "meganiumite",
+      "baseSpecies": "Meganium",
+      "mega": "Meganium-Mega",
+      "ability": "Mega Sol",
+      "item": "Meganiumite"
+    },
+    {
+      "itemKey": "meowsticite",
+      "baseSpecies": "Meowstic",
+      "mega": "Meowstic-M-Mega",
+      "ability": "Trace",
+      "item": "Meowsticite"
+    },
+    {
+      "itemKey": "meowsticite",
+      "baseSpecies": "Meowstic-F",
+      "mega": "Meowstic-F-Mega",
+      "ability": "Trace",
+      "item": "Meowsticite"
+    },
+    {
+      "itemKey": "pidgeotite",
+      "baseSpecies": "Pidgeot",
+      "mega": "Pidgeot-Mega",
+      "ability": "No Guard",
+      "item": "Pidgeotite"
+    },
+    {
+      "itemKey": "pinsirite",
+      "baseSpecies": "Pinsir",
+      "mega": "Pinsir-Mega",
+      "ability": "Aerilate",
+      "item": "Pinsirite"
+    },
+    {
+      "itemKey": "sablenite",
+      "baseSpecies": "Sableye",
+      "mega": "Sableye-Mega",
+      "ability": "Magic Bounce",
+      "item": "Sablenite"
+    },
+    {
+      "itemKey": "scizorite",
+      "baseSpecies": "Scizor",
+      "mega": "Scizor-Mega",
+      "ability": "Technician",
+      "item": "Scizorite"
+    },
+    {
+      "itemKey": "scovillainite",
+      "baseSpecies": "Scovillain",
+      "mega": "Scovillain-Mega",
+      "ability": "Spicy Spray",
+      "item": "Scovillainite"
+    },
+    {
+      "itemKey": "sharpedonite",
+      "baseSpecies": "Sharpedo",
+      "mega": "Sharpedo-Mega",
+      "ability": "Strong Jaw",
+      "item": "Sharpedonite"
+    },
+    {
+      "itemKey": "skarmorite",
+      "baseSpecies": "Skarmory",
+      "mega": "Skarmory-Mega",
+      "ability": "Stalwart",
+      "item": "Skarmorite"
+    },
+    {
+      "itemKey": "slowbronite",
+      "baseSpecies": "Slowbro",
+      "mega": "Slowbro-Mega",
+      "ability": "Shell Armor",
+      "item": "Slowbronite"
+    },
+    {
+      "itemKey": "starminite",
+      "baseSpecies": "Starmie",
+      "mega": "Starmie-Mega",
+      "ability": "Huge Power",
+      "item": "Starminite"
+    },
+    {
+      "itemKey": "steelixite",
+      "baseSpecies": "Steelix",
+      "mega": "Steelix-Mega",
+      "ability": "Sand Force",
+      "item": "Steelixite"
+    },
+    {
+      "itemKey": "tyranitarite",
+      "baseSpecies": "Tyranitar",
+      "mega": "Tyranitar-Mega",
+      "ability": "Sand Stream",
+      "item": "Tyranitarite"
+    },
+    {
+      "itemKey": "venusaurite",
+      "baseSpecies": "Venusaur",
+      "mega": "Venusaur-Mega",
+      "ability": "Thick Fat",
+      "item": "Venusaurite"
+    },
+    {
+      "itemKey": "victreebelite",
+      "baseSpecies": "Victreebel",
+      "mega": "Victreebel-Mega",
+      "ability": "Innards Out",
+      "item": "Victreebelite"
+    }
+  ]
+}

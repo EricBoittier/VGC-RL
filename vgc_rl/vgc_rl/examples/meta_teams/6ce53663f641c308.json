@@ -1,0 +1,198 @@
+{
+  "label": "Typhlosion-Hisui / Basculegion / Golurk / Froslass / Sinistcha / Aegislash",
+  "party": [
+    {
+      "name": "Typhlosion-Hisui",
+      "nature": "Timid",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 2,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Infernal Parade"
+        },
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Eruption"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 20,
+        "atk": 32,
+        "def": 8,
+        "spa": 0,
+        "spd": 1,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Golurk",
+      "nature": "Brave",
+      "ability": "No Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 32,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Headlong Rush"
+        },
+        {
+          "name": "Thunder Punch"
+        },
+        {
+          "name": "Close Combat"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Golurkite"
+    },
+    {
+      "name": "Froslass",
+      "nature": "Modest",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 30,
+        "atk": 0,
+        "def": 2,
+        "spa": 3,
+        "spd": 1,
+        "spe": 30
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Aurora Veil"
+        },
+        {
+          "name": "Blizzard"
+        },
+        {
+          "name": "Shadow Ball"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Froslassite"
+    },
+    {
+      "name": "Sinistcha",
+      "nature": "Calm",
+      "ability": "Hospitality",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 9,
+        "spa": 15,
+        "spd": 10,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Matcha Gotcha"
+        },
+        {
+          "name": "Trick Room"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mental Herb"
+    },
+    {
+      "name": "Aegislash",
+      "nature": "Sassy",
+      "ability": "Stance Change",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 25,
+        "atk": 32,
+        "def": 9,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "King's Shield"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Shadow Sneak"
+        },
+        {
+          "name": "Psycho Cut"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    }
+  ],
+  "pokepast": "https://pokepast.es/6ce53663f641c308"
+}

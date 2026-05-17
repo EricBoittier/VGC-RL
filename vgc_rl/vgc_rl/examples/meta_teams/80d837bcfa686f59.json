@@ -1,0 +1,198 @@
+{
+  "label": "Blastoise / Sinistcha / Sneasler / Basculegion / Talonflame / Gengar",
+  "party": [
+    {
+      "name": "Blastoise",
+      "nature": "Modest",
+      "ability": "Rain Dish",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 22,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 12
+      },
+      "moves": [
+        {
+          "name": "Water Spout"
+        },
+        {
+          "name": "Dark Pulse"
+        },
+        {
+          "name": "Shell Smash"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Blastoisinite"
+    },
+    {
+      "name": "Sinistcha",
+      "nature": "Calm",
+      "ability": "Hospitality",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 12,
+        "spa": 0,
+        "spd": 23,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Matcha Gotcha"
+        },
+        {
+          "name": "Life Dew"
+        },
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Kasib Berry"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 25,
+        "atk": 8,
+        "def": 0,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Throat Chop"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Talonflame",
+      "nature": "Adamant",
+      "ability": "Gale Wings",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 8,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 26
+      },
+      "moves": [
+        {
+          "name": "Brave Bird"
+        },
+        {
+          "name": "Upper Hand"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sharp Beak"
+    },
+    {
+      "name": "Gengar",
+      "nature": "Timid",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 1,
+        "spa": 8,
+        "spd": 0,
+        "spe": 26
+      },
+      "moves": [
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Icy Wind"
+        },
+        {
+          "name": "Rain Dance"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Shuca Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/80d837bcfa686f59"
+}

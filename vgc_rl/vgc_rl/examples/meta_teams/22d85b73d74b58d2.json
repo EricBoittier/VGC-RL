@@ -1,0 +1,198 @@
+{
+  "label": "Lopunny / Basculegion / Pelipper / Archaludon / Sinistcha / Kingambit",
+  "party": [
+    {
+      "name": "Lopunny",
+      "nature": "Jolly",
+      "ability": "Limber",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Rain Dance"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Lopunnite"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Swift Swim",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Mystic Water"
+    },
+    {
+      "name": "Pelipper",
+      "nature": "Timid",
+      "ability": "Drizzle",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Tailwind"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Archaludon",
+      "nature": "Modest",
+      "ability": "Sturdy",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Electro Shot"
+        },
+        {
+          "name": "Flash Cannon"
+        },
+        {
+          "name": "Draco Meteor"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Magnet"
+    },
+    {
+      "name": "Sinistcha",
+      "nature": "Calm",
+      "ability": "Hospitality",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 14,
+        "spa": 0,
+        "spd": 20,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Matcha Gotcha"
+        },
+        {
+          "name": "Life Dew"
+        },
+        {
+          "name": "Trick Room"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Swords Dance"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    }
+  ],
+  "pokepast": "https://pokepast.es/22d85b73d74b58d2"
+}

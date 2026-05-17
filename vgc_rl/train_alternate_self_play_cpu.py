@@ -43,6 +43,11 @@ def main() -> int:
     )
     parser.add_argument("--team-alpha-key", default="team_alpha", metavar="KEY", help="Alpha roster key in example_teams.json (must be 6-mon when --six-bring)")
     parser.add_argument("--team-beta-key", default="team_beta", metavar="KEY", help="Beta roster key (must be 6-mon when --six-bring)")
+    parser.add_argument(
+        "--meta-pool",
+        action="store_true",
+        help="Sample two distinct teams from meta_teams/ each reset (requires --six-bring). Policy zips get a _meta suffix.",
+    )
     br = parser.add_argument_group("Six-bring openings (only with --six-bring)")
     br.add_argument(
         "--diverse-opens",
@@ -71,6 +76,11 @@ def main() -> int:
     if bool(args.six_bring) and bool(args.diverse_opens):
         args.random_pair_bring_on_reset = True
 
+    if bool(args.meta_pool) and not bool(args.six_bring):
+        print("--meta-pool requires --six-bring", file=sys.stderr)
+
+        return 2
+
     try:
         from sb3_contrib import MaskablePPO
         from sb3_contrib.common.wrappers import ActionMasker
@@ -80,7 +90,14 @@ def main() -> int:
         return 1
 
     from vgc_rl.beta_oracle_env import BetaControlledOracleDoublesEnv
-    from vgc_rl.doubles_obs_identity import DOUBLES_OBS_BATTLE_DIM, DOUBLES_OBS_BOOST_DIM, DOUBLES_OBS_IDENTITY_DIM, DOUBLES_OBS_TOTAL_DIM, DOUBLES_OBS_WITH_SIX_BRING_DIM
+    from vgc_rl.doubles_obs_identity import (
+        DOUBLES_OBS_BATTLE_DIM,
+        DOUBLES_OBS_BOOST_DIM,
+        DOUBLES_OBS_IDENTITY_DIM,
+        DOUBLES_OBS_TOTAL_DIM,
+        DOUBLES_OBS_WITH_SIX_BRING_DIM,
+        obs_vocab_sizes,
+    )
     from vgc_rl.fake_oracle_client import FakeOracleClient
     from vgc_rl.oracle_client import OracleClient
     from vgc_rl.oracle_doubles_rl_env import OracleDoublesRlEnv
@@ -115,6 +132,7 @@ def main() -> int:
                 beta_team_key=str(args.team_beta_key),
                 game=game,
                 six_bring=bool(args.six_bring),
+                meta_pool=bool(args.meta_pool),
             )
         )
     )
@@ -127,6 +145,7 @@ def main() -> int:
                 beta_team_key=str(args.team_beta_key),
                 game=game,
                 six_bring=bool(args.six_bring),
+                meta_pool=bool(args.meta_pool),
             )
         )
     )
@@ -142,10 +161,13 @@ def main() -> int:
 
     obs_dim_print = DOUBLES_OBS_WITH_SIX_BRING_DIM if args.six_bring else DOUBLES_OBS_TOTAL_DIM
 
+    vocab = obs_vocab_sizes()
+
     print(
         f"Alternating self-play · rounds={args.alternating_rounds} · steps/phase={args.steps_per_phase} · "
         f"obs_dim={obs_dim_print} ({DOUBLES_OBS_BATTLE_DIM}+{DOUBLES_OBS_BOOST_DIM}+{DOUBLES_OBS_IDENTITY_DIM}"
-        f"{'+bring' if args.six_bring else ''})",
+        f"{'+bring' if args.six_bring else ''}) · vocab species={vocab['species']} moves={vocab['moves']} "
+        f"abilities={vocab['abilities']} items={vocab['items']}",
         flush=True,
     )
 
@@ -154,8 +176,11 @@ def main() -> int:
         "team_alpha_key": str(args.team_alpha_key),
         "team_beta_key": str(args.team_beta_key),
         "six_bring": bool(args.six_bring),
+        "meta_pool": bool(args.meta_pool),
         "game": game,
     }
+
+    pool_kw = {"meta_pool": bool(args.meta_pool)}
 
     def _wrap_replay(env: object, *, phase: str) -> object:
         if not replay_enabled:
@@ -201,6 +226,7 @@ def main() -> int:
             six_mon_bring=args.six_bring,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
+            **pool_kw,
             **six_bring_extras,
         )
 
@@ -283,6 +309,7 @@ def main() -> int:
             six_mon_bring=args.six_bring,
             team_alpha_key=str(args.team_alpha_key),
             team_beta_key=str(args.team_beta_key),
+            **pool_kw,
             **six_bring_extras,
         )
 

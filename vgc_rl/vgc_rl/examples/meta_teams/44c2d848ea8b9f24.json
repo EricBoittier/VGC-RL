@@ -1,0 +1,198 @@
+{
+  "label": "Gengar / Kingambit / Basculegion / Sneasler / Aerodactyl / Sylveon",
+  "party": [
+    {
+      "name": "Gengar",
+      "nature": "Timid",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 23,
+        "spa": 0,
+        "spd": 4,
+        "spe": 7
+      },
+      "moves": [
+        {
+          "name": "Shadow Ball"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Icy Wind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Gengarite"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Supreme Overlord",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 1,
+        "def": 14,
+        "spa": 0,
+        "spd": 18,
+        "spe": 1
+      },
+      "moves": [
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Iron Head"
+        },
+        {
+          "name": "Low Kick"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Adamant",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 2,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Liquidation"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Adamant",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 26,
+        "spa": 0,
+        "spd": 3,
+        "spe": 5
+      },
+      "moves": [
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Feint"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "White Herb"
+    },
+    {
+      "name": "Aerodactyl",
+      "nature": "Jolly",
+      "ability": "Unnerve",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dual Wingbeat"
+        },
+        {
+          "name": "Ice Fang"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Aerodactylite"
+    },
+    {
+      "name": "Sylveon",
+      "nature": "Modest",
+      "ability": "Pixilate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 17,
+        "atk": 0,
+        "def": 29,
+        "spa": 20,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Hyper Voice"
+        },
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Yawn"
+        },
+        {
+          "name": "Detect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Fairy Feather"
+    }
+  ],
+  "pokepast": "https://pokepast.es/44c2d848ea8b9f24"
+}

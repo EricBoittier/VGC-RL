@@ -1,0 +1,198 @@
+{
+  "label": "Charizard / Scizor / Sneasler / Incineroar / Sinistcha / Milotic",
+  "party": [
+    {
+      "name": "Charizard",
+      "nature": "",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Dragon Dance"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Dragon Claw"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite X"
+    },
+    {
+      "name": "Scizor",
+      "nature": "",
+      "ability": "Technician",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Swords Dance"
+        },
+        {
+          "name": "Bullet Punch"
+        },
+        {
+          "name": "Bug Bite"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Scizorite"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "",
+      "ability": "Poison Touch",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Coaching"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Throat Chop"
+        },
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Roar"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Shuca Berry"
+    },
+    {
+      "name": "Sinistcha",
+      "nature": "",
+      "ability": "Hospitality",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Matcha Gotcha"
+        },
+        {
+          "name": "Trick Room"
+        },
+        {
+          "name": "Rage Powder"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Milotic",
+      "nature": "",
+      "ability": "Competitive",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Icy Wind"
+        },
+        {
+          "name": "Scald"
+        },
+        {
+          "name": "Recover"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    }
+  ],
+  "pokepast": "https://pokepast.es/47c0a153d7454020"
+}

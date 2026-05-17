@@ -1,0 +1,198 @@
+{
+  "label": "Charizard / Garchomp / Heracross / Incineroar / Maushold / Whimsicott",
+  "party": [
+    {
+      "name": "Charizard",
+      "nature": "Modest",
+      "ability": "Blaze",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 9,
+        "spa": 11,
+        "spd": 1,
+        "spe": 13
+      },
+      "moves": [
+        {
+          "name": "Heat Wave"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Charizardite Y"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Jolly",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Roseli Berry"
+    },
+    {
+      "name": "Heracross",
+      "nature": "Adamant",
+      "ability": "Moxie",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 17,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 17
+      },
+      "moves": [
+        {
+          "name": "Pin Missile"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Rock Blast"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Heracronite"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Impish",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 10,
+        "spa": 0,
+        "spd": 9,
+        "spe": 15
+      },
+      "moves": [
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Throat Chop"
+        },
+        {
+          "name": "Fake Out"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Maushold",
+      "nature": "Calm",
+      "ability": "Friend Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 27,
+        "atk": 0,
+        "def": 21,
+        "spa": 0,
+        "spd": 15,
+        "spe": 3
+      },
+      "moves": [
+        {
+          "name": "Super Fang"
+        },
+        {
+          "name": "Taunt"
+        },
+        {
+          "name": "Follow Me"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Whimsicott",
+      "nature": "Timid",
+      "ability": "Prankster",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/f46e8c179f42a9b7"
+}

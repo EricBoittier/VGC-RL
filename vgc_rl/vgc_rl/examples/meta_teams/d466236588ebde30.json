@@ -1,0 +1,198 @@
+{
+  "label": "Archaludon / Kingambit / Basculegion / Pelipper / Sableye / Venusaur",
+  "party": [
+    {
+      "name": "Archaludon",
+      "nature": "Bold",
+      "ability": "Stamina",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 0,
+        "spd": 30,
+        "spe": 3
+      },
+      "moves": [
+        {
+          "name": "Electro Shot"
+        },
+        {
+          "name": "Dragon Pulse"
+        },
+        {
+          "name": "Flash Cannon"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Defiant",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 1,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Iron Head"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Jolly",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 29,
+        "def": 3,
+        "spa": 0,
+        "spd": 2,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Flip Turn"
+        },
+        {
+          "name": "Last Respects"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Pelipper",
+      "nature": "Bold",
+      "ability": "Drizzle",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 0,
+        "def": 2,
+        "spa": 0,
+        "spd": 32,
+        "spe": 1
+      },
+      "moves": [
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Hurricane"
+        },
+        {
+          "name": "Wide Guard"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Sableye",
+      "nature": "Sassy",
+      "ability": "Prankster",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 9,
+        "spa": 0,
+        "spd": 25,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Will-O-Wisp"
+        },
+        {
+          "name": "Rain Dance"
+        },
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Disable"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Roseli Berry"
+    },
+    {
+      "name": "Venusaur",
+      "nature": "Modest",
+      "ability": "Chlorophyll",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 1,
+        "spa": 28,
+        "spd": 1,
+        "spe": 4
+      },
+      "moves": [
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Earth Power"
+        },
+        {
+          "name": "Giga Drain"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Venusaurite"
+    }
+  ],
+  "pokepast": "https://pokepast.es/d466236588ebde30"
+}

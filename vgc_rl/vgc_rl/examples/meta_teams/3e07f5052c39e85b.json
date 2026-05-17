@@ -1,0 +1,198 @@
+{
+  "label": "Froslass / Sneasler / Basculegion / Kingambit / Milotic / Dragonite",
+  "party": [
+    {
+      "name": "Froslass",
+      "nature": "Timid",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 0,
+        "def": 0,
+        "spa": 32,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Blizzard"
+        },
+        {
+          "name": "Shadow Ball"
+        },
+        {
+          "name": "Aurora Veil"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Froslassite"
+    },
+    {
+      "name": "Sneasler",
+      "nature": "Jolly",
+      "ability": "Unburden",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Dire Claw"
+        },
+        {
+          "name": "Close Combat"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Fling"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "King's Rock"
+    },
+    {
+      "name": "Basculegion",
+      "nature": "Jolly",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Aqua Jet"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Kingambit",
+      "nature": "Adamant",
+      "ability": "Supreme Overlord",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 18,
+        "atk": 30,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 18
+      },
+      "moves": [
+        {
+          "name": "Sucker Punch"
+        },
+        {
+          "name": "Kowtow Cleave"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Chople Berry"
+    },
+    {
+      "name": "Milotic",
+      "nature": "Bold",
+      "ability": "Competitive",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 32,
+        "spa": 0,
+        "spd": 0,
+        "spe": 2
+      },
+      "moves": [
+        {
+          "name": "Scald"
+        },
+        {
+          "name": "Icy Wind"
+        },
+        {
+          "name": "Life Dew"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Dragonite",
+      "nature": "Adamant",
+      "ability": "Multiscale",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 1,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Extreme Speed"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Low Kick"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Dragon Fang"
+    }
+  ],
+  "pokepast": "https://pokepast.es/3e07f5052c39e85b"
+}

@@ -1,0 +1,198 @@
+{
+  "label": "Gengar / Tinkaton / Incineroar / Sableye / Meowscarada / Kommo-o",
+  "party": [
+    {
+      "name": "Gengar",
+      "nature": "Timid",
+      "ability": "Cursed Body",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 7,
+        "atk": 0,
+        "def": 2,
+        "spa": 22,
+        "spd": 3,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Sludge Bomb"
+        },
+        {
+          "name": "Shadow Ball"
+        },
+        {
+          "name": "Disable"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Gengarite"
+    },
+    {
+      "name": "Tinkaton",
+      "nature": "Jolly",
+      "ability": "Mold Breaker",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Gigaton Hammer"
+        },
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    },
+    {
+      "name": "Incineroar",
+      "nature": "Sassy",
+      "ability": "Intimidate",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 31,
+        "atk": 1,
+        "def": 20,
+        "spa": 0,
+        "spd": 14,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Fake Out"
+        },
+        {
+          "name": "Flare Blitz"
+        },
+        {
+          "name": "Parting Shot"
+        },
+        {
+          "name": "Darkest Lariat"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Sableye",
+      "nature": "Careful",
+      "ability": "Prankster",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 2,
+        "spa": 0,
+        "spd": 32,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Will-O-Wisp"
+        },
+        {
+          "name": "Light Screen"
+        },
+        {
+          "name": "Quash"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Roseli Berry"
+    },
+    {
+      "name": "Meowscarada",
+      "nature": "Adamant",
+      "ability": "Protean",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Triple Axel"
+        },
+        {
+          "name": "Flower Trick"
+        },
+        {
+          "name": "Knock Off"
+        },
+        {
+          "name": "Low Kick"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Kommo-o",
+      "nature": "Modest",
+      "ability": "Soundproof",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Clanging Scales"
+        },
+        {
+          "name": "Aura Sphere"
+        },
+        {
+          "name": "Clangorous Soul"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Leftovers"
+    }
+  ],
+  "pokepast": "https://pokepast.es/19bfb6a4c2264cf9"
+}

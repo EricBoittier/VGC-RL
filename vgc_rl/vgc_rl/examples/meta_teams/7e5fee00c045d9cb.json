@@ -1,0 +1,198 @@
+{
+  "label": "Basculegion / Aggron / Garchomp / Maushold / Meganium / Whimsicott",
+  "party": [
+    {
+      "name": "Basculegion",
+      "nature": "Jolly",
+      "ability": "Adaptability",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 32,
+        "def": 1,
+        "spa": 0,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Wave Crash"
+        },
+        {
+          "name": "Last Respects"
+        },
+        {
+          "name": "Head Smash"
+        },
+        {
+          "name": "Flip Turn"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Choice Scarf"
+    },
+    {
+      "name": "Aggron",
+      "nature": "Sassy",
+      "ability": "Sturdy",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 4,
+        "spa": 0,
+        "spd": 30,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Body Press"
+        },
+        {
+          "name": "Heavy Slam"
+        },
+        {
+          "name": "Protect"
+        },
+        {
+          "name": "Iron Defense"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Aggronite"
+    },
+    {
+      "name": "Garchomp",
+      "nature": "Adamant",
+      "ability": "Rough Skin",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 10,
+        "atk": 30,
+        "def": 3,
+        "spa": 0,
+        "spd": 0,
+        "spe": 23
+      },
+      "moves": [
+        {
+          "name": "Earthquake"
+        },
+        {
+          "name": "Rock Slide"
+        },
+        {
+          "name": "Dragon Claw"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Lum Berry"
+    },
+    {
+      "name": "Maushold",
+      "nature": "Bold",
+      "ability": "Friend Guard",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 32,
+        "atk": 0,
+        "def": 30,
+        "spa": 0,
+        "spd": 4,
+        "spe": 0
+      },
+      "moves": [
+        {
+          "name": "Super Fang"
+        },
+        {
+          "name": "Follow Me"
+        },
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Sitrus Berry"
+    },
+    {
+      "name": "Meganium",
+      "nature": "Modest",
+      "ability": "Overgrow",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 14,
+        "atk": 0,
+        "def": 1,
+        "spa": 27,
+        "spd": 0,
+        "spe": 24
+      },
+      "moves": [
+        {
+          "name": "Solar Beam"
+        },
+        {
+          "name": "Weather Ball"
+        },
+        {
+          "name": "Dazzling Gleam"
+        },
+        {
+          "name": "Protect"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Meganiumite"
+    },
+    {
+      "name": "Whimsicott",
+      "nature": "Timid",
+      "ability": "Prankster",
+      "abilityOn": false,
+      "teraType": "",
+      "teraTypeActive": false,
+      "evs": {
+        "hp": 0,
+        "atk": 0,
+        "def": 32,
+        "spa": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "moves": [
+        {
+          "name": "Moonblast"
+        },
+        {
+          "name": "Encore"
+        },
+        {
+          "name": "Tailwind"
+        },
+        {
+          "name": "Endeavor"
+        }
+      ],
+      "activeMovePosition": 1,
+      "item": "Focus Sash"
+    }
+  ],
+  "pokepast": "https://pokepast.es/7e5fee00c045d9cb"
+}

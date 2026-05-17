@@ -27,4 +27,4 @@ where = ["."]
 include = ["vgc_rl"]
 
 [tool.setuptools.package-data]
-vgc_rl = ["examples/*.json", "examples/*.txt", "examples/*.md", "replay_viewer/*"]
+vgc_rl = ["examples/*.json", "examples/*.txt", "examples/*.md", "examples/meta_teams/*", "examples/vocab.json", "examples/mega_evolution_champions.json", "replay_viewer/*"]
