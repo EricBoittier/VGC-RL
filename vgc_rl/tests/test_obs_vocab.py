@@ -7,7 +7,9 @@ def test_vocab_covers_meta_pool() -> None:
     vocab = load_obs_vocab()
     sizes = obs_vocab_sizes()
 
-    assert sizes["species"] >= 50
+    assert sizes["species"] >= 100
+    assert "Gengar-Mega" in vocab["species"]
+    assert "Charizard-Mega-Y" in vocab["species"]
     assert sizes["moves"] >= 150
     assert sizes["abilities"] >= 50
     assert sizes["items"] >= 40

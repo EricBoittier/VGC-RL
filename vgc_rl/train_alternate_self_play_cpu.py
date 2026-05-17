@@ -247,53 +247,35 @@ def main() -> int:
             beta_replay = beta_wrapped.env
 
         if beta_model is None:
-            beta_reset_ts = True
-            resume_b = beta_path.is_file() and not args.fresh_start
+            if args.fresh_start and beta_path.is_file() and init_policy_beta is None:
+                print(f"Round {rnd + 1} Beta: --fresh-start ignoring {beta_path.resolve()}", flush=True)
 
-            if resume_b:
-                try:
-                    beta_model = MaskablePPO.load(str(beta_path), env=beta_wrapped, device="cpu")
-                    beta_model.learning_rate = args.learning_rate
-                    beta_reset_ts = False
-
-                    print(f"Round {rnd + 1} Beta: loaded {beta_path.resolve()} · num_timesteps={beta_model.num_timesteps}", flush=True)
-                except Exception as exc:
-                    print(f"Round {rnd + 1} Beta load failed ({beta_path}): {exc}", file=sys.stderr)
-                    print("Training new Beta policy.", file=sys.stderr)
-
-                    beta_model = MaskablePPO(
-                        "MlpPolicy",
-                        beta_wrapped,
-                        verbose=1,
-                        device="cpu",
-                        seed=args.seed,
-                        learning_rate=args.learning_rate,
-                        n_steps=128,
-                        batch_size=64,
-                    )
-
-                    beta_reset_ts = True
-            else:
-                if args.fresh_start and beta_path.is_file():
-                    print(f"Round {rnd + 1} Beta: --fresh-start ignoring {beta_path.resolve()}", flush=True)
-
-                print(f"Round {rnd + 1} Beta: new MaskablePPO · save → {beta_path.resolve()}", flush=True)
-
-                beta_model = MaskablePPO(
-                    "MlpPolicy",
-                    beta_wrapped,
-                    verbose=1,
-                    device="cpu",
+            try:
+                beta_loaded = load_or_create_maskable_ppo(
+                    env=beta_wrapped,
+                    save_path=beta_path,
+                    init_policy=init_policy_beta,
+                    fresh_start=bool(args.fresh_start),
+                    learning_rate=learning_rate,
                     seed=args.seed,
-                    learning_rate=args.learning_rate,
-                    n_steps=128,
-                    batch_size=64,
+                    label="Beta",
                 )
+            except (FileNotFoundError, RuntimeError) as exc:
+                print(f"Round {rnd + 1} Beta: {exc}", file=sys.stderr)
 
-                beta_reset_ts = True
+                return 1
+
+            beta_model = beta_loaded.model
+            beta_reset_ts = beta_loaded.reset_num_timesteps
+
+            print(
+                f"Round {rnd + 1} Beta: source={beta_loaded.source} · lr={learning_rate} · "
+                f"num_timesteps={beta_model.num_timesteps}",
+                flush=True,
+            )
         else:
             beta_model.set_env(beta_wrapped)
-            beta_model.learning_rate = args.learning_rate
+            beta_model.learning_rate = learning_rate
             beta_reset_ts = False
 
             print(f"Round {rnd + 1} Beta: continuing vs {'frozen Alpha policy' if alpha_model is not None else 'random Alpha'}", flush=True)
@@ -330,53 +312,35 @@ def main() -> int:
             alpha_replay = alpha_wrapped.env
 
         if alpha_model is None:
-            alpha_reset_ts = True
-            resume_a = alpha_path.is_file() and not args.fresh_start
+            if args.fresh_start and alpha_path.is_file() and init_policy_alpha is None:
+                print(f"Round {rnd + 1} Alpha: --fresh-start ignoring {alpha_path.resolve()}", flush=True)
 
-            if resume_a:
-                try:
-                    alpha_model = MaskablePPO.load(str(alpha_path), env=alpha_wrapped, device="cpu")
-                    alpha_model.learning_rate = args.learning_rate
-                    alpha_reset_ts = False
-
-                    print(f"Round {rnd + 1} Alpha: loaded {alpha_path.resolve()} · num_timesteps={alpha_model.num_timesteps}", flush=True)
-                except Exception as exc:
-                    print(f"Round {rnd + 1} Alpha load failed ({alpha_path}): {exc}", file=sys.stderr)
-                    print("Training new Alpha policy.", file=sys.stderr)
-
-                    alpha_model = MaskablePPO(
-                        "MlpPolicy",
-                        alpha_wrapped,
-                        verbose=1,
-                        device="cpu",
-                        seed=args.seed + 1,
-                        learning_rate=args.learning_rate,
-                        n_steps=128,
-                        batch_size=64,
-                    )
-
-                    alpha_reset_ts = True
-            else:
-                if args.fresh_start and alpha_path.is_file():
-                    print(f"Round {rnd + 1} Alpha: --fresh-start ignoring {alpha_path.resolve()}", flush=True)
-
-                print(f"Round {rnd + 1} Alpha: new MaskablePPO · save → {alpha_path.resolve()}", flush=True)
-
-                alpha_model = MaskablePPO(
-                    "MlpPolicy",
-                    alpha_wrapped,
-                    verbose=1,
-                    device="cpu",
+            try:
+                alpha_loaded = load_or_create_maskable_ppo(
+                    env=alpha_wrapped,
+                    save_path=alpha_path,
+                    init_policy=init_policy_alpha,
+                    fresh_start=bool(args.fresh_start),
+                    learning_rate=learning_rate,
                     seed=args.seed + 1,
-                    learning_rate=args.learning_rate,
-                    n_steps=128,
-                    batch_size=64,
+                    label="Alpha",
                 )
+            except (FileNotFoundError, RuntimeError) as exc:
+                print(f"Round {rnd + 1} Alpha: {exc}", file=sys.stderr)
 
-                alpha_reset_ts = True
+                return 1
+
+            alpha_model = alpha_loaded.model
+            alpha_reset_ts = alpha_loaded.reset_num_timesteps
+
+            print(
+                f"Round {rnd + 1} Alpha: source={alpha_loaded.source} · lr={learning_rate} · "
+                f"num_timesteps={alpha_model.num_timesteps}",
+                flush=True,
+            )
         else:
             alpha_model.set_env(alpha_wrapped)
-            alpha_model.learning_rate = args.learning_rate
+            alpha_model.learning_rate = learning_rate
             alpha_reset_ts = False
 
             print(f"Round {rnd + 1} Alpha: continuing vs frozen Beta policy", flush=True)

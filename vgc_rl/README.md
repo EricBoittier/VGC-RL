@@ -64,19 +64,39 @@ pip install sb3-contrib stable-baselines3 torch
 python train_beta_maskable_ppo_cpu.py --fake-oracle --timesteps 4096 --save beta_policy.zip
 ```
 
-Re-running with the same **`--save`** path loads that zip and continues (**`learn(..., reset_num_timesteps=False)`**); SB3’s rollout table then shows cumulative timesteps. Use **`--fresh-start`** to ignore an existing zip and train from scratch (required if the zip was trained on the old **14-D** observation — SB3 will reject mismatched net inputs otherwise). **`--learning-rate`** defaults to **`1e-3`** in this script (SB3’s usual default is **`3e-4`**); lower it if updates become unstable (KL spikes, reward collapses). The env exposes **`BetaControlledOracleDoublesEnv.observation_space` shape **`(54,)`**: **14** battle floats plus **40** slot identity floats (species + four moves per party slot), same layout as **`play-doubles`** / trajectory **`obs_before`\*\*.
+Re-running with the same **`--save`** path loads that zip and continues (**`learn(..., reset_num_timesteps=False)`**). Use **`--fresh-start`** to train a new net (required if the zip used an older observation size). **`--learning-rate`** defaults to **`1e-3`**; with **`--finetune`** the default is **`3e-4`** when omitted.
+
+**Observation layout:** **`(114,)`** battle obs = **18** scalars + **40** boosts + **56** identity (per slot: species, 4 moves, ability, item). With **`--six-bring`**, shape **`(127,)`** adds a **13**-dim bring tail. Vocabulary is built from example teams, meta teams, and all Champions mega forms (`examples/vocab.json`).
+
+**Meta-pool training (team-agnostic):**
+
+```bash
+cd vgc_rl
+python train_alternate_self_play_cpu.py --fake-oracle --six-bring --meta-pool \
+  --random-pair-bring-on-reset --alternating-rounds 4 --steps-per-phase 4096
+```
+
+**Fine-tune** (load weights, overwrite same save path):
+
+```bash
+python train_beta_maskable_ppo_cpu.py --fake-oracle --six-bring --meta-pool \
+  --init-policy beta_eric_vs_eileen_champions_bring6_meta.zip \
+  --save beta_eric_vs_eileen_champions_bring6_meta.zip --finetune --timesteps 8192
+```
 
 (`BetaControlledOracleDoublesEnv` exposes **`action_masks()`** for **MaskablePPO**; sparse reward is **Beta-centric** via sign flip vs Alpha env.)
 
-**Optional iterative self-play (frozen opponent each phase):** `python train_alternate_self_play_cpu.py --fake-oracle --alternating-rounds 4 --steps-per-phase 4096` alternates **Beta.learn** vs random Alpha (first round) or frozen **`alpha_policy_selfplay.zip`**, then **Alpha.learn** vs frozen **`beta_policy_selfplay.zip`** (same weights Beta just trained), repeating. Outputs **`--save-alpha`** / **`--save-beta`** (defaults above). Use **`--fresh-start`** to ignore both zips; **`--opponent-stochastic`** samples frozen opponent actions.
+**Optional iterative self-play (frozen opponent each phase):** `python train_alternate_self_play_cpu.py --fake-oracle --alternating-rounds 4 --steps-per-phase 4096` alternates **Beta.learn** vs random Alpha (first round) or frozen Alpha zip, then **Alpha.learn** vs frozen Beta, repeating. Use **`--init-policy-beta`** / **`--init-policy-alpha`** on the first round of each side. Policy zips get a **`_meta`** suffix when **`--meta-pool`** is set.
 
 4. **Save** — `model.save("beta_policy.zip")`.
 
-5. **Play against it** — **`vgc-rl play-doubles --beta-policy beta_policy.zip`** with **`oracle-server`** running (use the same oracle you trained against). **`play-doubles`** loads **Beta** only for now; **Alpha** zips from alternating training are for **`OracleDoublesRlEnv`** or future CLI wiring. Older **`beta_policy.zip`** files trained on the previous **14-dimensional** observation must be **retrained** after this change.
+5. **Play against it** — **`vgc-rl play-doubles --beta-policy beta_policy.zip`** with **`oracle-server`** running. **`play-doubles`** loads **Beta** only for now; **Alpha** zips from alternating training are for **`OracleDoublesRlEnv`** or future CLI wiring.
+
+**Mega Evolution:** all **SETDEX_CHAMPIONS** mega forms are wired via [`examples/mega_evolution_champions.json`](vgc_rl/vgc_rl/examples/mega_evolution_champions.json) (regenerate with `node scripts/export_mega_evolution_champions.mjs` after setdex changes).
 
 **Offline / hybrid:** behavioral cloning or auxiliary losses from JSONL (`joint_idx_beta`, …) in your own notebooks—SB3 does not ship BC here.
 
-Trajectory rows are plain JSON objects per turn (`step_index`, `obs_before`, legal joint index lists, `joint_idx_*`, `reward`, `terminated`, …), aligned with the shared observation layout (**14** battle scalars plus **40** slot identity floats: species + four move names per party slot, normalized from `example_teams` vocab with deterministic hash fallback for unknown strings — **54** floats total).
+Trajectory rows are plain JSON objects per turn (`step_index`, `obs_before`, legal joint index lists, `joint_idx_*`, `reward`, `terminated`, …), aligned with the **114**-dim observation layout above.
 
 The **`OracleDoubles-v0`** section below shows minimal **`gym.make`** usage when the **Alpha** side is the RL agent; **`BetaOracleDoubles-v0`** mirrors it for **Beta** training.
 
