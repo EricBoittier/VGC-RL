@@ -60,9 +60,11 @@ End state: a **random-init neural policy** trained with **Stable-Baselines3** an
 
 ```bash
 cd vgc_rl
-pip install sb3-contrib stable-baselines3 torch
-python train_beta_maskable_ppo_cpu.py --fake-oracle --timesteps 4096 --save beta_policy.zip
+uv sync --extra train
+uv run python train_beta_maskable_ppo_cpu.py --fake-oracle --timesteps 4096 --save beta_policy.zip
 ```
+
+(`train` optional extra installs `sb3-contrib`, `stable-baselines3`, and `torch`. Use `uv sync --extra train --extra dev` for pytest too.)
 
 Re-running with the same **`--save`** path loads that zip and continues (**`learn(..., reset_num_timesteps=False)`**). Use **`--fresh-start`** to train a new net (required if the zip used an older observation size). **`--learning-rate`** defaults to **`1e-3`**; with **`--finetune`** the default is **`3e-4`** when omitted.
 
@@ -134,7 +136,7 @@ Opposing side mirrors that layout (four Pokémon total per trainer); globally ei
 
 **Structural slots** ([`vgc_rl/doubles_actions.py`](vgc_rl/doubles_actions.py)):
 
-- Per active: **move** — `(move_slot 0–3, target)` with `DoublesTarget` as a coarse doubles-facing enum (`FOE_SLOT_0`, `FOE_SLOT_1`, `ALLY_ACTIVE`, `SELF`, `BOTH_FOES`, `FIELD`, `NONE`).
+- Per active: **move** — `(move_slot 0–3, target)` with `DoublesTarget` as a coarse doubles-facing enum (`FOE_SLOT_0`, `FOE_SLOT_1`, `ALLY_ACTIVE`, `SELF`, `BOTH_FOES`, `FIELD`, `NONE`). Status move legality follows Showdown targets exported to [`move_targets_champions.json`](vgc_rl/vgc_rl/examples/move_targets_champions.json) (`node scripts/export_move_targets_champions.mjs`).
 - Per active: **switch** — `bench_index` over **`DEFAULT_BENCH_SLOTS` = 2** (the two bench Pokémon).
 
 Default counts: **86** slot actions (= 4×7 move/target combos for living actives + **2** voluntary switches + **2×4×7** faint **send-out + first-turn move** combos), **5826** joint pairs (= 86² minus pairs where **both** slots pick the **same** bench index as **voluntary** double-switch or **faint** double-send-out). Most pairs are still **illegal** for real battles until you add rules and **action masking** ([Action masking tutorial](https://gymnasium.farama.org/tutorials/training_agents/action_masking_taxi_env/)).

@@ -5,7 +5,8 @@ from typing import Any
 
 from vgc_rl.doubles_mega_tera import _MEGA_ITEM_TO_FORM
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
-from vgc_rl.doubles_move_targeting import ALL_ADJACENT_EXCEPT_USER_MOVES, SPREAD_BOTH_OPPONENTS_MOVES
+from vgc_rl.doubles_move_targeting import ALL_ADJACENT_EXCEPT_USER_MOVES, FIELD_STATUS_MOVES, SPREAD_BOTH_OPPONENTS_MOVES
+from vgc_rl.doubles_status_effects import SIDE_STATUS_MOVES, STATUS_EFFECT_MOVES
 from vgc_rl.doubles_turn_engine import (
     TAILWIND_DURATION_TURNS,
     _ENTRY_WEATHER_ABILITIES,
@@ -31,6 +32,9 @@ def python_mechanics_string_inventory() -> dict[str, Any]:
         "focus_sash_item_keys": sorted(_FOCUS_SASH_ITEM_NAMES),
         "tailwind_duration_turns": TAILWIND_DURATION_TURNS,
         "status_no_calc_moves": sorted(STATUS_NO_CALC),
+        "field_status_moves": sorted(FIELD_STATUS_MOVES),
+        "side_status_moves": sorted(SIDE_STATUS_MOVES),
+        "status_effect_moves": sorted(STATUS_EFFECT_MOVES),
         "mega_item_to_form_keys": sorted(_MEGA_ITEM_TO_FORM.keys()),
         "item_deferrals": [{"name": r["name"], "disposition": r["disposition"]} for r in ITEM_DEFERRALS],
         "hardcoded_engine_strings": sorted(

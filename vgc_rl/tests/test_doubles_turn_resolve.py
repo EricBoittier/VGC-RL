@@ -459,3 +459,148 @@ def test_focus_sash_survives_first_ohko_then_breaks() -> None:
 
     assert float(sash_mon["hpPercentage"]) <= 0
 
+
+def test_swords_dance_boosts_self_atk() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_beta", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    party_a[0]["moves"] = [
+        {"name": "Swords Dance"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+    ]
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[0, 1])
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 1, 0, doubles_target=int(DoublesTarget.SELF)),
+        _mv("alpha", 1, 2, 1),
+        _mv("beta", 0, 1, 2),
+        _mv("beta", 1, 1, 3),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", planned)
+
+    assert int(state.party_a[state.leads_a[0]].get("boosts", {}).get("atk", 0)) == 2
+
+
+def test_life_dew_heals_self_and_ally() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_beta", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 50.0
+
+    party_a[0]["moves"] = [
+        {"name": "Life Dew"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+    ]
+
+    for slot in party_b[0]["moves"]:
+        slot["name"] = "Tailwind"
+
+    for slot in party_b[1]["moves"]:
+        slot["name"] = "Tailwind"
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[0, 1])
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 1, 0, doubles_target=int(DoublesTarget.SELF)),
+        _mv("alpha", 1, 2, 1),
+        _mv("beta", 0, 1, 2, doubles_target=int(DoublesTarget.FIELD)),
+        _mv("beta", 1, 1, 3, doubles_target=int(DoublesTarget.FIELD)),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", planned)
+
+    assert float(state.party_a[state.leads_a[0]]["hpPercentage"]) == 75.0
+    assert float(state.party_a[state.leads_a[1]]["hpPercentage"]) == 75.0
+
+
+def test_substitute_cost_and_absorbs_damage() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_beta", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    party_a[0]["moves"] = [
+        {"name": "Substitute"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+    ]
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[0, 1])
+    rng = random.Random(0)
+    client = FakeOracleClient()
+
+    sub_turn = [
+        _mv("alpha", 0, 1, 0, doubles_target=int(DoublesTarget.SELF)),
+        _mv("alpha", 1, 2, 1),
+        _mv("beta", 0, 1, 2),
+        _mv("beta", 1, 1, 3),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", sub_turn)
+
+    user = state.party_a[state.leads_a[0]]
+
+    assert float(user["hpPercentage"]) == 75.0
+    assert float(user.get("substitute_hp_pct") or 0) == 25.0
+
+    hit_turn = [
+        _mv("beta", 0, 1, 2, doubles_target=int(DoublesTarget.FOE_SLOT_0)),
+        _mv("beta", 1, 1, 3),
+        _mv("alpha", 1, 2, 1),
+        _mv("alpha", 0, 2, 0),
+    ]
+
+    resolve_turn_flat(state, rng, client, "champions", hit_turn)
+
+    assert float(user["hpPercentage"]) == 75.0
+    assert float(user.get("substitute_hp_pct") or 0) < 25.0
+
+
+def test_kings_shield_blocks_damage_like_protect() -> None:
+    party_a = [party_member("team_alpha", i) for i in range(4)]
+    party_b = [party_member("team_beta", i) for i in range(4)]
+
+    for m in party_a + party_b:
+        m["hpPercentage"] = 100.0
+
+    party_b[1]["moves"] = [
+        {"name": "Tackle"},
+        {"name": "King's Shield"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+    ]
+    party_b[1]["name"] = "Kingambit"
+
+    state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[1, 0], leads_b=[0, 1])
+    rng = random.Random(7)
+    client = FakeOracleClient()
+
+    planned = [
+        _mv("alpha", 0, 2, 0, doubles_target=int(DoublesTarget.FOE_SLOT_1)),
+        _mv("alpha", 1, 3, 1),
+        _mv("beta", 0, 1, 2),
+        _mv("beta", 1, 2, 3, doubles_target=int(DoublesTarget.SELF)),
+    ]
+
+    _reward, _term, events, _dbg = resolve_turn_flat(state, rng, client, "champions", planned)
+
+    blocks = [b for t, b in events if t == "-activate" and "Protect" in b]
+
+    assert any("Kingambit" in b for b in blocks)
+

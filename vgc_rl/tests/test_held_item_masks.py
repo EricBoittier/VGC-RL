@@ -36,12 +36,24 @@ def test_choice_scarf_locks_second_turn_move_slot() -> None:
     party_b = [party_member("team_beta", i) for i in range(4)]
 
     party_a[0]["item"] = "Choice Scarf"
+    party_a[0]["moves"] = [
+        {"name": "Giga Drain"},
+        {"name": "Sludge Bomb"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+    ]
+    party_a[1]["moves"] = [
+        {"name": "Giga Drain"},
+        {"name": "Sludge Bomb"},
+        {"name": "Tackle"},
+        {"name": "Tackle"},
+    ]
 
     for m in party_a + party_b:
         m["hpPercentage"] = 100.0
 
     state = DoublesBattleState(party_a=party_a, party_b=party_b, leads_a=[0, 1], leads_b=[0, 1])
-    j1 = JointDoublesAction(active_0=_mv("alpha", 0, 1, int(DoublesTarget.FOE_SLOT_0)), active_1=_mv("alpha", 1, 2, int(DoublesTarget.FOE_SLOT_0)))
+    j1 = JointDoublesAction(active_0=_mv("alpha", 0, 1, int(DoublesTarget.FOE_SLOT_0)), active_1=_mv("alpha", 1, 1, int(DoublesTarget.FOE_SLOT_0)))
     j2 = JointDoublesAction(active_0=_mv("alpha", 0, 2, int(DoublesTarget.FOE_SLOT_0)), active_1=_mv("alpha", 1, 2, int(DoublesTarget.FOE_SLOT_0)))
     joints = (j1, j2)
 

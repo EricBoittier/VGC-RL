@@ -3,18 +3,29 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
-from functools import partial
+from functools import lru_cache, partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from importlib import resources
 from pathlib import Path
 from typing import Any
 from urllib.parse import unquote
+from urllib.request import Request, urlopen
 
 from vgc_rl.replay import list_replay_files
 
 
 def _viewer_root() -> Path:
     return Path(resources.files("vgc_rl") / "replay_viewer")
+
+
+@lru_cache(maxsize=1)
+def _sprite_lookup() -> tuple[dict[str, str], dict[str, str]]:
+    raw = json.loads((_viewer_root() / "champions_sprite_map.json").read_text(encoding="utf-8"))
+
+    if isinstance(raw.get("bySpecies"), dict):
+        return dict(raw["bySpecies"]), dict(raw.get("byFile") or {})
+
+    return dict(raw), {}
 
 
 class ReplayViewerHandler(SimpleHTTPRequestHandler):
@@ -51,6 +62,41 @@ class ReplayViewerHandler(SimpleHTTPRequestHandler):
                 payload = json.load(f)
 
             self._send_json(payload)
+
+            return
+
+        if self.path.startswith("/sprites/"):
+            key = unquote(self.path.removeprefix("/sprites/").split("?", 1)[0])
+
+            if not key or "/" in key or "\\" in key:
+                self.send_error(400, "invalid sprite key")
+
+                return
+
+            by_species, _by_file = _sprite_lookup()
+            image_url = by_species.get(key)
+
+            if not image_url:
+                self.send_error(404, "sprite not found")
+
+                return
+
+            try:
+                req = Request(image_url, headers={"User-Agent": "VGC-RL/1.0"})
+                with urlopen(req, timeout=20) as remote:
+                    body = remote.read()
+                    ctype = remote.headers.get("Content-Type") or "image/png"
+            except OSError:
+                self.send_error(502, "sprite upstream failed")
+
+                return
+
+            self.send_response(200)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "public, max-age=86400")
+            self.end_headers()
+            self.wfile.write(body)
 
             return
 

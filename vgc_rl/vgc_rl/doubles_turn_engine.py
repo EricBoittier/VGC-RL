@@ -7,8 +7,20 @@ from typing import Any
 from vgc_rl.champions_metadata import move_category_champions
 from vgc_rl.doubles_ability_hooks import defiant_boost_after_opponent_unboost, rough_skin_if, stamina_if_damaging_hit
 from vgc_rl.doubles_actions import JointDoublesAction, MoveSlotAction, SendOutMoveSlotAction, SwitchSlotAction, DoublesTarget
-from vgc_rl.doubles_move_targeting import ALL_ADJACENT_EXCEPT_USER_MOVES, SPREAD_BOTH_OPPONENTS_MOVES
+from vgc_rl.doubles_move_targeting import (
+    ALL_ADJACENT_EXCEPT_USER_MOVES,
+    FIELD_STATUS_MOVES,
+    SIDE_STATUS_MOVES,
+    SPREAD_BOTH_OPPONENTS_MOVES,
+    showdown_target_for_move,
+)
 from vgc_rl.doubles_protect_moves import PROTECT_FAMILY_MOVES
+from vgc_rl.doubles_status_effects import (
+    STATUS_EFFECT_MOVES,
+    apply_damage_through_substitute,
+    resolve_side_status,
+    resolve_status_effect,
+)
 from vgc_rl.example_teams import with_active_move
 from vgc_rl.held_item_effects import (
     black_sludge_tick,
@@ -871,10 +883,17 @@ def resolve_turn_flat(
 
                 continue
 
-        if slot_mv in STATUS_NO_CALC:
+        if slot_mv in FIELD_STATUS_MOVES:
             events.append(("move", f"{atk_addr} used {slot_mv}."))
 
-            if slot_mv == "Tailwind":
+            if slot_mv in SIDE_STATUS_MOVES:
+                resolve_side_status(
+                    slot_mv,
+                    atk_addr=atk_addr,
+                    state_party_pairs=[(party_a, leads_a), (party_b, leads_b)],
+                    events=events,
+                )
+            elif slot_mv == "Tailwind":
                 if atk_side == "alpha":
                     state.alpha_tailwind_turns_left = TAILWIND_DURATION_TURNS
                 else:
@@ -893,6 +912,41 @@ def resolve_turn_flat(
 
             events.append(("-hint", f"Field/status move — damage oracle skipped ({slot_mv})."))
 
+            set_choice_lock(atk_mon, move_slot)
+
+            continue
+
+        cat_slot_early = move_category_champions(slot_mv)
+
+        if slot_mv in STATUS_EFFECT_MOVES and cat_slot_early == "Status":
+            events.append(("move", f"{atk_addr} used {slot_mv}!"))
+            ally_fi = 1 - field_idx
+            ally_pi = own_leads[ally_fi]
+            ally_mon = own_party[ally_pi]
+            ally_addr = None
+
+            if float(ally_mon.get("hpPercentage") or 0) > 0:
+                ally_addr = active_address(atk_side, ally_fi, ally_mon)
+
+            dt_raw = item.get("doubles_target")
+            dt = DoublesTarget(int(dt_raw)) if dt_raw is not None else None
+
+            if resolve_status_effect(
+                slot_mv,
+                atk_mon=atk_mon,
+                atk_addr=atk_addr,
+                ally_mon=ally_mon,
+                ally_addr=ally_addr,
+                doubles_target=dt,
+                events=events,
+            ):
+                set_choice_lock(atk_mon, move_slot)
+
+                continue
+
+        if cat_slot_early == "Status" and showdown_target_for_move(slot_mv) == "self" and slot_mv not in STATUS_EFFECT_MOVES:
+            events.append(("move", f"{atk_addr} used {slot_mv}!"))
+            events.append(("-hint", f"Status move ({slot_mv}) — effect stub."))
             set_choice_lock(atk_mon, move_slot)
 
             continue
@@ -1054,9 +1108,10 @@ def resolve_turn_flat(
             avg = (lo + hi) / 2
 
             prev_hp = float(def_mon.get("hpPercentage") or 100)
-            new_hp_raw = max(0.0, prev_hp - avg)
 
             def_addr = active_address(def_side_hit, def_fi, def_mon)
+            avg = apply_damage_through_substitute(def_mon, avg, events, def_addr)
+            new_hp_raw = max(0.0, prev_hp - avg)
 
             full_hp = prev_hp >= 100.0 - 1e-9
             sash_eligible = _item_key(def_mon) in _FOCUS_SASH_ITEM_NAMES and not bool(def_mon.get("focus_sash_consumed")) and full_hp

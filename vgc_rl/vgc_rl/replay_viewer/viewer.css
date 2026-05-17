@@ -7,8 +7,11 @@
   --muted: #8b9cb3;
   --alpha: #f5c842;
   --beta: #5eb3ff;
-  --hp-ok: #5bd37a;
+  --hp-high: #5bd37a;
+  --hp-mid: #e6c84a;
   --hp-low: #f07178;
+  --hp-bar-lost: #c44a52;
+  --hp-bar-fill: #5bd37a;
   --accent: #c792ea;
 }
 
@@ -195,20 +198,87 @@ button:hover {
   font-size: 0.82rem;
 }
 
+.mon-card-head {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  margin-bottom: 0.35rem;
+}
+
+.mon-sprite {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.mon-sprite:not([src]),
+.bench-sprite:not([src]) {
+  opacity: 0.25;
+}
+
+.mon-card-title {
+  flex: 1;
+  min-width: 0;
+}
+
 .mon-card .name {
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
 }
 
-.mon-card .hp {
-  font-weight: 600;
+.hp-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
-.mon-card .hp.ok {
-  color: var(--hp-ok);
+.hp-bar {
+  position: relative;
+  width: 120px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--hp-bar-lost);
+  border: 1px solid rgba(0, 0, 0, 0.35);
 }
 
-.mon-card .hp.low {
+.hp-bar-lost {
+  position: absolute;
+  inset: 0;
+  background: var(--hp-bar-lost);
+}
+
+.hp-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--hp-bar-fill);
+  transition: width 0.15s ease;
+}
+
+.hp-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.75rem;
+}
+
+.hp-row.hp-high .hp-label {
+  color: var(--hp-high);
+}
+
+.hp-row.hp-mid .hp-label {
+  color: var(--hp-mid);
+}
+
+.hp-row.hp-low .hp-label {
   color: var(--hp-low);
 }
 
@@ -217,7 +287,62 @@ button:hover {
   margin-top: 0.15rem;
 }
 
-.bench,
+.bench {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.35rem 0.6rem;
+}
+
+.bench-label {
+  font-weight: 600;
+  color: var(--muted);
+  width: 100%;
+}
+
+.bench-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.bench-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.2rem 0.45rem 0.2rem 0.25rem;
+  font-size: 0.75rem;
+}
+
+.bench-chip .hp-row {
+  gap: 0.3rem;
+}
+
+.bench-chip .hp-bar {
+  width: 72px;
+  height: 7px;
+}
+
+.bench-chip .hp-label {
+  font-size: 0.7rem;
+  min-width: 2.25rem;
+}
+
+.bench-sprite {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
 .choice {
   margin: 0.5rem 0 0;
   font-size: 0.8rem;
